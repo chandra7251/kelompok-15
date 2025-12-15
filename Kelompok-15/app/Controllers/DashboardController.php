@@ -53,13 +53,16 @@ class DashboardController
         $transfer = new TransferSaldo();
         $recentTransfer = $transfer->getAllByMahasiswa($mahasiswaId, 5);
 
+        $tabungan = $analytics->getTabunganSummary();
+
         view('dashboard.mahasiswa', [
             'user' => $user,
             'mahasiswa' => $mhs,
             'stats' => $stats,
             'spendingStatus' => $spendingStatus,
             'recentTransaksi' => $recentTransaksi,
-            'recentTransfer' => $recentTransfer
+            'recentTransfer' => $recentTransfer,
+            'tabungan' => $tabungan
         ]);
     }
 
@@ -83,12 +86,53 @@ class DashboardController
         $exchangeService = new ExchangeRateService();
         $currencies = $exchangeService->getAvailableCurrencies();
 
+        $childrenStats = [];
+        $aggregatedMonthlyData = [
+            'labels' => [],
+            'pemasukan' => [],
+            'pengeluaran' => []
+        ];
+
+        foreach ($linkedMahasiswa as $mhs) {
+            $analytics = new AnalyticsService($mhs['id']);
+            $stats = $analytics->getDashboardStats();
+            $spendingStatus = $analytics->getSpendingStatus();
+            $monthlyData = $analytics->getMonthlyChartData(6);
+
+            $childrenStats[] = [
+                'mahasiswa' => $mhs,
+                'stats' => $stats,
+                'spendingStatus' => $spendingStatus,
+                'monthlyData' => $monthlyData
+            ];
+
+            if (empty($aggregatedMonthlyData['labels'])) {
+                $aggregatedMonthlyData['labels'] = $monthlyData['labels'];
+                $aggregatedMonthlyData['pemasukan'] = $monthlyData['pemasukan'];
+                $aggregatedMonthlyData['pengeluaran'] = $monthlyData['pengeluaran'];
+            } else {
+                for ($i = 0; $i < count($monthlyData['pemasukan']); $i++) {
+                    $aggregatedMonthlyData['pemasukan'][$i] += $monthlyData['pemasukan'][$i];
+                    $aggregatedMonthlyData['pengeluaran'][$i] += $monthlyData['pengeluaran'][$i];
+                }
+            }
+        }
+
+        $exchangeRates = [];
+        $mainCurrencies = ['USD', 'EUR', 'SGD', 'MYR'];
+        foreach ($mainCurrencies as $currency) {
+            $exchangeRates[$currency] = $exchangeService->getRate($currency, 'IDR');
+        }
+
         view('dashboard.orangtua', [
             'user' => $user,
             'orangtua' => $ortu,
             'linkedMahasiswa' => $linkedMahasiswa,
             'recentTransfer' => $recentTransfer,
-            'currencies' => $currencies
+            'currencies' => $currencies,
+            'childrenStats' => $childrenStats,
+            'aggregatedMonthlyData' => $aggregatedMonthlyData,
+            'exchangeRates' => $exchangeRates
         ]);
     }
 

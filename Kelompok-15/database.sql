@@ -19,6 +19,8 @@ CREATE TABLE `users` (
     `email` VARCHAR(100) UNIQUE NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `role` ENUM('mahasiswa', 'orangtua', 'admin') NOT NULL,
+    `photo` VARCHAR(255) NULL,
+    `is_active` TINYINT(1) DEFAULT 1,
     `reset_token` VARCHAR(64) NULL,
     `reset_expires` TIMESTAMP NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -139,21 +141,30 @@ CREATE TABLE `reminders` (
     FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- Table: system_settings
+CREATE TABLE `system_settings` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `setting_key` VARCHAR(50) UNIQUE NOT NULL,
+    `setting_value` TEXT NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
 -- ===========================================
 -- SEED DATA
 -- ===========================================
 
 -- Password untuk semua akun: admin123
--- Hash: $2y$10$KUPl50iX7fJecrphcXMU./HD80Q061UaBCf9h5X9gJBwwzzh6lBp6
+-- Hash: $2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K
 
 -- Seed: Admin (id=1)
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(1, 'Administrator', 'admin@keuangan.com', '$2y$10$KUPl50iX7fJecrphcXMU./HD80Q061UaBCf9h5X9gJBwwzzh6lBp6', 'admin');
+(1, 'Administrator', 'admin@keuangan.com', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'admin');
 
 -- Seed: Mahasiswa (id=2,3)
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(2, 'Ahmad Fauzi', 'ahmad@student.ac.id', '$2y$10$KUPl50iX7fJecrphcXMU./HD80Q061UaBCf9h5X9gJBwwzzh6lBp6', 'mahasiswa'),
-(3, 'Budi Santoso', 'budi@student.ac.id', '$2y$10$KUPl50iX7fJecrphcXMU./HD80Q061UaBCf9h5X9gJBwwzzh6lBp6', 'mahasiswa');
+(2, 'Ahmad Fauzi', 'ahmad@student.ac.id', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'mahasiswa'),
+(3, 'Budi Santoso', 'budi@student.ac.id', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'mahasiswa');
 
 INSERT INTO `mahasiswa` (`id`, `user_id`, `nim`, `jurusan`, `saldo`, `pairing_code`) VALUES
 (1, 2, '2024001', 'Teknik Informatika', 1500000.00, 'AHMAD123'),
@@ -161,7 +172,7 @@ INSERT INTO `mahasiswa` (`id`, `user_id`, `nim`, `jurusan`, `saldo`, `pairing_co
 
 -- Seed: Orang Tua (id=4)
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(4, 'Pak Hasan', 'hasan@gmail.com', '$2y$10$KUPl50iX7fJecrphcXMU./HD80Q061UaBCf9h5X9gJBwwzzh6lBp6', 'orangtua');
+(4, 'Pak Hasan', 'hasan@gmail.com', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'orangtua');
 
 INSERT INTO `orangtua` (`id`, `user_id`, `no_telepon`) VALUES
 (1, 4, '081234567890');
@@ -170,29 +181,45 @@ INSERT INTO `orangtua` (`id`, `user_id`, `no_telepon`) VALUES
 INSERT INTO `relasi_orangtua_mahasiswa` (`orangtua_id`, `mahasiswa_id`) VALUES
 (1, 1);
 
--- Seed: Kategori untuk Ahmad (mahasiswa_id=1)
+-- Seed: Kategori untuk Ahmad (mahasiswa_id=1) - sesuai default categories
 INSERT INTO `kategori` (`id`, `mahasiswa_id`, `nama`, `tipe`) VALUES
-(1, 1, 'Uang Saku', 'pemasukan'),
-(2, 1, 'Transfer Ortu', 'pemasukan'),
-(3, 1, 'Makan', 'pengeluaran'),
-(4, 1, 'Transportasi', 'pengeluaran'),
-(5, 1, 'Hiburan', 'pengeluaran'),
-(6, 1, 'Pendidikan', 'pengeluaran');
+-- Pemasukan
+(1, 1, 'Transfer Orang Tua', 'pemasukan'),
+(2, 1, 'Beasiswa', 'pemasukan'),
+(3, 1, 'Kerja Part-time', 'pemasukan'),
+(4, 1, 'Pemasukan Lainnya', 'pemasukan'),
+-- Pengeluaran Utama (sesuai dokumen)
+(5, 1, 'Makanan', 'pengeluaran'),
+(6, 1, 'Biaya Kos', 'pengeluaran'),
+(7, 1, 'Transportasi', 'pengeluaran'),
+(8, 1, 'Kebutuhan Lain', 'pengeluaran'),
+-- Pengeluaran Tambahan
+(9, 1, 'Pendidikan', 'pengeluaran'),
+(10, 1, 'Hiburan', 'pengeluaran'),
+-- Tabungan (kategori khusus)
+(11, 1, 'Tabungan', 'pemasukan');
 
--- Seed: Transaksi untuk Ahmad (12 transaksi)
+-- Seed: Transaksi untuk Ahmad
 INSERT INTO `transaksi` (`mahasiswa_id`, `kategori_id`, `jumlah`, `mata_uang`, `jumlah_idr`, `kurs_rate`, `keterangan`, `tanggal`) VALUES
-(1, 1, 500000, 'IDR', 500000, 1, 'Uang saku mingguan', DATE_SUB(CURDATE(), INTERVAL 30 DAY)),
-(1, 3, 150000, 'IDR', 150000, 1, 'Makan di kantin', DATE_SUB(CURDATE(), INTERVAL 28 DAY)),
-(1, 4, 50000, 'IDR', 50000, 1, 'Ongkos ojol', DATE_SUB(CURDATE(), INTERVAL 25 DAY)),
-(1, 1, 500000, 'IDR', 500000, 1, 'Uang saku mingguan', DATE_SUB(CURDATE(), INTERVAL 23 DAY)),
-(1, 3, 200000, 'IDR', 200000, 1, 'Makan di luar', DATE_SUB(CURDATE(), INTERVAL 20 DAY)),
-(1, 5, 100000, 'IDR', 100000, 1, 'Nonton bioskop', DATE_SUB(CURDATE(), INTERVAL 18 DAY)),
-(1, 1, 500000, 'IDR', 500000, 1, 'Uang saku mingguan', DATE_SUB(CURDATE(), INTERVAL 16 DAY)),
-(1, 6, 250000, 'IDR', 250000, 1, 'Beli buku kuliah', DATE_SUB(CURDATE(), INTERVAL 14 DAY)),
-(1, 3, 175000, 'IDR', 175000, 1, 'Makan siang', DATE_SUB(CURDATE(), INTERVAL 10 DAY)),
-(1, 1, 500000, 'IDR', 500000, 1, 'Uang saku mingguan', DATE_SUB(CURDATE(), INTERVAL 7 DAY)),
-(1, 4, 75000, 'IDR', 75000, 1, 'Bensin motor', DATE_SUB(CURDATE(), INTERVAL 5 DAY)),
-(1, 3, 180000, 'IDR', 180000, 1, 'Makan malam', DATE_SUB(CURDATE(), INTERVAL 2 DAY));
+-- Pemasukan
+(1, 1, 2000000, 'IDR', 2000000, 1, 'Transfer dari ortu', DATE_SUB(CURDATE(), INTERVAL 30 DAY)),
+(1, 3, 500000, 'IDR', 500000, 1, 'Gaji part-time', DATE_SUB(CURDATE(), INTERVAL 20 DAY)),
+-- Pengeluaran Makanan (Bobot 35%)
+(1, 5, 150000, 'IDR', 150000, 1, 'Makan di kantin', DATE_SUB(CURDATE(), INTERVAL 28 DAY)),
+(1, 5, 200000, 'IDR', 200000, 1, 'Makan di luar', DATE_SUB(CURDATE(), INTERVAL 20 DAY)),
+(1, 5, 175000, 'IDR', 175000, 1, 'Makan siang', DATE_SUB(CURDATE(), INTERVAL 10 DAY)),
+(1, 5, 180000, 'IDR', 180000, 1, 'Makan malam', DATE_SUB(CURDATE(), INTERVAL 2 DAY)),
+-- Pengeluaran Biaya Kos (Bobot 25%)
+(1, 6, 500000, 'IDR', 500000, 1, 'Bayar kos bulan ini', DATE_SUB(CURDATE(), INTERVAL 25 DAY)),
+-- Pengeluaran Transportasi (Bobot 15%)
+(1, 7, 50000, 'IDR', 50000, 1, 'Ongkos ojol', DATE_SUB(CURDATE(), INTERVAL 25 DAY)),
+(1, 7, 75000, 'IDR', 75000, 1, 'Bensin motor', DATE_SUB(CURDATE(), INTERVAL 5 DAY)),
+-- Pengeluaran Lainnya
+(1, 9, 250000, 'IDR', 250000, 1, 'Beli buku kuliah', DATE_SUB(CURDATE(), INTERVAL 14 DAY)),
+(1, 10, 100000, 'IDR', 100000, 1, 'Nonton bioskop', DATE_SUB(CURDATE(), INTERVAL 18 DAY)),
+-- Tabungan
+(1, 11, 200000, 'IDR', 200000, 1, 'Nabung mingguan', DATE_SUB(CURDATE(), INTERVAL 25 DAY)),
+(1, 11, 150000, 'IDR', 150000, 1, 'Nabung mingguan', DATE_SUB(CURDATE(), INTERVAL 10 DAY));
 
 -- Seed: Transfer dari Ortu
 INSERT INTO `transfer_saldo` (`orangtua_id`, `mahasiswa_id`, `jumlah`, `mata_uang`, `jumlah_idr`, `kurs_rate`, `keterangan`, `status`) VALUES
@@ -202,6 +229,12 @@ INSERT INTO `transfer_saldo` (`orangtua_id`, `mahasiswa_id`, `jumlah`, `mata_uan
 INSERT INTO `reminders` (`mahasiswa_id`, `nama`, `jumlah`, `tanggal_jatuh_tempo`, `status`) VALUES
 (1, 'SPP Semester Genap', 5000000, DATE_ADD(CURDATE(), INTERVAL 14 DAY), 'pending'),
 (1, 'Uang Kos Bulan Depan', 1500000, DATE_ADD(CURDATE(), INTERVAL 20 DAY), 'pending');
+
+-- Seed: System Settings (default values)
+INSERT INTO `system_settings` (`setting_key`, `setting_value`) VALUES
+('threshold_hemat', '50'),
+('threshold_normal', '80'),
+('kurs_ttl', '3600');
 
 -- ===========================================
 -- DEMO ACCOUNTS

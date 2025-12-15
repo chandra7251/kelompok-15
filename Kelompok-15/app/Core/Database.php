@@ -77,6 +77,16 @@ class Database
         return $this->query($sql, $params)->rowCount();
     }
 
+    public function insertRow(string $table, array $data): int
+    {
+        $columns = implode(', ', array_keys($data));
+        $placeholders = implode(', ', array_fill(0, count($data), '?'));
+        $sql = "INSERT INTO `{$table}` ({$columns}) VALUES ({$placeholders})";
+        $this->query($sql, array_values($data));
+        return (int) $this->connection->lastInsertId();
+    }
+
+
     public function beginTransaction(): bool
     {
         return $this->connection->beginTransaction();

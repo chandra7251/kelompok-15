@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Models\Transaksi;
 use App\Models\Kategori;
+use App\Models\Mahasiswa;
 use App\Services\ExchangeRateService;
+use App\Services\AnalyticsService;
 
 class TransaksiController
 {
@@ -79,6 +81,22 @@ class TransaksiController
                 ->setTanggal($tanggal)
                 ->setKeterangan($keterangan);
             $transaksi->create();
+
+            // Update saldo mahasiswa
+            $mahasiswa = new Mahasiswa();
+            $mhs = $mahasiswa->findMahasiswa($mahasiswaId);
+            if ($mhs) {
+                if ($kat->getTipe() === 'pemasukan') {
+                    $mhs->updateSaldo($conversion['converted_amount'], 'add');
+                } else {
+                    $mhs->updateSaldo($conversion['converted_amount'], 'subtract');
+                }
+            }
+
+            if ($kat->getTipe() === 'pengeluaran') {
+                $analytics = new AnalyticsService($mahasiswaId);
+                $analytics->checkAndNotifyBorosStatus();
+            }
 
             flash('success', 'Transaksi berhasil ditambahkan');
         } catch (\Exception $e) {
@@ -174,6 +192,23 @@ class TransaksiController
         $data = $transaksi->findByIdAndMahasiswa($id, $mahasiswaId);
 
         if ($data) {
+            // Get kategori to check type
+            $kategori = new Kategori();
+            $kat = $kategori->find($data->getKategoriId());
+
+            // Revert saldo change
+            $mahasiswa = new Mahasiswa();
+            $mhs = $mahasiswa->findMahasiswa($mahasiswaId);
+            if ($mhs && $kat) {
+                if ($kat->getTipe() === 'pemasukan') {
+                    // Was added, so subtract
+                    $mhs->updateSaldo($data->getJumlahIdr(), 'subtract');
+                } else {
+                    // Was subtracted, so add back
+                    $mhs->updateSaldo($data->getJumlahIdr(), 'add');
+                }
+            }
+
             $data->delete();
             flash('success', 'Transaksi berhasil dihapus');
         }

@@ -19,14 +19,15 @@ $routes = [
     'logout' => ['controller' => 'AuthController', 'actions' => ['index' => 'logout']],
     'forgot_password' => ['controller' => 'ForgotPasswordController', 'actions' => ['index' => 'index', 'submit' => 'submit']],
     'dashboard' => ['controller' => 'DashboardController', 'actions' => ['index' => 'index']],
-    'profile' => ['controller' => 'ProfileController', 'actions' => ['index' => 'index', 'update_password' => 'updatePassword']],
+    'profile' => ['controller' => 'ProfileController', 'actions' => ['index' => 'index', 'update_password' => 'updatePassword', 'update_photo' => 'updatePhoto', 'delete_photo' => 'deletePhoto']],
     'transaksi' => ['controller' => 'TransaksiController', 'actions' => ['index' => 'index', 'create' => 'create', 'store' => 'store', 'edit' => 'edit', 'update' => 'update', 'delete' => 'delete']],
     'kategori' => ['controller' => 'KategoriController', 'actions' => ['index' => 'index', 'create' => 'create', 'store' => 'store', 'edit' => 'edit', 'update' => 'update', 'delete' => 'delete']],
     'transfer' => ['controller' => 'TransferController', 'actions' => ['index' => 'index', 'send' => 'store', 'link' => 'linkMahasiswa', 'unlink' => 'unlinkMahasiswa']],
     'analytics' => ['controller' => 'AnalyticsController', 'actions' => ['index' => 'index']],
     'grafik' => ['controller' => 'GrafikController', 'actions' => ['index' => 'index', 'data' => 'getChartData']],
-    'export' => ['controller' => 'ExportController', 'actions' => ['transaksi' => 'transaksi', 'laporan' => 'laporan']],
-    'reminder' => ['controller' => 'ReminderController', 'actions' => ['index' => 'index', 'store' => 'store', 'delete' => 'delete', 'send' => 'send', 'json' => 'json']]
+    'export' => ['controller' => 'ExportController', 'actions' => ['transaksi' => 'transaksi', 'laporan' => 'laporan', 'transfer_orangtua' => 'transferOrangtua']],
+    'reminder' => ['controller' => 'ReminderController', 'actions' => ['index' => 'index', 'store' => 'store', 'delete' => 'delete', 'send' => 'send', 'json' => 'json']],
+    'admin' => ['controller' => 'AdminController', 'actions' => ['users' => 'users', 'toggle_status' => 'toggleStatus', 'reset_password' => 'resetPassword', 'delete_user' => 'deleteUser', 'monitoring' => 'monitoring', 'settings' => 'settings', 'update_settings' => 'updateSettings']]
 ];
 
 try {
