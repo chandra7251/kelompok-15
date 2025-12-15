@@ -73,7 +73,7 @@ class ReminderController
 
         try {
             $db = Database::getInstance();
-            $db->insert('reminders', [
+            $db->insertRow('reminders', [
                 'mahasiswa_id' => $mahasiswaId,
                 'nama' => $nama,
                 'jumlah' => $jumlah,

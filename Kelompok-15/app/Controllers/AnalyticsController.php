@@ -10,16 +10,29 @@ class AnalyticsController
     {
         $this->checkAuth();
         $mahasiswaId = auth()['mahasiswa_id'];
+        $period = $_GET['period'] ?? 'monthly';
+
+        // Validate period
+        if (!in_array($period, ['weekly', 'monthly', 'yearly'])) {
+            $period = 'monthly';
+        }
 
         $analytics = new AnalyticsService($mahasiswaId);
         $stats = $analytics->getDashboardStats();
         $spendingStatus = $analytics->getSpendingStatus();
-        $monthlyData = $analytics->getMonthlyChartData(6);
+        $trendData = $analytics->getTrendData($period);
+        $detailedCalc = $analytics->getDetailedCalculation();
+        $tabungan = $analytics->getTabunganSummary();
+        $categoryChart = $analytics->getCategoryChartData('pengeluaran');
 
         view('dashboard.analytics', [
             'stats' => $stats,
             'spendingStatus' => $spendingStatus,
-            'monthlyData' => $monthlyData
+            'trendData' => $trendData,
+            'currentPeriod' => $period,
+            'detailedCalc' => $detailedCalc,
+            'tabungan' => $tabungan,
+            'categoryChart' => $categoryChart
         ]);
     }
 

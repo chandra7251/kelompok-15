@@ -29,6 +29,9 @@ class AuthService
         if (!$user->verifyPassword($password)) {
             return ['success' => false, 'message' => 'Password salah'];
         }
+        if (!$user->isActive()) {
+            return ['success' => false, 'message' => 'Akun Anda telah dinonaktifkan. Hubungi administrator.'];
+        }
 
         $userData = $user->toArray();
 

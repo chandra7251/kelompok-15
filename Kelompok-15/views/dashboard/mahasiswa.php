@@ -9,14 +9,15 @@ ob_start();
     <p class="text-gray-500">Kelola keuangan Anda dengan bijak</p>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 mb-8">
     <div
         class="card bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-6 text-white shadow-lg shadow-indigo-500/30">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-indigo-100 text-sm font-medium">Saldo Saat Ini</p>
                 <p class="text-2xl font-bold mt-2 counter" data-prefix="Rp ">
-                    <?= number_format($stats['saldo'], 0, ',', '.') ?></p>
+                    <?= number_format($stats['saldo'], 0, ',', '.') ?>
+                </p>
             </div>
             <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -93,6 +94,22 @@ ob_start();
             </div>
         </div>
     </div>
+
+    <div class="card bg-white rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Total Tabungan</p>
+                <p class="text-2xl font-bold text-purple-600 mt-2"><?= format_rupiah($tabungan['total'] ?? 0) ?></p>
+                <p class="text-xs text-gray-400 mt-1">Bulan ini: <?= format_rupiah($tabungan['bulan_ini'] ?? 0) ?></p>
+            </div>
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="card bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 mb-8 border border-indigo-100">
@@ -150,12 +167,13 @@ ob_start();
                             </div>
                             <div>
                                 <p class="font-medium text-gray-800 group-hover:text-indigo-600 transition-colors">
-                                    <?= e($trx['kategori_nama']) ?></p>
+                                    <?= e($trx['kategori_nama']) ?>
+                                </p>
                                 <p class="text-xs text-gray-500"><?= format_tanggal($trx['tanggal']) ?></p>
                             </div>
                         </div>
                         <p class="font-semibold <?= $trx['tipe'] === 'pemasukan' ? 'text-green-600' : 'text-red-600' ?>">
-                            <?= $trx['tipe'] === 'pemasukan' ? '+' : '-' ?>        <?= format_rupiah($trx['jumlah_idr']) ?>
+                            <?= $trx['tipe'] === 'pemasukan' ? '+' : '-' ?>         <?= format_rupiah($trx['jumlah_idr']) ?>
                         </p>
                     </div>
                 <?php endforeach; ?>

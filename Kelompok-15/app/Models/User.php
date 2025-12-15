@@ -12,6 +12,7 @@ class User
     private string $email = '';
     private string $password = '';
     private string $role = '';
+    private bool $isActive = true;
     private ?string $createdAt = null;
     private ?string $updatedAt = null;
 
@@ -47,6 +48,10 @@ class User
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
+    }
+    public function isActive(): bool
+    {
+        return $this->isActive;
     }
 
     public function setId(int $id): self
@@ -170,6 +175,7 @@ class User
         $this->email = $data['email'];
         $this->password = $data['password'];
         $this->role = $data['role'];
+        $this->isActive = (bool) ($data['is_active'] ?? 1);
         $this->createdAt = $data['created_at'];
         $this->updatedAt = $data['updated_at'];
         return $this;
