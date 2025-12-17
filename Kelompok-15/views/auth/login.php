@@ -3,18 +3,34 @@ $title = 'Login';
 ob_start();
 ?>
 
-<!-- Main Container 7/5 Grid -->
-<!-- Padding adjusted to push content slightly down/centered -->
+<style>
+    
+    /* Menghilangkan Scroll Bar pada browser */
+
+    .no-scrollbar::-webkit-scrollbar, ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .no-scrollbar, html, body {
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
+    }
+</style>
+
 <div class="w-full max-w-[1750px] mx-auto px-8 lg:px-24 min-h-screen flex items-stretch relative z-10">
+    <!-- Logo Header -->
+    <div class="absolute top-12 left-8 lg:left-24 flex items-center gap-3">
+        <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
+        </svg>
+        <span class="text-white font-bold text-xl tracking-wider uppercase">DISINI LOGO</span>
+    </div>
     <div class="grid lg:grid-cols-12 w-full gap-16 lg:gap-24 items-stretch">
         
-        <!-- Left Section: Typography & Features -->
-        <div class="lg:col-span-7 space-y-12 flex flex-col justify-center">
-            <!-- Typography Hierarchy:
-                 1. HUGE Gradient Title
-                 2. Smaller White Subtitle
-                 3. Description
-            -->
+        
+
+        <!-- Bagian kiri: typographi judul web dan deskripsi -->
+        <div class="lg:col-span-7 space-y-6 flex flex-col justify-center pt-[10rem]">
             <div class="space-y-2">
                 <h1 class="text-[5rem] lg:text-[6rem] leading-[1.0] font-[900] tracking-tight" 
                     style="background: linear-gradient(to right, #00C6FB, #00F29C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 12px rgba(0, 242, 156, 0.22)) drop-shadow(0 0 24px rgba(0, 198, 251, 0.10));">
@@ -28,12 +44,14 @@ ob_start();
                 </p>
             </div>
 
-            <!-- Features List: Fixed spacing and icons -->
-            <div class="pt-12 space-y-8">
+            <br><br>
+
+            <!-- Fitur List -->
+            <div class="pt-10 space-y-12">
                 <h3 class="text-cyan-400 font-bold uppercase tracking-[0.1em]">WHAT WE CAN DO?</h3>
                 
                 <div class="space-y-6">
-                    <!-- Feature Items Loop -->
+                    <!-- Loop untuk logo fitur -->
                     <?php 
                     $features = [
                         ['icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
@@ -60,31 +78,28 @@ ob_start();
                 </div>
             </div>
         </div>
+        
 
-        <!-- Right Section: Login Card -->
+        
+
+        <!-- Login Card -->
         <div class="lg:col-span-5 flex flex-col justify-end items-center pb-0">
-            <!-- Container for Card + Icon -->
-            <!-- MAX-WIDTH INCREASED to 640px for dominance -->
-            <!-- Removed mt-16 to align with top title -->
             <div class="w-full max-w-[640px] relative transform lg:-translate-x-12">
                 
-                <!-- Floating Icon: HUGE and Attached -->
-                <!-- Position adjusted for larger scale -->
                 <div class="absolute left-1/2 -translate-x-1/2 -top-20 z-20">
                     <div class="w-44 h-44 rounded-[3rem] bg-gradient-to-b from-cyan-400 to-teal-500 p-1 shadow-[0_10px_50px_rgba(6,182,212,0.4)] flex items-center justify-center">
                         <div class="w-full h-full rounded-[2.8rem] bg-gradient-to-b from-cyan-400 to-teal-500 flex items-center justify-center relative overflow-hidden">
-                             <!-- Simple User Icon Shape -->
+                             
                              <svg class="w-24 h-24 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                             </svg>
-                            <!-- Glossy highlight -->
+                            
                             <div class="absolute top-6 left-6 w-12 h-12 bg-white/20 blur-xl rounded-full"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card Body -->
-                <!-- Widened and heightened -->
+                <!-- Body Card -->
                 <div class="bg-[#0E2A3F] rounded-t-[3rem] rounded-b-none px-12 pt-32 pb-12 pr-12 shadow-2xl relative border border-gray-800/20">
                     
                     <h2 class="text-white text-center text-2xl font-bold tracking-[0.2em] mb-12 uppercase">LOGIN</h2>
@@ -92,7 +107,7 @@ ob_start();
                     <form action="index.php?page=login&action=submit" method="POST" class="space-y-8">
                         <?= csrf_field() ?>
 
-                        <!-- Username Field -->
+                        <!-- Input Field Username -->
                         <div class="group">
                              <div class="relative">
                                 <!-- Icon Container -->
@@ -107,7 +122,7 @@ ob_start();
                             </div>
                         </div>
 
-                        <!-- Password Field -->
+                        <!-- Input Field Password -->
                         <div class="group">
                             <div class="relative">
                                 <!-- Icon Container -->
@@ -136,27 +151,26 @@ ob_start();
                         </button>
                     </form>
 
-                    <!-- Sign Up Footer with Black Lines -->
+                    
                     <div class="mt-8 mb-4">
-                        <!-- Added OR Text -->
                         <div class="text-center mb-6">
                             <span class="text-[#EAF6FF] text-lg font-bold tracking-widest">Didn't have account?</span>
                         </div>
 
                         <div class="flex items-center justify-between gap-4">
-                            <!-- Left Line: Black & Thicker -->
+                            
                             <div class="h-[2px] w-full bg-black rounded-full"></div>
                             
-                            <!-- Sign Up Link: Blue & Bold -->
+                           
                             <a href="index.php?page=register" class="text-[#4facfe] hover:text-[#00f2fe] text-sm font-[800] uppercase tracking-widest whitespace-nowrap px-2 transition-colors">
                                 SIGN UP
                             </a>
 
-                            <!-- Right Line: Black & Thicker -->
+
                             <div class="h-[2px] w-full bg-black rounded-full"></div>
                         </div>
                         
-                        <!-- Logic preservation: Hidden forgot password link -->
+                        
                         <a href="index.php?page=forgot_password" class="hidden">Lupa Password?</a>
                     </div>
 
