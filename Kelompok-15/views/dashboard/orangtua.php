@@ -11,10 +11,10 @@ ob_start();
 
     <!-- Welcome & Subtitle -->
     <div class="mb-10">
-        <div class="inline-block bg-[#0C2642] px-4 py-2 rounded-lg mb-4">
+        <div class="inline-block bg-[#0C2642] px-4 py-2 rounded-lg mb-4 ml-2">
              <p class="text-[#EAF6FF] text-sm">Welcome, <span class="bg-gradient-to-r from-[#00B4FF] to-[#00FFBF] bg-clip-text text-transparent font-bold"><?= e($user['nama']) ?></span> !</p>
         </div>
-        <p class="text-[#CDE2EF] text-lg ml-1 font-light">Monitor keuangan anak anda</p>
+        <p class="text-[#CDE2EF] text-lg ml-3 font-light">Monitor keuangan anak anda</p>
     </div>
 
     <!-- Main Card: Anak yang Terhubung -->
@@ -71,19 +71,19 @@ ob_start();
     <div class="grid lg:grid-cols-2 gap-8">
         
         <!-- Card: Kirim Saldo Cepat (Specific Green Gradient #10C98B -> #0FAE7A) -->
-        <div class="bg-[linear-gradient(75deg,#00EE88_0%,#0FAF8E_35%)] rounded-[2rem] p-8 text-white shadow-2xl relative overflow-hidden group">
+        <div class="bg-gradient-to-r from-[#0F2F46] to-[#133D57] rounded-[2rem] p-8 text-white shadow-2xl relative overflow-hidden group">
             
-            <h3 class="font-bold text-xl mb-8 flex items-center gap-2">
+            <h3 class="font-bold text-xl mb-8 flex items-center gap-2 text-[#EAF6FF]">
                 Kirim Saldo Cepat
             </h3>
-            <p class="text-white/80 text-sm mb-6 -mt-6">Hubungkan dengan anak terlebih dahulu</p>
+            <p class="text-[#9FBFD1] text-sm mb-6 -mt-6">Hubungkan dengan anak terlebih dahulu</p>
             
             <?php if (!empty($linkedMahasiswa)): ?>
                 <form action="index.php?page=transfer&action=send&redirect=dashboard" method="POST" class="space-y-6 relative z-10">
                     <?= csrf_field() ?>
                     <div>
                         <select name="mahasiswa_id" required
-                            class="w-full px-5 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white/50 transition-all backdrop-blur-sm text-lg font-medium">
+                            class="w-full px-5 py-4 rounded-xl bg-[#0C2642] border-none text-white focus:outline-none focus:ring-0 transition-all text-lg font-medium">
                             <?php foreach ($linkedMahasiswa as $mhs): ?>
                                 <option value="<?= $mhs['id'] ?>" class="text-gray-900"><?= e($mhs['nama']) ?></option>
                             <?php endforeach; ?>
@@ -93,11 +93,11 @@ ob_start();
                         <div>
                             <input type="number" name="jumlah" id="jumlahInput" required min="0.01" step="0.01"
                                 placeholder="100"
-                                class="w-full px-5 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all backdrop-blur-sm text-lg font-medium">
+                                class="w-full px-5 py-4 rounded-xl bg-[#0C2642] border-none text-white placeholder-[#6FA9C6] focus:outline-none focus:ring-0 transition-all text-lg font-medium">
                         </div>
                         <div>
                             <select name="mata_uang" id="currencySelect"
-                                class="w-full px-5 py-4 rounded-xl bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-white/50 transition-all backdrop-blur-sm text-lg font-medium">
+                                class="w-full px-5 py-4 rounded-xl bg-[#0C2642] border-none text-white focus:outline-none focus:ring-0 transition-all text-lg font-medium">
                                 <?php foreach ($currencies ?? ['IDR'] as $cur): ?>
                                     <option value="<?= $cur ?>" class="text-gray-900" <?= $cur === 'IDR' ? 'selected' : '' ?>>
                                         <?= $cur ?></option>
@@ -108,7 +108,7 @@ ob_start();
                     <p id="convertedAmount" class="text-green-100 text-sm hidden bg-white/10 p-2 rounded-lg"></p>
                     
                     <button type="submit"
-                        class="w-full bg-white text-[#0FAE7A] py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:bg-green-50 transition-all transform hover:-translate-y-1 mt-4">
+                        class="w-full bg-gradient-to-r from-[#00C6FB] to-[#00F29C] text-[#082235] py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all transform hover:-translate-y-1 mt-4">
                         Kirim Saldo
                     </button>
                 </form>
@@ -118,34 +118,34 @@ ob_start();
         </div>
 
         <!-- Card: Riwayat Transfer (Light Blueish Gray #EAF6FF) -->
-        <div class="bg-[#EAF1F7] rounded-[2rem] shadow-xl p-8 border border-white/50">
-            <h3 class="font-bold text-[#133D57] text-xl mb-8">
+        <div class="bg-[#133D57] rounded-[2rem] shadow-xl p-8 border border-white/5">
+            <h3 class="font-bold text-[#EAF6FF] text-xl mb-8">
                 Riwayat Transfer
             </h3>
 
             <?php if (empty($recentTransfer)): ?>
-                <div class="flex flex-col items-center justify-center py-12 text-[#5A7C92]">
+                <div class="flex flex-col items-center justify-center py-12 text-[#9FBFD1]">
                     <p class="text-base font-medium">Belum Ada riwayat transfer</p>
                 </div>
             <?php else: ?>
                 <div class="space-y-4">
                     <?php foreach (array_slice($recentTransfer, 0, 5) as $tf): ?>
-                        <div class="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-[#DCEBF5] hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between p-4 bg-[#0F2F46] rounded-2xl shadow-sm border border-transparent hover:shadow-md transition-shadow">
                             <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-[#EAF1F7] flex items-center justify-center text-[#133D57]">
+                                <div class="w-10 h-10 rounded-full bg-[#133D57] flex items-center justify-center text-[#00F29C]">
                                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-[#133D57] text-sm md:text-base">Ke: <?= e($tf['mahasiswa_nama']) ?></p>
-                                    <p class="text-xs text-gray-500 font-medium"><?= format_tanggal($tf['created_at']) ?></p>
+                                    <p class="font-bold text-[#EAF6FF] text-sm md:text-base">Ke: <?= e($tf['mahasiswa_nama']) ?></p>
+                                    <p class="text-xs text-[#9FBFD1] font-medium"><?= format_tanggal($tf['created_at']) ?></p>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="font-bold text-[#10C98B]"><?= format_rupiah($tf['jumlah_idr']) ?></p>
+                                <p class="font-bold text-[#00F29C]"><?= format_rupiah($tf['jumlah_idr']) ?></p>
                                 <span
-                                    class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-[#DCEBF5] text-[#133D57] tracking-wider"><?= e($tf['status']) ?></span>
+                                    class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-[#0F2F46] text-[#00F29C] border border-[#00F29C] tracking-wider"><?= e($tf['status']) ?></span>
                             </div>
                         </div>
                     <?php endforeach; ?>

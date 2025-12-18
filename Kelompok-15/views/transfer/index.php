@@ -3,11 +3,11 @@ $title = 'Transfer Saldo';
 ob_start();
 ?>
 
-<div class="mb-8 mt-8">
-    <p class="text-gray-500">Kirim saldo ke anak dan kelola hubungan</p>
+<div class="mb-2 mt-8 px-8">
+    <p class="text-[#CDE2EF]">Kirim saldo ke anak dan kelola hubungan</p>
 </div>
 
-<div class="grid lg:grid-cols-3 gap-6">
+<div class="grid lg:grid-cols-3 gap-6 p-6">
     <div class="lg:col-span-1 space-y-6">
         <div class="card bg-[#133D57] rounded-2xl p-6 shadow-sm">
             <h3 class="font-semibold text-[#EAF6FF] mb-4">Hubungkan Anak</h3>

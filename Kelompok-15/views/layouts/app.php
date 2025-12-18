@@ -42,7 +42,7 @@
              <svg class="w-6 h-6 text-[#00C6FB]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
              </svg>
-             <span class="font-bold text-[#00C6FB] tracking-wider">DISINI LOGO</span>
+             <span class="font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent tracking-wider">DISINI LOGO</span>
         </div>
         
         <nav class="flex-1 px-3 py-6 space-y-2 overflow-y-auto">
@@ -185,10 +185,10 @@
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center space-x-3">
                          <!-- Logo Kept As Is (KeuanganKu) -->
-                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg  shadow-indigo-500/20">
+                        <div class="w-10 h-10 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-lg  shadow-[#4ED4FF]/20">
                             <span class="text-white font-bold text-lg">K</span>
                         </div>
-                        <span class="text-lg font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">KeuanganKu</span>
+                        <span class="text-lg font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent">KeuanganKu</span>
                     </div>
                     <p class="text-sm font-medium text-[#B3C9D8]">Sistem Keuangan Mahasiswa - Kelompok 15</p>
                 </div>
