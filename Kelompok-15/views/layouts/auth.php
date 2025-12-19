@@ -6,52 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($title ?? 'Login') ?> - Sistem Keuangan Mahasiswa</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#02040a', 
+                            900: '#0b1324', 
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        },
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* background-color: #02040a; */
+            font-family: 'DM Sans', sans-serif;
         }
     </style>
 </head>
 
-<body class="min-h-screen gradient-bg flex items-center justify-center p-4">
-    <div class="w-full max-w-md">
-        <!-- Logo -->
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-4">
-                <span class="text-3xl">💰</span>
+<body class="min-h-screen relative text-white overflow-x-hidden selection:bg-cyan-500 selection:text-white flex flex-col justify-between" style="background: linear-gradient(to bottom, #051933, #0A2547); background-attachment: fixed;">
+
+
+    <?php if (has_flash('success')): ?>
+        <div class="fixed top-32 left-1/2 -translate-x-1/2 z-[100] w-full max-w-md">
+            <div class="bg-emerald-500 text-white px-6 py-3 rounded-xl shadow-2xl font-semibold text-center mx-4">
+                <?= get_flash('success') ?>
             </div>
-            <h1 class="text-2xl font-bold text-white">Sistem Keuangan Mahasiswa</h1>
-            <p class="text-indigo-200 mt-1">Kelola keuangan dengan mudah</p>
         </div>
+    <?php endif; ?>
 
-        <!-- Card -->
-        <div class="bg-white rounded-2xl shadow-xl p-8">
-            <!-- Flash Messages -->
-            <?php if (has_flash('success')): ?>
-                <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-4">
-                    <?= get_flash('success') ?>
-                </div>
-            <?php endif; ?>
-
-            <?php if (has_flash('error')): ?>
-                <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-4">
-                    <?= get_flash('error') ?>
-                </div>
-            <?php endif; ?>
-
-            <?= $content ?? '' ?>
+    <?php if (has_flash('error')): ?>
+        <div class="fixed top-32 left-1/2 -translate-x-1/2 z-[100] w-full max-w-md">
+            <div class="bg-rose-500 text-white px-6 py-3 rounded-xl shadow-2xl font-semibold text-center mx-4">
+                <?= get_flash('error') ?>
+            </div>
         </div>
+    <?php endif; ?>
 
-        <!-- Footer -->
-        <p class="text-center text-indigo-200 text-sm mt-6">
-            © <?= date('Y') ?> Kelompok 15
-        </p>
+    <!-- Konten Utama -->
+    <main class="relative z-10 min-h-screen flex flex-col justify-center w-full">
+        <?= $content ?? '' ?>
+    </main>
+
+    <div class="absolute bottom-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden flex items-end">
+        <svg class="w-full h-[65vh] lg:h-[75vh]" viewBox="0 0 1440 600" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 600V285C300 280 600 360 900 310C1200 260 1380 180 1440 200V600H0Z" fill="url(#wave_gradient)"/>
+            <defs>
+                <linearGradient id="wave_gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#22d3ee"/> 
+                    <stop offset="1" stop-color="#2dd4bf"/> 
+                </linearGradient>
+            </defs>
+        </svg>
     </div>
-</body>
 
+</body>
 </html>
