@@ -6,6 +6,9 @@ ob_start();
 <style>
     
     /* Menghilangkan Scroll Bar pada browser */
+<div class="animate-fadeInUp">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Masuk ke Akun</h2>
+</div>
 
     .no-scrollbar::-webkit-scrollbar, ::-webkit-scrollbar {
         display: none;
@@ -24,6 +27,11 @@ ob_start();
             <path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
         </svg>
         <span class="text-white font-bold text-xl tracking-wider uppercase">DISINI LOGO</span>
+    <div class="animate-fadeInUp stagger-1" style="animation-fill-mode: both;">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+        <input type="email" name="email" value="<?= old('email') ?>" required
+            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition input-animated"
+            placeholder="email@example.com">
     </div>
     <div class="grid lg:grid-cols-12 w-full gap-16 lg:gap-24 items-stretch">
         
@@ -179,6 +187,31 @@ ob_start();
         </div>
 
     </div>
+    <div class="animate-fadeInUp stagger-2" style="animation-fill-mode: both;">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+        <input type="password" name="password" required
+            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition input-animated"
+            placeholder="••••••••">
+    </div>
+
+    <div class="flex justify-end animate-fadeInUp stagger-3" style="animation-fill-mode: both;">
+        <a href="index.php?page=forgot_password"
+            class="text-sm text-indigo-600 hover:text-indigo-700 hover-scale inline-block">Lupa
+            Password?</a>
+    </div>
+
+    <div class="animate-fadeInUp stagger-4" style="animation-fill-mode: both;">
+        <button type="submit"
+            class="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 btn-animated">
+            Masuk
+        </button>
+    </div>
+</form>
+
+<div class="mt-6 text-center animate-fadeInUp stagger-5" style="animation-fill-mode: both;">
+    <p class="text-gray-600">Belum punya akun?</p>
+    <a href="index.php?page=register"
+        class="text-indigo-600 font-medium hover:text-indigo-700 hover-scale inline-block">Daftar Sekarang</a>
 </div>
 
 <?php
