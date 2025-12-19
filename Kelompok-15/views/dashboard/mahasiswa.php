@@ -6,7 +6,7 @@ ob_start();
 <div class="mb-8">
     <h1 class="text-2xl font-bold text-gray-800"><span data-greeting>Selamat Datang</span>, <?= e($user['nama']) ?>!
     </h1>
-    <p class="text-gray-500">Kelola keuangan Anda dengan bijak</p>
+    <p class="text-[#EAF6FF]">Kelola keuangan Anda dengan bijak</p>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
