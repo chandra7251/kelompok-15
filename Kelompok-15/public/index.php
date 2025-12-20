@@ -26,7 +26,8 @@ $routes = [
     'analytics' => ['controller' => 'AnalyticsController', 'actions' => ['index' => 'index']],
     'grafik' => ['controller' => 'GrafikController', 'actions' => ['index' => 'index', 'data' => 'getChartData']],
     'export' => ['controller' => 'ExportController', 'actions' => ['transaksi' => 'transaksi', 'laporan' => 'laporan']],
-    'reminder' => ['controller' => 'ReminderController', 'actions' => ['index' => 'index', 'store' => 'store', 'delete' => 'delete', 'send' => 'send', 'json' => 'json']]
+    'reminder' => ['controller' => 'ReminderController', 'actions' => ['index' => 'index', 'store' => 'store', 'delete' => 'delete', 'send' => 'send', 'json' => 'json']],
+    'admin' => ['controller' => 'AdminController', 'actions' => ['users' => 'users', 'monitoring' => 'monitoring', 'settings' => 'settings', 'update_settings' => 'updateSettings', 'toggle_status' => 'toggleStatus', 'reset_password' => 'resetPassword', 'delete_user' => 'deleteUser']]
 ];
 
 try {
