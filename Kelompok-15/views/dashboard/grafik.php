@@ -6,7 +6,6 @@ ob_start();
 <div class="max-w-7xl mx-auto px-6 sm:px-8 py-10 space-y-8">
     <!-- Header -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent">Grafik Keuangan</h1>
         <p class="text-[#B3C9D8] mt-2">Visualisasi data keuangan Anda</p>
     </div>
 

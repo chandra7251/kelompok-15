@@ -123,7 +123,7 @@ ob_start();
 
         <button type="submit"
             class="w-full bg-gradient-to-r from-[#00C6FB] to-[#00F29C] text-[#0A2238] py-3 rounded-lg font-bold hover:shadow-lg hover:shadow-[#00C6FB]/20 transition-all duration-300">
-            💾 Simpan Pengaturan
+            Simpan Pengaturan
         </button>
     </form>
 </div>
