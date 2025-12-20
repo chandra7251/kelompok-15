@@ -38,10 +38,10 @@ $currentRole = old('role', 'mahasiswa');
 
     <!-- Logo Kiri atas -->
     <div class="absolute top-8 left-8 lg:left-12 z-20 flex items-center gap-3">
-         <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-             <path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
-        </svg>
-        <span class="text-white font-bold text-lg tracking-wider uppercase">DISINI LOGO</span>
+        <div class="w-10 h-10 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-lg  shadow-[#4ED4FF]/20">
+            <span class="text-[#203351] font-bold text-lg">K</span>
+        </div>
+        <span class="text-xl font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent">KeuanganKu</span>
     </div>
 
     <!-- Section Form sign-up di kiri -->

@@ -164,8 +164,12 @@
                             <div class="flex items-center gap-4 border-l border-white/10 pl-6">
                                 <!-- Profile -->
                                 <a href="index.php?page=profile" class="flex items-center gap-3 group">
-                                    <div class="w-11 h-11 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(78,212,255,0.3)] group-hover:scale-105 transition-transform duration-300">
-                                        <span class="text-white font-bold text-lg drop-shadow-md"><?= strtoupper(substr(auth()['nama'], 0, 1)) ?></span>
+                                    <div class="w-11 h-11 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(78,212,255,0.3)] group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                                        <?php if (isset(auth()['photo']) && !empty(auth()['photo'])): ?>
+                                            <img src="uploads/photos/<?= e(auth()['photo']) ?>" alt="Profile" class="w-full h-full object-cover">
+                                        <?php else: ?>
+                                            <span class="text-white font-bold text-lg drop-shadow-md"><?= strtoupper(substr(auth()['nama'], 0, 1)) ?></span>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="text-right hidden xl:block">
                                         <p class="text-[15px] font-bold text-[#EAF6FF] leading-tight"><?= e(auth()['nama']) ?></p>

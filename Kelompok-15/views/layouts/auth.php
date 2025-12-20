@@ -70,8 +70,8 @@
             <path d="M0 600V285C300 280 600 360 900 310C1200 260 1380 180 1440 200V600H0Z" fill="url(#wave_gradient)"/>
             <defs>
                 <linearGradient id="wave_gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop offset="0" stop-color="#22d3ee"/> 
-                    <stop offset="1" stop-color="#2dd4bf"/> 
+                    <stop offset="0" stop-color="<?= $waveFrom ?? '#22d3ee' ?>"/> 
+                    <stop offset="1" stop-color="<?= $waveTo ?? '#2dd4bf' ?>"/> 
                 </linearGradient>
             </defs>
         </svg>

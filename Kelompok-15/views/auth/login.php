@@ -4,12 +4,7 @@ ob_start();
 ?>
 
 <style>
-    
     /* Menghilangkan Scroll Bar pada browser */
-<div class="animate-fadeInUp">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Masuk ke Akun</h2>
-</div>
-
     .no-scrollbar::-webkit-scrollbar, ::-webkit-scrollbar {
         display: none;
     }
@@ -21,33 +16,27 @@ ob_start();
 </style>
 
 <div class="w-full max-w-[1750px] mx-auto px-8 lg:px-24 min-h-screen flex items-stretch relative z-10">
-    <!-- Logo Header -->
+    
     <div class="absolute top-12 left-8 lg:left-24 flex items-center gap-3">
-        <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
-        </svg>
-        <span class="text-white font-bold text-xl tracking-wider uppercase">DISINI LOGO</span>
-    <div class="animate-fadeInUp stagger-1" style="animation-fill-mode: both;">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-        <input type="email" name="email" value="<?= old('email') ?>" required
-            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition input-animated"
-            placeholder="email@example.com">
+        <div class="w-10 h-10 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-lg  shadow-[#4ED4FF]/20">
+            <span class="text-[#203351] font-bold text-lg">K</span>
+        </div>
+        <span class="text-xl font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent">KeuanganKu</span>
     </div>
+
     <div class="grid lg:grid-cols-12 w-full gap-16 lg:gap-24 items-stretch">
         
         
-
-        <!-- Bagian kiri: typographi judul web dan deskripsi -->
-        <div class="lg:col-span-7 space-y-6 flex flex-col justify-center pt-[10rem]">
+        <div class="lg:col-span-7 space-y-6 flex flex-col justify-center pt-20 relative z-20">
             <div class="space-y-2">
-                <h1 class="text-[5rem] lg:text-[6rem] leading-[1.0] font-[900] tracking-tight" 
+                <h1 class="text-[5rem] lg:text-[6rem] leading-tight pb-4 font-[900] tracking-tight" 
                     style="background: linear-gradient(to right, #00C6FB, #00F29C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 12px rgba(0, 242, 156, 0.22)) drop-shadow(0 0 24px rgba(0, 198, 251, 0.10));">
-                    Bank Emok
+                    KeuanganKu
                 </h1>
                 <h2 class="text-2xl lg:text-3xl font-bold text-[#EAF6FF] tracking-normal pl-8">
                     Nama Website nya
                 </h2>
-                <p class="text-[#   EAF6FF] text-sm tracking-widest uppercase opacity-60 mt-8 max-w-xl font-medium pl-10">
+                <p class="text-[#EAF6FF] text-sm tracking-widest uppercase opacity-60 mt-8 max-w-xl font-medium pl-10">
                     Deskripsi Singkat Web Lorem Ipsum Eak asjdoajdoeajdoajdoads
                 </p>
             </div>
@@ -55,8 +44,10 @@ ob_start();
             <br><br>
 
             <!-- Fitur List -->
-            <div class="pt-10 space-y-12">
-                <h3 class="text-cyan-400 font-bold uppercase tracking-[0.1em]">WHAT WE CAN DO?</h3>
+            <div class="pt-10 space-y-8">
+                <h3 class="text-cyan-400 font-bold uppercase pb-4
+                
+                tracking-[0.1em] relative z-50">WHAT WE CAN DO?</h3>
                 
                 <div class="space-y-6">
                     <!-- Loop untuk logo fitur -->
@@ -86,9 +77,6 @@ ob_start();
                 </div>
             </div>
         </div>
-        
-
-        
 
         <!-- Login Card -->
         <div class="lg:col-span-5 flex flex-col justify-end items-center pb-0">
@@ -153,8 +141,16 @@ ob_start();
                             </div>
                         </div>
 
+                         <!-- Forgot Password Link -->
+                         <div class="flex justify-end -mt-4">
+                            <a href="index.php?page=forgot_password" 
+                               class="text-sm font-semibold tracking-wide bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent hover:brightness-125 transition-all">
+                                Lupa Password?
+                            </a>
+                        </div>
+
                         <!-- Submit Button -->
-                         <button type="submit" class="w-full h-16 bg-gradient-to-r from-cyan-400 to-teal-500 rounded-2xl text-[#02040a] font-[900] text-xl tracking-[0.1em] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] transition-all transform hover:-translate-y-0.5 mt-4 uppercase">
+                         <button type="submit" class="w-full h-16 bg-gradient-to-r from-cyan-400 to-teal-500 rounded-2xl text-[#02040a] font-[900] text-xl tracking-[0.1em] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] transition-all transform hover:-translate-y-0.5 uppercase">
                             Login
                         </button>
                     </form>
@@ -169,17 +165,12 @@ ob_start();
                             
                             <div class="h-[2px] w-full bg-black rounded-full"></div>
                             
-                           
                             <a href="index.php?page=register" class="text-[#4facfe] hover:text-[#00f2fe] text-sm font-[800] uppercase tracking-widest whitespace-nowrap px-2 transition-colors">
                                 SIGN UP
                             </a>
 
-
                             <div class="h-[2px] w-full bg-black rounded-full"></div>
                         </div>
-                        
-                        
-                        <a href="index.php?page=forgot_password" class="hidden">Lupa Password?</a>
                     </div>
 
                 </div>
@@ -187,31 +178,6 @@ ob_start();
         </div>
 
     </div>
-    <div class="animate-fadeInUp stagger-2" style="animation-fill-mode: both;">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-        <input type="password" name="password" required
-            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition input-animated"
-            placeholder="••••••••">
-    </div>
-
-    <div class="flex justify-end animate-fadeInUp stagger-3" style="animation-fill-mode: both;">
-        <a href="index.php?page=forgot_password"
-            class="text-sm text-indigo-600 hover:text-indigo-700 hover-scale inline-block">Lupa
-            Password?</a>
-    </div>
-
-    <div class="animate-fadeInUp stagger-4" style="animation-fill-mode: both;">
-        <button type="submit"
-            class="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 btn-animated">
-            Masuk
-        </button>
-    </div>
-</form>
-
-<div class="mt-6 text-center animate-fadeInUp stagger-5" style="animation-fill-mode: both;">
-    <p class="text-gray-600">Belum punya akun?</p>
-    <a href="index.php?page=register"
-        class="text-indigo-600 font-medium hover:text-indigo-700 hover-scale inline-block">Daftar Sekarang</a>
 </div>
 
 <?php
