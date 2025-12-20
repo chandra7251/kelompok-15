@@ -25,9 +25,9 @@ $routes = [
     'transfer' => ['controller' => 'TransferController', 'actions' => ['index' => 'index', 'send' => 'store', 'link' => 'linkMahasiswa', 'unlink' => 'unlinkMahasiswa']],
     'analytics' => ['controller' => 'AnalyticsController', 'actions' => ['index' => 'index']],
     'grafik' => ['controller' => 'GrafikController', 'actions' => ['index' => 'index', 'data' => 'getChartData']],
-    'export' => ['controller' => 'ExportController', 'actions' => ['transaksi' => 'transaksi', 'laporan' => 'laporan', 'transfer_orangtua' => 'transferOrangtua']],
+    'export' => ['controller' => 'ExportController', 'actions' => ['transaksi' => 'transaksi', 'laporan' => 'laporan']],
     'reminder' => ['controller' => 'ReminderController', 'actions' => ['index' => 'index', 'store' => 'store', 'delete' => 'delete', 'send' => 'send', 'json' => 'json']],
-    'admin' => ['controller' => 'AdminController', 'actions' => ['users' => 'users', 'toggle_status' => 'toggleStatus', 'reset_password' => 'resetPassword', 'delete_user' => 'deleteUser', 'monitoring' => 'monitoring', 'settings' => 'settings', 'update_settings' => 'updateSettings']]
+    'admin' => ['controller' => 'AdminController', 'actions' => ['users' => 'users', 'monitoring' => 'monitoring', 'settings' => 'settings', 'update_settings' => 'updateSettings', 'toggle_status' => 'toggleStatus', 'reset_password' => 'resetPassword', 'delete_user' => 'deleteUser']]
 ];
 
 try {

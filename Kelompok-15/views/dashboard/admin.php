@@ -3,9 +3,9 @@ $title = 'Dashboard Admin';
 ob_start();
 ?>
 
-<div class="mb-6">
-    <h1 class="text-2xl font-bold text-gray-800">Dashboard Admin</h1>
-    <p class="text-gray-500">Monitoring dan pengelolaan sistem</p>
+<div class="py-8 px-6">
+    <div class="mb-6">
+    <p class="text-[#B3C9D8] ml-2">Monitoring seluruh pengguna sistem</p>
 </div>
 
 <!-- Quick Actions -->
@@ -69,111 +69,58 @@ ob_start();
 
 <!-- Stats Grid -->
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
-    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-indigo-500">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Total Users</p>
-                <p class="text-3xl font-bold text-indigo-600"><?= $stats['total_users'] ?? 0 ?></p>
-            </div>
-            <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-            </div>
-        </div>
+    <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
+        <p class="text-[#B3C9D8] text-sm font-medium">Total Users</p>
+        <p class="text-3xl font-bold text-white mt-2"><?= $stats['total_users'] ?? 0 ?></p>
     </div>
-    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-blue-500">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Mahasiswa</p>
-                <p class="text-3xl font-bold text-blue-600"><?= $stats['total_mahasiswa'] ?? 0 ?></p>
-            </div>
-            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                    <path
-                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                </svg>
-            </div>
-        </div>
+    <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
+        <p class="text-[#B3C9D8] text-sm font-medium">Mahasiswa</p>
+        <p class="text-3xl font-bold text-[#00C6FB] mt-2"><?= $stats['total_mahasiswa'] ?? 0 ?></p>
     </div>
-    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-green-500">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Orang Tua</p>
-                <p class="text-3xl font-bold text-green-600"><?= $stats['total_orangtua'] ?? 0 ?></p>
-            </div>
-            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-            </div>
-        </div>
+    <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
+        <p class="text-[#B3C9D8] text-sm font-medium">Orang Tua</p>
+        <p class="text-3xl font-bold text-[#00F29C] mt-2"><?= $stats['total_orangtua'] ?? 0 ?></p>
     </div>
-    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-purple-500">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Transaksi</p>
-                <p class="text-3xl font-bold text-purple-600"><?= $stats['total_transaksi'] ?? 0 ?></p>
-            </div>
-            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-            </div>
-        </div>
+    <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
+        <p class="text-[#B3C9D8] text-sm font-medium">Transaksi</p>
+        <p class="text-3xl font-bold text-[#f472b6] mt-2"><?= $stats['total_transaksi'] ?? 0 ?></p>
     </div>
-    <div class="bg-white rounded-xl shadow-sm p-5 border-l-4 border-orange-500">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Transfer</p>
-                <p class="text-3xl font-bold text-orange-600"><?= $stats['total_transfer'] ?? 0 ?></p>
-            </div>
-            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                </svg>
-            </div>
-        </div>
+    <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
+        <p class="text-[#B3C9D8] text-sm font-medium">Transfer</p>
+        <p class="text-3xl font-bold text-[#fbbf24] mt-2"><?= $stats['total_transfer'] ?? 0 ?></p>
     </div>
 </div>
 
 <div class="grid lg:grid-cols-2 gap-6">
-    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b">
-            <h3 class="font-semibold text-gray-800 flex items-center gap-2">
-                <span>👥</span> User Terbaru
-            </h3>
-        </div>
+    <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-6">
+        <h3 class="font-bold text-white mb-6 flex items-center gap-2">
+            <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
+            User Terbaru
+        </h3>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="text-left py-3 px-4 font-medium text-gray-600">Nama</th>
-                        <th class="text-left py-3 px-4 font-medium text-gray-600">Email</th>
-                        <th class="text-left py-3 px-4 font-medium text-gray-600">Role</th>
-                        <th class="text-right py-3 px-4 font-medium text-gray-600">Saldo</th>
+                <thead>
+                    <tr class="border-b border-white/5 text-[#B3C9D8]">
+                        <th class="text-left py-3 px-4 font-medium">Nama</th>
+                        <th class="text-left py-3 px-4 font-medium">Email</th>
+                        <th class="text-left py-3 px-4 font-medium">Role</th>
+                        <th class="text-right py-3 px-4 font-medium">Saldo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($recentUsers ?? [] as $u): ?>
-                        <tr class="border-b hover:bg-gray-50 transition-colors">
-                            <td class="py-3 px-4 font-medium text-gray-800"><?= e($u['nama']) ?></td>
-                            <td class="py-3 px-4 text-gray-500"><?= e($u['email']) ?></td>
-                            <td class="py-3 px-4">
-                                <span class="px-2 py-1 rounded-full text-xs font-medium
-                                <?php if ($u['role'] === 'admin'): ?>bg-red-100 text-red-700
-                                <?php elseif ($u['role'] === 'mahasiswa'): ?>bg-blue-100 text-blue-700
-                                <?php else: ?>bg-green-100 text-green-700<?php endif; ?>">
-                                    <?= ucfirst(e($u['role'])) ?>
+                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                            <td class="py-3 px-4 text-white font-medium"><?= e($u['nama']) ?></td>
+                            <td class="py-3 px-4 text-[#B3C9D8] text-sm"><?= e($u['email']) ?></td>
+                            <td class="py-2 px-2">
+                                <span class="px-2 py-1 rounded-full text-xs 
+                                <?php if ($u['role'] === 'admin'): ?>bg-rose-500/20 text-rose-300 border border-rose-500/30
+                                <?php elseif ($u['role'] === 'mahasiswa'): ?>bg-[#00C6FB]/20 text-[#00C6FB] border border-[#00C6FB]/30
+                                <?php else: ?>bg-[#00F29C]/20 text-[#00F29C] border border-[#00F29C]/30<?php endif; ?>">
+                                    <?= e($u['role']) ?>
                                 </span>
                             </td>
-                            <td class="py-3 px-4 text-right font-medium text-indigo-600">
-                                <?= $u['saldo'] ? format_rupiah($u['saldo']) : '-' ?></td>
+                            <td class="py-3 px-4 text-right text-white font-medium whitespace-nowrap"><?= $u['saldo'] ? format_rupiah($u['saldo']) : '-' ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -181,35 +128,34 @@ ob_start();
         </div>
     </div>
 
-    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b">
-            <h3 class="font-semibold text-gray-800 flex items-center gap-2">
-                <span>💰</span> Transaksi Terbaru
-            </h3>
-        </div>
+    <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-6">
+        <h3 class="font-bold text-white mb-6 flex items-center gap-2">
+            <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
+            Transaksi Terbaru
+        </h3>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="text-left py-3 px-4 font-medium text-gray-600">Mahasiswa</th>
-                        <th class="text-left py-3 px-4 font-medium text-gray-600">Kategori</th>
-                        <th class="text-left py-3 px-4 font-medium text-gray-600">Tipe</th>
-                        <th class="text-right py-3 px-4 font-medium text-gray-600">Jumlah</th>
+                <thead>
+                    <tr class="border-b border-white/5 text-[#B3C9D8]">
+                        <th class="text-left py-3 px-4 font-medium">Mahasiswa</th>
+                        <th class="text-left py-3 px-4 font-medium">Kategori</th>
+                        <th class="text-left py-3 px-4 font-medium">Tipe</th>
+                        <th class="text-right py-3 px-4 font-medium">Jumlah</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($recentTransaksi ?? [] as $t): ?>
-                        <tr class="border-b hover:bg-gray-50 transition-colors">
-                            <td class="py-3 px-4 font-medium text-gray-800"><?= e($t['mahasiswa_nama']) ?></td>
-                            <td class="py-3 px-4 text-gray-500"><?= e($t['kategori_nama']) ?></td>
-                            <td class="py-3 px-4">
+                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                            <td class="py-3 px-4 text-white font-medium"><?= e($t['mahasiswa_nama']) ?></td>
+                            <td class="py-3 px-4 text-[#B3C9D8] text-sm"><?= e($t['kategori_nama']) ?></td>
+                            <td class="py-2 px-2">
                                 <span
-                                    class="px-2 py-1 rounded-full text-xs font-medium <?= $t['tipe'] === 'pemasukan' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' ?>">
-                                    <?= ucfirst(e($t['tipe'])) ?>
+                                    class="px-2 py-1 rounded-full text-xs <?= $t['tipe'] === 'pemasukan' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30' ?>">
+                                    <?= e($t['tipe']) ?>
                                 </span>
                             </td>
                             <td
-                                class="py-3 px-4 text-right font-medium <?= $t['tipe'] === 'pemasukan' ? 'text-green-600' : 'text-red-600' ?>">
+                                class="py-3 px-4 text-right font-bold <?= $t['tipe'] === 'pemasukan' ? 'text-[#00F29C]' : 'text-red-400' ?>">
                                 <?= format_rupiah($t['jumlah_idr']) ?>
                             </td>
                         </tr>
@@ -218,6 +164,7 @@ ob_start();
             </table>
         </div>
     </div>
+</div>
 </div>
 
 <?php
