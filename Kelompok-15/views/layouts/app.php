@@ -17,21 +17,35 @@
             }
         }
     </script>
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Animation Classes */
+        .animate-fadeIn { animation: fadeIn 0.4s ease-out; }
+        .animate-fadeInUp { animation: fadeInUp 0.5s ease-out; }
+        .animate-fadeInDown { animation: fadeInDown 0.5s ease-out; }
+        .animate-slideDown { animation: slideDown 0.3s ease-out; }
+        .animate-slideUp { animation: slideUp 0.3s ease-out; }
+        .animate-scaleIn { animation: scaleIn 0.3s ease-out; }
+        .animate-bounce { animation: bounce 0.6s ease-in-out; }
+        .animate-pulse { animation: pulse 2s ease-in-out infinite; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+
+        /* Helpers */
+        .no-scrollbar::-webkit-scrollbar, ::-webkit-scrollbar { display: none; }
+        .no-scrollbar, html, body { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-
-<style>
-    
-    /* Menghilangkan Scroll Bar pada browser */
-
-    .no-scrollbar::-webkit-scrollbar, ::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .no-scrollbar, html, body {
-        -ms-overflow-style: none;  
-        scrollbar-width: none;  
-    }
-</style>
 
 <body class="bg-gradient-to-b from-[#051933] to-[#0A2547] h-screen flex font-sans overflow-hidden">
 
@@ -114,6 +128,28 @@
                     <!-- Right Section: Clock & Profile -->
                     <div class="flex items-center gap-6">
                         
+                        <!-- Notification System (Hybrid Injection) -->
+                        <?php if (is_logged_in() && is_role('mahasiswa')): ?>
+                        <div class="relative">
+                            <button id="notifBtn" class="relative p-2 text-[#B3C9D8] hover:text-[#00C6FB] hover:bg-white/10 rounded-xl transition-all duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <span id="notifBadge" class="hidden absolute -top-1 -right-1 bg-rose-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center animate-pulse"></span>
+                            </button>
+                            <!-- Dropdown Menu -->
+                            <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-80 bg-[#0A2238] rounded-xl shadow-xl border border-white/10 py-2 z-50 opacity-0 scale-95 transition-all duration-200 origin-top-right">
+                                <div class="px-4 py-3 border-b border-white/10 flex justify-between items-center">
+                                    <span class="font-semibold text-white">Reminder</span>
+                                    <a href="index.php?page=reminder" class="text-[#00C6FB] text-sm hover:underline">Kelola</a>
+                                </div>
+                                <div id="reminderList" class="max-h-60 overflow-y-auto">
+                                    <!-- Items injected via JS -->
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+
                         <!-- Realtime Clock -->
                         <div class="hidden lg:flex items-center gap-3 text-[#00C6FB] font-medium text-sm tracking-wide">
                             <span id="clock-day"></span>
@@ -128,7 +164,6 @@
                             <div class="flex items-center gap-4 border-l border-white/10 pl-6">
                                 <!-- Profile -->
                                 <a href="index.php?page=profile" class="flex items-center gap-3 group">
-                                    <!-- New Gradient: #4ED4FF -> #6AF5C9 (Diagonal) -->
                                     <div class="w-11 h-11 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(78,212,255,0.3)] group-hover:scale-105 transition-transform duration-300">
                                         <span class="text-white font-bold text-lg drop-shadow-md"><?= strtoupper(substr(auth()['nama'], 0, 1)) ?></span>
                                     </div>
@@ -144,41 +179,15 @@
                                 </a>
                             </div>
                          <?php endif; ?>
-
-                        <!-- Mobile Menu Button -->
-                        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-gray-300 hover:bg-white/5 transition-all">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
-
-            <?php if (is_logged_in()): ?>
-                <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[#051933]/95 backdrop-blur animate-[slideDown_0.2s_ease-out]">
-                    <div class="px-4 py-4 space-y-1">
-                        <?php if (is_role('mahasiswa')): ?>
-                            <a href="index.php?page=dashboard" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Dashboard</a>
-                            <a href="index.php?page=transaksi" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Transaksi</a>
-                            <a href="index.php?page=kategori" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Kategori</a>
-                            <a href="index.php?page=reminder" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Reminder</a>
-                            <a href="index.php?page=grafik" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Grafik</a>
-                            <a href="index.php?page=analytics" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Analytics</a>
-                        <?php elseif (is_role('orangtua')): ?>
-                            <a href="index.php?page=dashboard" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Dashboard</a>
-                            <a href="index.php?page=transfer" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Transfer</a>
-                        <?php endif; ?>
-                         <a href="index.php?page=profile" class="block px-4 py-3 rounded-xl text-gray-300 hover:bg-[#00C6FB]/10 hover:text-[#00C6FB] font-medium transition-all">Profile</a>
-                    </div>
-                </div>
-            <?php endif; ?>
         </nav>
 
         <?php if (has_flash('success')): ?>
             <div class="max-w-screen-2xl mx-auto px-4 mt-4 animate-[slideDown_0.3s_ease-out]">
-                <div class="bg-green-50 border border-green-200 text-green-700 px-5 py-4 rounded-xl flex items-center space-x-3">
-                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <div class="bg-[#00F29C]/10 border border-[#00F29C]/30 text-[#00F29C] px-5 py-4 rounded-xl flex items-center space-x-3">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                     <span><?= get_flash('success') ?></span>
                 </div>
             </div>
@@ -186,8 +195,8 @@
 
         <?php if (has_flash('error')): ?>
             <div class="max-w-screen-2xl mx-auto px-4 mt-4 animate-[slideDown_0.3s_ease-out]">
-                <div class="bg-red-50 border border-red-200 text-red-700 px-5 py-4 rounded-xl flex items-center space-x-3">
-                    <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                <div class="bg-red-500/10 border border-red-500/30 text-red-400 px-5 py-4 rounded-xl flex items-center space-x-3">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
                     <span><?= get_flash('error') ?></span>
                 </div>
             </div>
@@ -201,7 +210,6 @@
             <div class="max-w-screen-2xl mx-auto px-4 py-8">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center space-x-3">
-                         <!-- Logo Kept As Is (KeuanganKu) -->
                         <div class="w-10 h-10 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-lg  shadow-[#4ED4FF]/20">
                             <span class="text-[#203351] font-bold text-lg">K</span>
                         </div>
@@ -212,12 +220,13 @@
             </div>
         </footer>
     </div>
+
     <script>
     // Realtime Clock
     function updateClock() {
         const now = new Date();
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         
         const day = days[now.getDay()];
         const date = now.getDate();
@@ -240,13 +249,12 @@
     setInterval(updateClock, 1000);
     updateClock(); // Initial call
 
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
-        document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-    
+    // Notification Logic
     document.getElementById('notifBtn')?.addEventListener('click', function(e) {
         e.stopPropagation();
         const dropdown = document.getElementById('notifDropdown');
+        if (!dropdown) return;
+        
         const isHidden = dropdown.classList.contains('hidden');
         if (isHidden) {
             dropdown.classList.remove('hidden');
@@ -269,7 +277,7 @@
                 const list = document.getElementById('reminderList');
                 const badge = document.getElementById('notifBadge');
                 if (data.length === 0) {
-                    list.innerHTML = '<p class="px-4 py-4 text-gray-400 text-sm text-center">Tidak ada reminder</p>';
+                    list.innerHTML = '<p class="px-4 py-4 text-[#B3C9D8] text-sm text-center">Tidak ada reminder aktif</p>';
                     badge?.classList.add('hidden');
                 } else {
                     if (badge) {
@@ -278,19 +286,24 @@
                     }
                     list.innerHTML = data.map(r => {
                         const isOverdue = new Date(r.tanggal_jatuh_tempo) < new Date();
-                        return `<div class="px-4 py-3 hover:bg-gray-50 border-b border-gray-50 transition-all duration-200 ${isOverdue ? 'bg-red-50' : ''}">
-                            <p class="font-medium text-gray-800">${r.nama}</p>
-                            <p class="text-sm text-gray-500">Jatuh tempo: ${r.tanggal_jatuh_tempo}</p>
-                            <p class="text-sm font-semibold text-indigo-600">Rp ${Number(r.jumlah).toLocaleString('id-ID')}</p>
-                        </div>`;
+                        return `<div class="px-4 py-3 hover:bg-white/5 border-b border-white/5 transition-all duration-200">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <p class="font-medium text-white text-sm">${r.nama}</p>
+                                <p class="text-xs text-[#B3C9D8] mt-0.5">Jatuh tempo: ${r.tanggal_jatuh_tempo}</p>
+                             </div>
+                             <p class="text-xs font-semibold text-[#00F29C]">Rp ${Number(r.jumlah).toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>`;
                     }).join('');
                 }
             })
             .catch(() => {
-                document.getElementById('reminderList').innerHTML = '<p class="px-4 py-4 text-gray-400 text-sm text-center">Tidak ada reminder</p>';
+                document.getElementById('reminderList').innerHTML = '<p class="px-4 py-4 text-red-400 text-sm text-center">Gagal memuat reminder</p>';
             });
     }
     
+    // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
         const dropdown = document.getElementById('notifDropdown');
         const notifBtn = document.getElementById('notifBtn');
@@ -300,18 +313,6 @@
             setTimeout(() => dropdown.classList.add('hidden'), 200);
         }
     });
-    
-    // Dynamic greeting
-    const greetingEl = document.querySelector('[data-greeting]');
-    if (greetingEl) {
-        const hour = new Date().getHours();
-        let greeting = 'Selamat Datang';
-        if (hour >= 5 && hour < 12) greeting = 'Selamat Pagi';
-        else if (hour >= 12 && hour < 15) greeting = 'Selamat Siang';
-        else if (hour >= 15 && hour < 18) greeting = 'Selamat Sore';
-        else greeting = 'Selamat Malam';
-        greetingEl.textContent = greeting;
-    }
     </script>
 </body>
 </html>

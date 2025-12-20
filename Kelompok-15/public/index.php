@@ -19,7 +19,7 @@ $routes = [
     'logout' => ['controller' => 'AuthController', 'actions' => ['index' => 'logout']],
     'forgot_password' => ['controller' => 'ForgotPasswordController', 'actions' => ['index' => 'index', 'submit' => 'submit']],
     'dashboard' => ['controller' => 'DashboardController', 'actions' => ['index' => 'index']],
-    'profile' => ['controller' => 'ProfileController', 'actions' => ['index' => 'index', 'update_password' => 'updatePassword']],
+    'profile' => ['controller' => 'ProfileController', 'actions' => ['index' => 'index', 'update_password' => 'updatePassword', 'update_photo' => 'updatePhoto', 'delete_photo' => 'deletePhoto']],
     'transaksi' => ['controller' => 'TransaksiController', 'actions' => ['index' => 'index', 'create' => 'create', 'store' => 'store', 'edit' => 'edit', 'update' => 'update', 'delete' => 'delete']],
     'kategori' => ['controller' => 'KategoriController', 'actions' => ['index' => 'index', 'create' => 'create', 'store' => 'store', 'edit' => 'edit', 'update' => 'update', 'delete' => 'delete']],
     'transfer' => ['controller' => 'TransferController', 'actions' => ['index' => 'index', 'send' => 'store', 'link' => 'linkMahasiswa', 'unlink' => 'unlinkMahasiswa']],

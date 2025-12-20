@@ -50,6 +50,13 @@ class NotificationService
         return $this->send($userId, $email, $subject, $body, 'reminder');
     }
 
+    public function sendBorosNotification(int $userId, string $email, string $namaOrangtua, string $namaMahasiswa, array $status): bool
+    {
+        $subject = "⚠️ Peringatan: {$namaMahasiswa} dalam Status Boros";
+        $body = $this->getBorosEmailTemplate($namaOrangtua, $namaMahasiswa, $status);
+        return $this->send($userId, $email, $subject, $body, 'boros_alert');
+    }
+
     private function send(int $userId, string $email, string $subject, string $body, string $tipe): bool
     {
         $notifId = $this->createNotification($userId, $tipe, $subject, strip_tags($body));
@@ -129,6 +136,30 @@ class NotificationService
                 </div>
                 <p>Pastikan untuk melakukan pembayaran tepat waktu.</p>
             </div>
+        </div>";
+    }
+
+    private function getBorosEmailTemplate(string $namaOrangtua, string $namaMahasiswa, array $status): string
+    {
+        $pemasukan = format_rupiah($status['pemasukan'] ?? 0);
+        $pengeluaran = format_rupiah($status['pengeluaran'] ?? 0);
+        $ratio = $status['ratio'] ?? 0;
+        $y = date('Y');
+        return "<div style='font-family:Arial,sans-serif;max-width:600px;margin:0 auto;'>
+            <div style='background:#ef4444;color:white;padding:20px;text-align:center;'><h1 style='margin:0;'>⚠️ Peringatan Status Keuangan</h1></div>
+            <div style='padding:30px;background:#f8fafc;'>
+                <p>Halo <strong>{$namaOrangtua}</strong>,</p>
+                <p>Kami ingin menginformasikan bahwa anak Anda <strong>{$namaMahasiswa}</strong> saat ini berada dalam status <strong style='color:#ef4444;'>BOROS</strong>.</p>
+                <div style='background:white;padding:20px;border-radius:8px;margin:20px 0;border-left:4px solid #ef4444;'>
+                    <h3 style='margin-top:0;color:#374151;'>Ringkasan Keuangan Bulan Ini:</h3>
+                    <p><strong>Pemasukan:</strong> <span style='color:#10b981;'>{$pemasukan}</span></p>
+                    <p><strong>Pengeluaran:</strong> <span style='color:#ef4444;'>{$pengeluaran}</span></p>
+                    <p><strong>Rasio Pengeluaran:</strong> <span style='color:#ef4444;font-weight:bold;'>{$ratio}%</span></p>
+                </div>
+                <p style='color:#6b7280;font-size:14px;'>Status boros terjadi ketika rasio pengeluaran melebihi 80% dari pemasukan. Kami menyarankan untuk berdiskusi dengan anak Anda mengenai pengelolaan keuangan yang lebih bijak.</p>
+                <p>Anda dapat memantau detail keuangan anak di dashboard orang tua.</p>
+            </div>
+            <div style='background:#e2e8f0;padding:15px;text-align:center;font-size:12px;color:#64748b;'>Sistem Keuangan Mahasiswa &copy; {$y}</div>
         </div>";
     }
 }
