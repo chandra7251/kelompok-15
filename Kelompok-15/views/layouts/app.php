@@ -558,7 +558,7 @@
                         <span
                             class="text-lg font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent">KeuanganKu</span>
                     </div>
-                    <p class="text-sm font-medium text-[#B3C9D8]">Sistem Keuangan Mahasiswa - Kelompok 15</p>
+                    <p class="text-sm font-medium text-[#B3C9D8]">©2025 - Sistem Keuangan Mahasiswa - Kelompok 15</p>
                 </div>
             </div>
         </footer>

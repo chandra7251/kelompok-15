@@ -38,10 +38,10 @@ ob_start();
                     KeuanganKu
                 </h1>
                 <h2 class="text-2xl lg:text-3xl font-bold text-[#EAF6FF] tracking-normal pl-8">
-                    Nama Website nya
+                    KeuanganKu
                 </h2>
                 <p class="text-[#EAF6FF] text-sm tracking-widest uppercase opacity-60 mt-8 max-w-xl font-medium pl-10">
-                    Deskripsi Singkat Web Lorem Ipsum Eak asjdoajdoeajdoajdoads
+                    Kelola Keuangan Lebih Cerdas, Pantau Pengeluaran Lebih Mudah.
                 </p>
             </div>
 
@@ -55,10 +55,10 @@ ob_start();
                 <div class="space-y-6">
                     <?php
                     $features = [
-                        ['icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
-                        ['icon' => 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15'],
-                        ['icon' => 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'],
-                        ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
+                        ['icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Kelola Uang Saku dengan Mudah', 'desc' => 'Mahasiswa dapat mencatat dan mengelola pengeluaran harian secara praktis'],
+                        ['icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01', 'title' => 'Riwayat Transaksi Lengkap', 'desc' => 'Pantau semua transaksi keuangan dengan catatan yang terorganisir'],
+                        ['icon' => 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z', 'title' => 'Monitoring Keuangan Anak', 'desc' => 'Orang tua dapat memantau pengeluaran anak secara real-time'],
+                        ['icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'title' => 'Transfer Saldo Instan', 'desc' => 'Kirim uang saku ke anak kapan saja dengan cepat dan aman'],
                     ];
                     foreach ($features as $f):
                         ?>
@@ -77,6 +77,15 @@ ob_start();
                                     Inggris baris 2)</p>
                             </div>
                         </div>
+<<<<<<< HEAD
+=======
+                        <!-- Text -->
+                        <div>
+                            <p class="text-white font-bold text-sm leading-snug"><?= $f['title'] ?></p>
+                            <p class="text-gray-500 text-xs mt-1 leading-snug"><?= $f['desc'] ?></p>
+                        </div>
+                    </div>
+>>>>>>> origin/main
                     <?php endforeach; ?>
                 </div>
             </div>

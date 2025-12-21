@@ -10,10 +10,11 @@ require BASE_PATH . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->safeLoad();
 
-$page = $_GET['page'] ?? 'login';
+$page = $_GET['page'] ?? 'landing';
 $action = $_GET['action'] ?? 'index';
 
 $routes = [
+    'landing' => ['controller' => 'LandingController', 'actions' => ['index' => 'index']],
     'login' => ['controller' => 'AuthController', 'actions' => ['index' => 'showLogin', 'submit' => 'login']],
     'register' => ['controller' => 'AuthController', 'actions' => ['index' => 'showRegister', 'submit' => 'register']],
     'logout' => ['controller' => 'AuthController', 'actions' => ['index' => 'logout']],
