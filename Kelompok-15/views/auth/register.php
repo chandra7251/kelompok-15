@@ -141,8 +141,7 @@ $currentRole = old('role', 'mahasiswa');
                 <div class="flex items-start gap-4 ">
                     <span class="text-[#21E6D3] text-5xl font-serif leading-none mt-[-10px]">“</span>
                     <p class="text-white text-[19px] font-normal leading-relaxed tracking-wide max-w-2xl">
-                        DISINI BAKAL ADA <span class="bg-gradient-to-r from-[#00C6FB] to-[#00F29C] text-[#0B2A4A] font-extrabold px-2 py-0.5 rounded-md mx-1">DEKSRIPSI</span> SINGKAT<br>
-                        ATAU MOTO TENTANG WEB NYA LOREM IPSUM CUMKURUKUK EAK
+                        Solusi digital untuk <span class="bg-gradient-to-r from-[#00C6FB] to-[#00F29C] text-[#0B2A4A] font-extrabold px-2 py-0.5 rounded-md mx-1">mencatat, menganalisis, dan memantau</span> pengeluaran mahasiswa secara cerdas.
                     </p>
                     <span class="text-[#21E6D3] text-5xl font-serif leading-none self-end mt-4 ml-[-5px]">”</span>
                 </div>
