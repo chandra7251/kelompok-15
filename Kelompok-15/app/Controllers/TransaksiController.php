@@ -45,7 +45,6 @@ class TransaksiController
 
         $mahasiswaId = auth()['mahasiswa_id'];
 
-        // Validate inputs
         $kategoriId = (int) ($_POST['kategori_id'] ?? 0);
         $jumlah = (float) ($_POST['jumlah'] ?? 0);
         $mataUang = strtoupper(trim($_POST['mata_uang'] ?? 'IDR'));
@@ -58,7 +57,6 @@ class TransaksiController
             redirect('index.php?page=transaksi&action=create');
         }
 
-        // Verify kategori ownership
         $kategori = new Kategori();
         $kat = $kategori->findByIdAndMahasiswa($kategoriId, $mahasiswaId);
         if (!$kat) {
@@ -66,7 +64,6 @@ class TransaksiController
             redirect('index.php?page=transaksi&action=create');
         }
 
-        // Convert currency
         $exchangeService = new ExchangeRateService();
         $conversion = $exchangeService->convertToIdr($jumlah, $mataUang);
 
@@ -82,7 +79,6 @@ class TransaksiController
                 ->setKeterangan($keterangan);
             $transaksi->create();
 
-            // Update saldo mahasiswa
             $mahasiswa = new Mahasiswa();
             $mhs = $mahasiswa->findMahasiswa($mahasiswaId);
             if ($mhs) {
@@ -192,7 +188,6 @@ class TransaksiController
         $data = $transaksi->findByIdAndMahasiswa($id, $mahasiswaId);
 
         if ($data) {
-            // Get kategori to check type
             $kategori = new Kategori();
             $kat = $kategori->find($data->getKategoriId());
 
@@ -201,10 +196,8 @@ class TransaksiController
             $mhs = $mahasiswa->findMahasiswa($mahasiswaId);
             if ($mhs && $kat) {
                 if ($kat->getTipe() === 'pemasukan') {
-                    // Was added, so subtract
                     $mhs->updateSaldo($data->getJumlahIdr(), 'subtract');
                 } else {
-                    // Was subtracted, so add back
                     $mhs->updateSaldo($data->getJumlahIdr(), 'add');
                 }
             }

@@ -27,7 +27,6 @@ class AnalyticsService
             $ratio = ($pengeluaran / $pemasukan) * 100;
         }
 
-        // Get dynamic thresholds from settings
         $thresholds = $this->getThresholdSettings();
         $thresholdHemat = $thresholds['threshold_hemat'];
         $thresholdNormal = $thresholds['threshold_normal'];
@@ -256,7 +255,6 @@ class AnalyticsService
         $year = $parts[0];
         $mon = $parts[1];
 
-        // Get total pemasukan (excluding tabungan)
         $pemasukanResult = $this->db->fetch(
             "SELECT COALESCE(SUM(t.jumlah_idr), 0) as total 
              FROM transaksi t 
@@ -269,7 +267,6 @@ class AnalyticsService
         );
         $totalPemasukan = (float) ($pemasukanResult['total'] ?? 0);
 
-        // Get tabungan amount
         $tabunganResult = $this->db->fetch(
             "SELECT COALESCE(SUM(t.jumlah_idr), 0) as total 
              FROM transaksi t 
@@ -281,7 +278,6 @@ class AnalyticsService
         );
         $totalTabungan = (float) ($tabunganResult['total'] ?? 0);
 
-        // Get per-category pengeluaran
         $kategoris = $this->db->fetchAll(
             "SELECT k.nama, COALESCE(SUM(t.jumlah_idr), 0) as total 
              FROM kategori k 
@@ -295,7 +291,6 @@ class AnalyticsService
         $totalPengeluaran = 0;
         $categoryDetails = [];
 
-        // Define category weights and scoring thresholds
         $categoryWeights = [
             'Makanan' => 0.35,
             'Biaya Kos' => 0.25,
@@ -308,10 +303,8 @@ class AnalyticsService
             $jumlah = (float) $kat['total'];
             $totalPengeluaran += $jumlah;
 
-            // Calculate percentage of income
             $persentase = $totalPemasukan > 0 ? ($jumlah / $totalPemasukan) * 100 : 0;
 
-            // Calculate score (0-3) based on percentage
             $skor = $this->calculateCategoryScore($nama, $persentase);
 
             $categoryDetails[] = [
@@ -323,22 +316,18 @@ class AnalyticsService
             ];
         }
 
-        // Calculate tabungan percentage and score
         $tabunganPersentase = $totalPemasukan > 0 ? ($totalTabungan / $totalPemasukan) * 100 : 0;
         $tabunganSkor = $this->calculateTabunganScore($tabunganPersentase);
 
-        // Calculate composite score
         $skorKomposit = 0;
         foreach ($categoryDetails as $cat) {
             if (isset($categoryWeights[$cat['nama']])) {
                 $skorKomposit += $cat['skor'] * $categoryWeights[$cat['nama']];
             }
         }
-        // Subtract tabungan effect (bonus for saving)
         $skorKomposit -= ($tabunganSkor * 0.10);
         $skorKomposit = max(0, $skorKomposit);
 
-        // Determine status from composite score
         if ($skorKomposit <= 0.9) {
             $statusAkhir = 'hemat';
             $statusColor = 'green';
@@ -367,13 +356,10 @@ class AnalyticsService
 
     private function calculateCategoryScore(string $kategori, float $persentase): int
     {
-        // Scoring based on document specifications
-        // Lower percentage = better score (0), higher = worse (3)
-
         $thresholds = [
-            'Makanan' => [40, 60, 80],      // ≤40%=0, 40-60%=1, 60-80%=2, >80%=3
-            'Biaya Kos' => [30, 45, 60],    // ≤30%=0, 30-45%=1, 45-60%=2, >60%=3
-            'Transportasi' => [15, 25, 40], // ≤15%=0, 15-25%=1, 25-40%=2, >40%=3
+            'Makanan' => [40, 60, 80],
+            'Biaya Kos' => [30, 45, 60],
+            'Transportasi' => [15, 25, 40],
             'Kebutuhan Lain' => [15, 25, 40]
         ];
 
@@ -390,20 +376,17 @@ class AnalyticsService
 
     private function calculateTabunganScore(float $persentase): int
     {
-        // Higher savings = lower (better) score
-        // This will be subtracted from composite score
         if ($persentase >= 20)
-            return 3; // Excellent
+            return 3;
         if ($persentase >= 10)
-            return 2; // Good
+            return 2;
         if ($persentase >= 5)
-            return 1;  // Fair
-        return 0; // Poor
+            return 1;
+        return 0;
     }
 
     public function getTabunganSummary(): array
     {
-        // Get all-time tabungan
         $result = $this->db->fetch(
             "SELECT COALESCE(SUM(t.jumlah_idr), 0) as total 
              FROM transaksi t 
@@ -413,7 +396,6 @@ class AnalyticsService
         );
         $totalTabungan = (float) ($result['total'] ?? 0);
 
-        // Get this month tabungan
         $month = date('Y-m');
         $parts = explode('-', $month);
         $monthResult = $this->db->fetch(

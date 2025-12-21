@@ -15,6 +15,7 @@ class User
     private bool $isActive = true;
     private ?string $createdAt = null;
     private ?string $updatedAt = null;
+    private ?string $photo = null;
 
     public function __construct()
     {
@@ -48,6 +49,10 @@ class User
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
+    }
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
     }
     public function isActive(): bool
     {
@@ -178,6 +183,7 @@ class User
         $this->isActive = (bool) ($data['is_active'] ?? 1);
         $this->createdAt = $data['created_at'];
         $this->updatedAt = $data['updated_at'];
+        $this->photo = $data['photo'] ?? null;
         return $this;
     }
 
@@ -188,6 +194,7 @@ class User
             'nama' => $this->nama,
             'email' => $this->email,
             'role' => $this->role,
+            'photo' => $this->photo,
             'created_at' => $this->createdAt,
             'updated_at' => $this->updatedAt
         ];

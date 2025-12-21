@@ -1,18 +1,7 @@
--- ===========================================
--- Database: Sistem Keuangan Mahasiswa
--- Kelompok 15
--- ===========================================
-
--- Drop database jika ada (untuk fresh install)
 DROP DATABASE IF EXISTS `web_keuangan_mahasiswa_dan_kurs_otomatis`;
 CREATE DATABASE `web_keuangan_mahasiswa_dan_kurs_otomatis` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `web_keuangan_mahasiswa_dan_kurs_otomatis`;
 
--- ===========================================
--- TABEL STRUKTUR
--- ===========================================
-
--- Table: users
 CREATE TABLE `users` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `nama` VARCHAR(100) NOT NULL,
@@ -28,7 +17,6 @@ CREATE TABLE `users` (
     INDEX `idx_email` (`email`)
 ) ENGINE=InnoDB;
 
--- Table: mahasiswa
 CREATE TABLE `mahasiswa` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
@@ -41,7 +29,6 @@ CREATE TABLE `mahasiswa` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Table: orangtua
 CREATE TABLE `orangtua` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
@@ -51,7 +38,6 @@ CREATE TABLE `orangtua` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Table: relasi_orangtua_mahasiswa
 CREATE TABLE `relasi_orangtua_mahasiswa` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `orangtua_id` INT NOT NULL,
@@ -62,7 +48,6 @@ CREATE TABLE `relasi_orangtua_mahasiswa` (
     UNIQUE KEY `unique_relasi` (`orangtua_id`, `mahasiswa_id`)
 ) ENGINE=InnoDB;
 
--- Table: kategori
 CREATE TABLE `kategori` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `mahasiswa_id` INT NOT NULL,
@@ -73,7 +58,6 @@ CREATE TABLE `kategori` (
     FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Table: transaksi
 CREATE TABLE `transaksi` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `mahasiswa_id` INT NOT NULL,
@@ -90,7 +74,6 @@ CREATE TABLE `transaksi` (
     FOREIGN KEY (`kategori_id`) REFERENCES `kategori`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Table: transfer_saldo
 CREATE TABLE `transfer_saldo` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `orangtua_id` INT NOT NULL,
@@ -106,7 +89,6 @@ CREATE TABLE `transfer_saldo` (
     FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Table: exchange_rate_log
 CREATE TABLE `exchange_rate_log` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `base_currency` VARCHAR(3) NOT NULL,
@@ -116,7 +98,6 @@ CREATE TABLE `exchange_rate_log` (
     `expires_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- Table: notifications
 CREATE TABLE `notifications` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
@@ -129,7 +110,6 @@ CREATE TABLE `notifications` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Table: reminders
 CREATE TABLE `reminders` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `mahasiswa_id` INT NOT NULL,
@@ -141,7 +121,6 @@ CREATE TABLE `reminders` (
     FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Table: system_settings
 CREATE TABLE `system_settings` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `setting_key` VARCHAR(50) UNIQUE NOT NULL,
@@ -150,99 +129,17 @@ CREATE TABLE `system_settings` (
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- ===========================================
--- SEED DATA
--- ===========================================
-
--- Password untuk semua akun: admin123
--- Hash: $2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K
-
--- Seed: Admin (id=1)
-INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(1, 'Administrator', 'admin@keuangan.com', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'admin');
-
--- Seed: Mahasiswa (id=2,3)
-INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(2, 'Ahmad Fauzi', 'ahmad@student.ac.id', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'mahasiswa'),
-(3, 'Budi Santoso', 'budi@student.ac.id', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'mahasiswa');
-
-INSERT INTO `mahasiswa` (`id`, `user_id`, `nim`, `jurusan`, `saldo`, `pairing_code`) VALUES
-(1, 2, '2024001', 'Teknik Informatika', 1500000.00, 'AHMAD123'),
-(2, 3, '2024002', 'Sistem Informasi', 750000.00, 'BUDI1234');
-
--- Seed: Orang Tua (id=4)
-INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(4, 'Pak Hasan', 'hasan@gmail.com', '$2y$10$Z7ZPK3IKrpBtTcssjo0KP.uIVUqIkyZ3n59gt8Fhyi2UbwZozvx3K', 'orangtua');
-
-INSERT INTO `orangtua` (`id`, `user_id`, `no_telepon`) VALUES
-(1, 4, '081234567890');
-
--- Relasi: Pak Hasan -> Ahmad
-INSERT INTO `relasi_orangtua_mahasiswa` (`orangtua_id`, `mahasiswa_id`) VALUES
-(1, 1);
-
--- Seed: Kategori untuk Ahmad (mahasiswa_id=1) - sesuai default categories
-INSERT INTO `kategori` (`id`, `mahasiswa_id`, `nama`, `tipe`) VALUES
--- Pemasukan
-(1, 1, 'Transfer Orang Tua', 'pemasukan'),
-(2, 1, 'Beasiswa', 'pemasukan'),
-(3, 1, 'Kerja Part-time', 'pemasukan'),
-(4, 1, 'Pemasukan Lainnya', 'pemasukan'),
--- Pengeluaran Utama (sesuai dokumen)
-(5, 1, 'Makanan', 'pengeluaran'),
-(6, 1, 'Biaya Kos', 'pengeluaran'),
-(7, 1, 'Transportasi', 'pengeluaran'),
-(8, 1, 'Kebutuhan Lain', 'pengeluaran'),
--- Pengeluaran Tambahan
-(9, 1, 'Pendidikan', 'pengeluaran'),
-(10, 1, 'Hiburan', 'pengeluaran'),
--- Tabungan (kategori khusus)
-(11, 1, 'Tabungan', 'pemasukan');
-
--- Seed: Transaksi untuk Ahmad
-INSERT INTO `transaksi` (`mahasiswa_id`, `kategori_id`, `jumlah`, `mata_uang`, `jumlah_idr`, `kurs_rate`, `keterangan`, `tanggal`) VALUES
--- Pemasukan
-(1, 1, 2000000, 'IDR', 2000000, 1, 'Transfer dari ortu', DATE_SUB(CURDATE(), INTERVAL 30 DAY)),
-(1, 3, 500000, 'IDR', 500000, 1, 'Gaji part-time', DATE_SUB(CURDATE(), INTERVAL 20 DAY)),
--- Pengeluaran Makanan (Bobot 35%)
-(1, 5, 150000, 'IDR', 150000, 1, 'Makan di kantin', DATE_SUB(CURDATE(), INTERVAL 28 DAY)),
-(1, 5, 200000, 'IDR', 200000, 1, 'Makan di luar', DATE_SUB(CURDATE(), INTERVAL 20 DAY)),
-(1, 5, 175000, 'IDR', 175000, 1, 'Makan siang', DATE_SUB(CURDATE(), INTERVAL 10 DAY)),
-(1, 5, 180000, 'IDR', 180000, 1, 'Makan malam', DATE_SUB(CURDATE(), INTERVAL 2 DAY)),
--- Pengeluaran Biaya Kos (Bobot 25%)
-(1, 6, 500000, 'IDR', 500000, 1, 'Bayar kos bulan ini', DATE_SUB(CURDATE(), INTERVAL 25 DAY)),
--- Pengeluaran Transportasi (Bobot 15%)
-(1, 7, 50000, 'IDR', 50000, 1, 'Ongkos ojol', DATE_SUB(CURDATE(), INTERVAL 25 DAY)),
-(1, 7, 75000, 'IDR', 75000, 1, 'Bensin motor', DATE_SUB(CURDATE(), INTERVAL 5 DAY)),
--- Pengeluaran Lainnya
-(1, 9, 250000, 'IDR', 250000, 1, 'Beli buku kuliah', DATE_SUB(CURDATE(), INTERVAL 14 DAY)),
-(1, 10, 100000, 'IDR', 100000, 1, 'Nonton bioskop', DATE_SUB(CURDATE(), INTERVAL 18 DAY)),
--- Tabungan
-(1, 11, 200000, 'IDR', 200000, 1, 'Nabung mingguan', DATE_SUB(CURDATE(), INTERVAL 25 DAY)),
-(1, 11, 150000, 'IDR', 150000, 1, 'Nabung mingguan', DATE_SUB(CURDATE(), INTERVAL 10 DAY));
-
--- Seed: Transfer dari Ortu
-INSERT INTO `transfer_saldo` (`orangtua_id`, `mahasiswa_id`, `jumlah`, `mata_uang`, `jumlah_idr`, `kurs_rate`, `keterangan`, `status`) VALUES
-(1, 1, 1000000, 'IDR', 1000000, 1, 'Uang bulanan', 'completed');
-
--- Seed: Reminder untuk Ahmad
-INSERT INTO `reminders` (`mahasiswa_id`, `nama`, `jumlah`, `tanggal_jatuh_tempo`, `status`) VALUES
-(1, 'SPP Semester Genap', 5000000, DATE_ADD(CURDATE(), INTERVAL 14 DAY), 'pending'),
-(1, 'Uang Kos Bulan Depan', 1500000, DATE_ADD(CURDATE(), INTERVAL 20 DAY), 'pending');
-
--- Seed: System Settings (default values)
-INSERT INTO `system_settings` (`setting_key`, `setting_value`) VALUES
-('threshold_hemat', '50'),
-('threshold_normal', '80'),
-('kurs_ttl', '3600');
-
--- ===========================================
--- DEMO ACCOUNTS
--- ===========================================
--- | Role       | Email               | Password  |
--- |------------|---------------------|-----------|
--- | Admin      | admin@keuangan.com  | admin123  |
--- | Mahasiswa  | ahmad@student.ac.id | admin123  |
--- | Mahasiswa  | budi@student.ac.id  | admin123  |
--- | Orang Tua  | hasan@gmail.com     | admin123  |
--- ===========================================
+CREATE TABLE IF NOT EXISTS `deleted_users` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `original_user_id` INT NOT NULL,
+    `nama` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `role` ENUM('mahasiswa', 'orangtua', 'admin') NOT NULL,
+    `photo` VARCHAR(255) NULL,
+    `deleted_by` INT NOT NULL,
+    `deleted_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `original_created_at` TIMESTAMP NULL,
+    INDEX `idx_email` (`email`),
+    INDEX `idx_role` (`role`),
+    INDEX `idx_deleted_at` (`deleted_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

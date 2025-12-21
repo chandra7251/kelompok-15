@@ -3,31 +3,38 @@ $title = 'Dashboard Orang Tua';
 ob_start();
 ?>
 
-<!-- Global Wrapper -->
 <div class="w-full p-6 md:p-10 font-sans text-white">
 
-    <!-- Welcome & Header -->
     <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-10 gap-4">
         <div>
-            <div class="inline-block bg-[#0C2642] px-4 py-2 rounded-lg mb-4 ml-2 border border-white/5">
+            <div data-welcome class="inline-block bg-[#0C2642] px-4 py-2 rounded-lg mb-4 ml-2 border border-white/5 transition-all duration-500">
                  <p class="text-[#EAF6FF] text-sm">Welcome, <span class="bg-gradient-to-r from-[#00B4FF] to-[#00FFBF] bg-clip-text text-transparent font-bold"><?= e($user['nama']) ?></span> !</p>
             </div>
             <p class="text-[#CDE2EF] text-lg ml-3 font-light">Monitor keuangan dan aktivitas anak anda</p>
         </div>
         
-        <!-- Action Button: Download Report -->
-        <a href="index.php?page=export&action=transfer_orangtua" 
-           class="group flex items-center gap-3 bg-[#133D57] hover:bg-[#1C4E6E] border border-white/10 px-5 py-3 rounded-xl transition-all duration-300 hover:-translate-y-1">
-            <div class="p-2 bg-[#00F29C]/10 rounded-lg group-hover:bg-[#00F29C]/20 transition-colors">
-                <svg class="w-5 h-5 text-[#00F29C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-            </div>
-            <span class="font-medium text-[#EAF6FF]">Download Laporan</span>
-        </a>
+        <div class="flex items-center gap-3">
+            <a href="index.php?page=export&action=laporan_anak_pdf" 
+               class="group flex items-center gap-3 bg-gradient-to-r from-[#ef4444] to-[#f97316] hover:from-[#dc2626] hover:to-[#ea580c] border border-white/10 px-5 py-3 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                <div class="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <span class="font-medium text-white">Download PDF</span>
+            </a>
+            <a href="index.php?page=export&action=transfer_orangtua" 
+               class="group flex items-center gap-3 bg-[#133D57] hover:bg-[#1C4E6E] border border-white/10 px-5 py-3 rounded-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="p-2 bg-[#00F29C]/10 rounded-lg group-hover:bg-[#00F29C]/20 transition-colors">
+                    <svg class="w-5 h-5 text-[#00F29C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <span class="font-medium text-[#EAF6FF]">Export CSV</span>
+            </a>
+        </div>
     </div>
 
-    <!-- Exchange Rates Ticker -->
     <div class="bg-gradient-to-r from-[#0F2F46] to-[#133D57] rounded-xl p-1 mb-8 border border-white/5 shadow-lg relative overflow-hidden">
         <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#00C6FB] to-[#00F29C]"></div>
         <div class="flex flex-col md:flex-row items-center gap-6 p-4">
@@ -46,7 +53,6 @@ ob_start();
         </div>
     </div>
 
-    <!-- Main Section: Anak yang Terhubung -->
     <div class="bg-[#0F2F46] rounded-[2rem] shadow-2xl border border-white/5 p-6 md:p-10 mb-8 relative overflow-hidden">
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 pb-6 border-b border-white/5">
             <div>
@@ -80,14 +86,13 @@ ob_start();
                         'normal' => 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
                         'boros' => 'text-rose-400 bg-rose-400/10 border-rose-400/20',
                         default => 'text-gray-400'
-                    };
+                    }; 
                     $statusEmoji = match($status['status']) { 'hemat' => '✨', 'normal' => '⚖️', 'boros' => '⚠️', default => '' };
                 ?>
                 
                 <div class="bg-[#133D57] rounded-2xl p-6 border border-white/5 hover:border-[#22d3ee]/30 transition-all">
                     <div class="flex flex-col lg:flex-row gap-6">
                         
-                        <!-- Profile Section -->
                         <div class="flex items-start gap-4 lg:w-1/4">
                             <div class="w-14 h-14 bg-[#0F2F46] rounded-2xl flex items-center justify-center border border-white/10 shadow-lg shrink-0">
                                 <span class="font-bold text-[#22d3ee] text-xl"><?= strtoupper(substr($mhs['nama'], 0, 1)) ?></span>
@@ -103,7 +108,6 @@ ob_start();
                             </div>
                         </div>
 
-                        <!-- Stats Grid -->
                         <div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-3">
                             <div class="bg-[#0F2F46] p-4 rounded-xl border border-white/5">
                                 <p class="text-[#94a3b8] text-xs uppercase tracking-wider mb-1">Saldo</p>
@@ -120,7 +124,6 @@ ob_start();
                             <div class="bg-[#0F2F46] p-4 rounded-xl border border-white/5 flex flex-col justify-center items-center gap-2">
                                 <p class="text-[#94a3b8] text-xs"><?= $stats['total_transaksi'] ?> Transaksi</p>
                                 
-                                <!-- Unlink Button -->
                                 <form action="index.php?page=transfer&action=unlink" method="POST" onsubmit="return confirm('Yakin ingin melepas hubungan dengan anak ini?')" class="w-full">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="mahasiswa_id" value="<?= $mhs['id'] ?>">
@@ -133,10 +136,55 @@ ob_start();
 
                     </div>
                     
-                    <!-- Status Message Footnote -->
                     <?php if(!empty($status['message'])): ?>
                     <div class="mt-4 pt-4 border-t border-white/5">
                         <p class="text-sm text-[#94a3b8] italic">"<?= $status['message'] ?>"</p>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($child['recentTransaksi'])): ?>
+                    <div class="mt-6 pt-6 border-t border-white/5">
+                        <div class="flex items-center justify-between mb-4">
+                            <h5 class="text-sm font-bold text-[#EAF6FF] flex items-center gap-2">
+                                <svg class="w-4 h-4 text-[#00C6FB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                                Transaksi Terakhir
+                            </h5>
+                            <span class="text-xs text-[#94a3b8]"><?= count($child['recentTransaksi']) ?> transaksi</span>
+                        </div>
+                        
+                        <div class="space-y-2 max-h-64 overflow-y-auto custom-scrollbar pr-2">
+                            <?php foreach (array_slice($child['recentTransaksi'], 0, 5) as $trx): 
+                                $isPemasukan = ($trx['tipe'] ?? 'pengeluaran') === 'pemasukan';
+                            ?>
+                            <div class="flex items-center justify-between p-3 bg-[#0F2F46] rounded-xl border border-white/5 hover:bg-[#163a52] transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center <?= $isPemasukan ? 'bg-[#00F29C]/10' : 'bg-rose-400/10' ?>">
+                                        <?php if ($isPemasukan): ?>
+                                            <svg class="w-4 h-4 text-[#00F29C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                                            </svg>
+                                        <?php else: ?>
+                                            <svg class="w-4 h-4 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+                                            </svg>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div>
+                                        <p class="text-white text-sm font-medium"><?= e($trx['kategori_nama'] ?? 'Kategori') ?></p>
+                                        <p class="text-[#94a3b8] text-xs"><?= e($trx['keterangan'] ?? '-') ?></p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-sm <?= $isPemasukan ? 'text-[#00F29C]' : 'text-rose-400' ?>">
+                                        <?= $isPemasukan ? '+' : '-' ?><?= format_rupiah($trx['jumlah_idr']) ?>
+                                    </p>
+                                    <p class="text-[#64748b] text-xs"><?= format_tanggal($trx['tanggal']) ?></p>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -145,12 +193,9 @@ ob_start();
         <?php endif; ?>
     </div>
 
-    <!-- Bottom Grids -->
     <div class="grid lg:grid-cols-2 gap-8">
         
-        <!-- Quick Transfer Card -->
         <div class="bg-gradient-to-br from-[#133D57] to-[#0F2F46] rounded-[2rem] p-8 text-white shadow-2xl relative overflow-hidden border border-white/5">
-            <!-- Decorative BG -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-[#00C6FB]/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
 
             <h3 class="font-bold text-xl mb-2 text-[#EAF6FF] relative z-10">Kirim Saldo Cepat</h3>
@@ -160,7 +205,6 @@ ob_start();
                 <form action="index.php?page=transfer&action=send&redirect=dashboard" method="POST" class="space-y-4 relative z-10">
                     <?= csrf_field() ?>
                     
-                    <!-- Select Anak -->
                     <div class="bg-[#0C2642] p-1 rounded-xl border border-white/10">
                         <select name="mahasiswa_id" required class="w-full bg-transparent text-white px-4 py-3 rounded-lg border-none focus:ring-0 cursor-pointer">
                             <?php foreach ($linkedMahasiswa as $mhs): ?>
@@ -168,8 +212,6 @@ ob_start();
                             <?php endforeach; ?>
                         </select>
                     </div>
-
-                    <!-- Input Grid -->
                     <div class="grid grid-cols-3 gap-3">
                         <div class="col-span-2">
                              <div class="relative">
@@ -200,7 +242,6 @@ ob_start();
             <?php endif; ?>
         </div>
 
-        <!-- History Card -->
         <div class="bg-[#133D57] rounded-[2rem] shadow-xl p-8 border border-white/5 flex flex-col h-full">
             <h3 class="font-bold text-[#EAF6FF] text-xl mb-6">Riwayat Transfer</h3>
 
@@ -238,7 +279,6 @@ ob_start();
 
     </div>
     
-    <!-- Report Table Section -->
     <?php if (!empty($childrenStats)): ?>
     <div class="mt-8 bg-[#133D57] rounded-[2rem] p-8 border border-white/5 shadow-xl">
         <h3 class="font-bold text-[#EAF6FF] text-xl mb-6 flex items-center gap-2">
@@ -278,7 +318,6 @@ ob_start();
             </table>
         </div>
         
-        <!-- Chart Canvas -->
         <?php if (!empty($aggregatedMonthlyData['labels'])): ?>
         <div class="mt-8 p-6 bg-[#0F2F46] rounded-2xl border border-white/5">
              <canvas id="aggregatedChart" height="80"></canvas>
@@ -290,7 +329,6 @@ ob_start();
 </div>
 
 <script>
-    // Currency Logic
     document.getElementById('currencySelect')?.addEventListener('change', function () {
         const currency = this.value;
         const input = document.getElementById('jumlahInput');
@@ -305,17 +343,14 @@ ob_start();
         }
     });
 
-    // Chart.js
     <?php if (!empty($aggregatedMonthlyData['labels'])): ?>
     document.addEventListener('DOMContentLoaded', function () {
         const ctx = document.getElementById('aggregatedChart').getContext('2d');
         
-        // Gradient for Green
         const gradGreen = ctx.createLinearGradient(0, 0, 0, 400);
         gradGreen.addColorStop(0, 'rgba(0, 242, 156, 0.5)');
         gradGreen.addColorStop(1, 'rgba(0, 242, 156, 0)');
 
-        // Gradient for Red
         const gradRed = ctx.createLinearGradient(0, 0, 0, 400);
         gradRed.addColorStop(0, 'rgba(244, 63, 94, 0.5)');
         gradRed.addColorStop(1, 'rgba(244, 63, 94, 0)');

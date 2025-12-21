@@ -81,7 +81,6 @@ class AuthController
             'password_confirm' => $_POST['password_confirm'] ?? ''
         ];
 
-        // Validation
         $errors = [];
         if (empty($data['nama']))
             $errors[] = 'Nama wajib diisi';

@@ -1,7 +1,5 @@
 <?php
 
-// ==================== SECURITY ====================
-
 function escape(?string $value): string
 {
     return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
@@ -31,8 +29,6 @@ function verify_csrf(): bool
     return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
 }
 
-// ==================== NAVIGATION ====================
-
 function redirect(string $url): void
 {
     header("Location: $url");
@@ -44,8 +40,6 @@ function back(): void
     $referer = $_SERVER['HTTP_REFERER'] ?? 'index.php?page=dashboard';
     redirect($referer);
 }
-
-// ==================== SESSION ====================
 
 function old(string $key, string $default = ''): string
 {
@@ -79,8 +73,6 @@ function has_flash(string $key): bool
     return isset($_SESSION['flash'][$key]);
 }
 
-// ==================== AUTH ====================
-
 function auth(): ?array
 {
     return $_SESSION['user'] ?? null;
@@ -96,7 +88,6 @@ function is_role(string $role): bool
     return isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === $role;
 }
 
-// ==================== FORMATTING ====================
 
 function format_rupiah(float $amount): string
 {
@@ -126,7 +117,7 @@ function format_tanggal(string $date): string
     return "$hari {$bulan[$bln]} $tahun";
 }
 
-// ==================== VALIDATION ====================
+
 
 function validate_email(string $email): bool
 {
@@ -144,7 +135,6 @@ function validate_date(string $date, string $format = 'Y-m-d'): bool
     return $d && $d->format($format) === $date;
 }
 
-// ==================== UTILITIES ====================
 
 function generate_pairing_code(int $length = 8): string
 {
