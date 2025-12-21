@@ -96,14 +96,33 @@ class AdminController
             redirect('index.php?page=admin&action=users');
         }
 
-        $user = $this->db->fetch("SELECT role FROM users WHERE id = ?", [$userId]);
-        if ($user && $user['role'] === 'admin') {
+        $userData = $this->db->fetch("SELECT * FROM users WHERE id = ?", [$userId]);
+
+        if (!$userData) {
+            flash('error', 'User tidak ditemukan');
+            redirect('index.php?page=admin&action=users');
+        }
+
+        if ($userData['role'] === 'admin') {
             flash('error', 'Tidak dapat menghapus akun admin');
             redirect('index.php?page=admin&action=users');
         }
 
+        $this->db->insert(
+            "INSERT INTO deleted_users (original_user_id, nama, email, role, photo, deleted_by, original_created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [
+                $userData['id'],
+                $userData['nama'],
+                $userData['email'],
+                $userData['role'],
+                $userData['photo'],
+                $currentUser['id'],
+                $userData['created_at']
+            ]
+        );
+
         $this->db->delete("DELETE FROM users WHERE id = ?", [$userId]);
-        flash('success', 'User berhasil dihapus');
+        flash('success', 'User berhasil diarsipkan dan dihapus');
 
         redirect('index.php?page=admin&action=users');
     }

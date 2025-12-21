@@ -99,11 +99,15 @@ class DashboardController
             $spendingStatus = $analytics->getSpendingStatus();
             $monthlyData = $analytics->getMonthlyChartData(6);
 
+            $transaksiModel = new Transaksi();
+            $recentTransaksi = $transaksiModel->getAllByMahasiswa($mhs['id'], 10);
+
             $childrenStats[] = [
                 'mahasiswa' => $mhs,
                 'stats' => $stats,
                 'spendingStatus' => $spendingStatus,
-                'monthlyData' => $monthlyData
+                'monthlyData' => $monthlyData,
+                'recentTransaksi' => $recentTransaksi
             ];
 
             if (empty($aggregatedMonthlyData['labels'])) {

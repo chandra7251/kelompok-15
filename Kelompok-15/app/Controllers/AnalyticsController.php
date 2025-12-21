@@ -12,7 +12,6 @@ class AnalyticsController
         $mahasiswaId = auth()['mahasiswa_id'];
         $period = $_GET['period'] ?? 'monthly';
 
-        // Validate period
         if (!in_array($period, ['weekly', 'monthly', 'yearly'])) {
             $period = 'monthly';
         }

@@ -21,10 +21,8 @@ class ExportController
         header('Content-Disposition: attachment; filename=transaksi_' . date('Y-m-d') . '.csv');
 
         $output = fopen('php://output', 'w');
-        // BOM for UTF-8
         fprintf($output, chr(0xEF) . chr(0xBB) . chr(0xBF));
 
-        // Use semicolon for better Excel compatibility in non-English regions
         fputcsv($output, ['Tanggal', 'Kategori', 'Tipe', 'Jumlah', 'Mata Uang', 'Jumlah IDR', 'Kurs', 'Keterangan'], ';');
 
         foreach ($data as $row) {
@@ -131,6 +129,94 @@ class ExportController
         }
 
         fclose($output);
+        exit;
+    }
+
+    public function laporanAnakPdf(): void
+    {
+        if (!is_logged_in() || !is_role('orangtua')) {
+            redirect('index.php?page=login');
+        }
+
+        $orangtuaId = auth()['orangtua_id'];
+        $db = Database::getInstance();
+
+        $orangtua = [
+            'nama' => auth()['nama'],
+            'email' => auth()['email']
+        ];
+
+        $linkedMahasiswa = $db->fetchAll(
+            "SELECT m.*, u.nama 
+             FROM mahasiswa m 
+             JOIN users u ON m.user_id = u.id 
+             JOIN relasi_orangtua_mahasiswa r ON m.id = r.mahasiswa_id 
+             WHERE r.orangtua_id = ?",
+            [$orangtuaId]
+        );
+
+        $children = [];
+        foreach ($linkedMahasiswa as $mhs) {
+            $stats = $db->fetch(
+                "SELECT 
+                    COALESCE(SUM(CASE WHEN k.tipe = 'pemasukan' THEN t.jumlah_idr ELSE 0 END), 0) as pemasukan,
+                    COALESCE(SUM(CASE WHEN k.tipe = 'pengeluaran' THEN t.jumlah_idr ELSE 0 END), 0) as pengeluaran
+                 FROM transaksi t
+                 JOIN kategori k ON t.kategori_id = k.id
+                 WHERE t.mahasiswa_id = ? AND t.tanggal >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)",
+                [$mhs['id']]
+            );
+
+            $pemasukan = (float) ($stats['pemasukan'] ?? 0);
+            $pengeluaran = (float) ($stats['pengeluaran'] ?? 0);
+            $ratio = $pemasukan > 0 ? round(($pengeluaran / $pemasukan) * 100) : 0;
+
+            $status = 'normal';
+            if ($ratio <= 50)
+                $status = 'hemat';
+            elseif ($ratio > 80)
+                $status = 'boros';
+
+            $transaksi = $db->fetchAll(
+                "SELECT t.*, k.nama as kategori_nama, k.tipe 
+                 FROM transaksi t 
+                 JOIN kategori k ON t.kategori_id = k.id 
+                 WHERE t.mahasiswa_id = ? 
+                 ORDER BY t.tanggal DESC LIMIT 5",
+                [$mhs['id']]
+            );
+
+            $children[] = [
+                'nama' => $mhs['nama'],
+                'nim' => $mhs['nim'],
+                'jurusan' => $mhs['jurusan'],
+                'saldo' => (float) $mhs['saldo'],
+                'stats' => [
+                    'pemasukan' => $pemasukan,
+                    'pengeluaran' => $pengeluaran,
+                    'ratio' => $ratio,
+                    'status' => $status
+                ],
+                'transaksi' => $transaksi
+            ];
+        }
+
+        ob_start();
+        include __DIR__ . '/../../views/exports/pdf_laporan_anak.php';
+        $html = ob_get_clean();
+
+        $options = new \Dompdf\Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $options->set('defaultFont', 'DejaVu Sans');
+
+        $dompdf = new \Dompdf\Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $filename = 'laporan_keuangan_anak_' . date('Y-m-d') . '.pdf';
+        $dompdf->stream($filename, ['Attachment' => true]);
         exit;
     }
 }

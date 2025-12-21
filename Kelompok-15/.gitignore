@@ -1,38 +1,46 @@
-# Dependencies
+
 /vendor/
 /node_modules/
 
-# Environment
 .env
 .env.local
 .env.*.local
 
-# IDE
+
 .idea/
 .vscode/
 *.sublime-project
 *.sublime-workspace
 
-# OS
+
 .DS_Store
 Thumbs.db
 
-# Logs
+
 *.log
 logs/
 
-# Cache
+
 /cache/
 *.cache
 
-# Composer
+
 composer.phar
 
-# PHPUnit
+
 .phpunit.result.cache
 /coverage/
 
-# Temporary files
+
 *.tmp
 *.bak
 *.swp
+
+
+public/uploads/photos/*
+!public/uploads/photos/.gitkeep
+
+hash.txt
+
+
+.gemini/

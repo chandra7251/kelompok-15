@@ -5,7 +5,7 @@ ob_start();
 
 <div class="w-full mx-auto px-3 md:px-6 py-4 pb-20 space-y-6 animate-[fadeIn_0.5s_ease-out]">
 
-    <div class="mb-8">
+    <div data-welcome class="mb-8 transition-all duration-500">
         <h1 class="text-2xl font-bold text-[#00C6FB]"><span data-greeting>Selamat Datang</span>, <span
                 class="text-[#00F29C]"><?= e($user['nama']) ?></span>!
         </h1>
@@ -73,7 +73,8 @@ ob_start();
                 <div>
                     <p class="text-gray-400 text-sm font-medium">Total Tabungan</p>
                     <p class="text-2xl font-bold text-[#00C6FB] mt-2"><?= format_rupiah($tabungan['total'] ?? 0) ?></p>
-                    <p class="text-xs text-gray-500 mt-1">Bulan ini: <?= format_rupiah($tabungan['bulan_ini'] ?? 0) ?></p>
+                    <p class="text-xs text-gray-500 mt-1">Bulan ini: <?= format_rupiah($tabungan['bulan_ini'] ?? 0) ?>
+                    </p>
                 </div>
             </div>
         </div>
@@ -85,7 +86,8 @@ ob_start();
                 <h3 class="font-bold text-white mb-1">Kode Pairing Anda</h3>
                 <p class="text-sm text-gray-400">Berikan kode ini ke orang tua untuk terhubung</p>
             </div>
-            <div class="bg-[#0A2238] px-8 py-4 rounded-xl border border-[#00C6FB]/30 shadow-[0_0_15px_rgba(0,198,251,0.1)]">
+            <div
+                class="bg-[#0A2238] px-8 py-4 rounded-xl border border-[#00C6FB]/30 shadow-[0_0_15px_rgba(0,198,251,0.1)]">
                 <span class="text-2xl font-mono font-bold text-[#00C6FB] tracking-[0.2em]">
                     <?= e($user['pairing_code'] ?? 'N/A') ?>
                 </span>

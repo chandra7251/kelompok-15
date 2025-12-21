@@ -197,20 +197,16 @@ class Mahasiswa extends User
     private function createDefaultCategories(int $mahasiswaId): void
     {
         $categories = [
-            // Pemasukan
             ['Transfer Orang Tua', 'pemasukan'],
             ['Beasiswa', 'pemasukan'],
             ['Kerja Part-time', 'pemasukan'],
             ['Pemasukan Lainnya', 'pemasukan'],
-            // Pengeluaran Utama (sesuai dokumen)
-            ['Makanan', 'pengeluaran'],           // Bobot 35%
-            ['Biaya Kos', 'pengeluaran'],         // Bobot 25%
-            ['Transportasi', 'pengeluaran'],      // Bobot 15%
-            ['Kebutuhan Lain', 'pengeluaran'],    // Bobot 15%
-            // Pengeluaran Tambahan
+            ['Makanan', 'pengeluaran'],
+            ['Biaya Kos', 'pengeluaran'],
+            ['Transportasi', 'pengeluaran'],
+            ['Kebutuhan Lain', 'pengeluaran'],
             ['Pendidikan', 'pengeluaran'],
             ['Hiburan', 'pengeluaran'],
-            // Tabungan (kategori khusus - bobot -10%)
             ['Tabungan', 'pemasukan']
         ];
 

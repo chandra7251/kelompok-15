@@ -70,32 +70,27 @@ class ProfileController
 
         $file = $_FILES['photo'];
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        $maxSize = 2 * 1024 * 1024; // 2MB
+        $maxSize = 2 * 1024 * 1024;
 
-        // Validate file type
         if (!in_array($file['type'], $allowedTypes)) {
             flash('error', 'Format foto tidak valid. Gunakan JPG, PNG, GIF, atau WebP');
             redirect('index.php?page=profile');
         }
 
-        // Validate file size
         if ($file['size'] > $maxSize) {
             flash('error', 'Ukuran foto maksimal 2MB');
             redirect('index.php?page=profile');
         }
 
-        // Generate unique filename
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
         $filename = 'photo_' . auth()['id'] . '_' . time() . '.' . $extension;
         $uploadDir = __DIR__ . '/../../public/uploads/photos/';
         $uploadPath = $uploadDir . $filename;
 
-        // Create directory if not exists
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
 
-        // Delete old photo if exists
         $userId = auth()['id'];
         $db = Database::getInstance();
         $oldPhoto = $db->fetch("SELECT photo FROM users WHERE id = ?", [$userId]);
@@ -106,12 +101,9 @@ class ProfileController
             }
         }
 
-        // Move uploaded file
         if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
-            // Update database
             $db->update("UPDATE users SET photo = ? WHERE id = ?", [$filename, $userId]);
 
-            // Update session
             $_SESSION['user']['photo'] = $filename;
 
             flash('success', 'Foto profil berhasil diubah');
@@ -135,7 +127,6 @@ class ProfileController
         $userId = auth()['id'];
         $db = Database::getInstance();
 
-        // Get old photo
         $oldPhoto = $db->fetch("SELECT photo FROM users WHERE id = ?", [$userId]);
         if ($oldPhoto && $oldPhoto['photo']) {
             $uploadDir = __DIR__ . '/../../public/uploads/photos/';
@@ -145,10 +136,8 @@ class ProfileController
             }
         }
 
-        // Update database
         $db->update("UPDATE users SET photo = NULL WHERE id = ?", [$userId]);
 
-        // Update session
         $_SESSION['user']['photo'] = null;
 
         flash('success', 'Foto profil berhasil dihapus');

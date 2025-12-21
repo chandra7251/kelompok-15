@@ -54,7 +54,6 @@ class TransferController
             redirect('index.php?page=transfer');
         }
 
-        // Verify mahasiswa is linked
         $orangtua = new OrangTua();
         $ortu = $orangtua->findOrangtua($orangtuaId);
 
@@ -78,7 +77,6 @@ class TransferController
                 ->setStatus('completed');
             $transfer->create();
 
-            // Create transaksi record for mahasiswa (as pemasukan)
             $db = \App\Core\Database::getInstance();
             $kategoriTransfer = $db->fetch(
                 "SELECT id FROM kategori WHERE mahasiswa_id = ? AND nama LIKE '%Transfer%' AND tipe = 'pemasukan' LIMIT 1",
