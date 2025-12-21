@@ -71,21 +71,10 @@ ob_start();
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-white font-bold text-sm leading-snug">Mahasiswa Bisa Bayar UKT Kata Kata
-                                    Lorem ipsum (Bahasa Inggris baris 1)</p>
-                                <p class="text-gray-500 text-xs mt-1 leading-snug">Mahasiswa Kata Kata Lorem ipsum (Bahasa
-                                    Inggris baris 2)</p>
+                                <p class="text-white font-bold text-sm leading-snug"><?= $f['title'] ?></p>
+                                <p class="text-gray-500 text-xs mt-1 leading-snug"><?= $f['desc'] ?></p>
                             </div>
                         </div>
-<<<<<<< HEAD
-=======
-                        <!-- Text -->
-                        <div>
-                            <p class="text-white font-bold text-sm leading-snug"><?= $f['title'] ?></p>
-                            <p class="text-gray-500 text-xs mt-1 leading-snug"><?= $f['desc'] ?></p>
-                        </div>
-                    </div>
->>>>>>> origin/main
                     <?php endforeach; ?>
                 </div>
             </div>
