@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS `web_keuangan_mahasiswa_dan_kurs_otomatis`;
 CREATE DATABASE `web_keuangan_mahasiswa_dan_kurs_otomatis` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `web_keuangan_mahasiswa_dan_kurs_otomatis`;
 
