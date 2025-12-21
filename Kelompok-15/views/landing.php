@@ -333,7 +333,7 @@
             </div>
             <!-- Contact -->
             <p class="text-[#B3C9D8] text-sm mb-2">Send Your Feedback : adminoliy@gmail.com</p>
-            <p class="text-[#8FB6C8] text-xs">©Sistem Keuangan Mahasiswa - Kelompok 15</p>
+            <p class="text-[#8FB6C8] text-xs">©2025 - Sistem Keuangan Mahasiswa - Kelompok 15</p>
         </div>
        
         <!-- Wave -->
