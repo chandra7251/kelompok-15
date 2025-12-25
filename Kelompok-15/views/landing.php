@@ -24,7 +24,7 @@
 
     <style>
 
-        /* Menghilangkan Scroll Bar pada browser */
+    
     .no-scrollbar::-webkit-scrollbar, ::-webkit-scrollbar {
         display: none;
     }
@@ -60,29 +60,29 @@
 </head>
 <body class="bg-hero min-h-screen text-white">
 
-    <!-- ==================== SECTION 1: HERO ==================== -->
+    
     <section class="min-h-screen relative overflow-hidden bg-[#0A1929] flex flex-col justify-between">
-        <!-- Header -->
+        
         <header class="absolute top-0 left-0 right-0 z-50 px-8 lg:px-20 py-6">
             <div class="flex justify-between items-center">
-                <!-- Logo Area -->
+                
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-lg shadow-[#4ED4FF]/20">
                         <span class="text-[#203351] font-bold text-lg">K</span>
                     </div>
                     <span class="text-2xl font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent">KeuanganKu</span>
                 </div>
-                <!-- Sign In Button -->
+                
                 <a href="index.php?page=login" class="px-7 py-2 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] text-[#0A1929] rounded font-bold text-sm hover:shadow-lg hover:shadow-[#00C6FB]/40 transition-all">
                     Sign-in
                 </a>
             </div>
         </header>
 
-        <!-- Main Hero Content -->
+        
         <div class="container mx-auto px-8 lg:px-20 pt-32 pb-16 flex-grow flex items-center">
             <div class="grid lg:grid-cols-2 gap-16 w-full items-center">
-                <!-- Left Content -->
+                
                 <div class="z-10 max-w-xl">
                     <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">
                         FINANCE WITH<br>
@@ -94,26 +94,26 @@
                     </p>
                 </div>
 
-                <!-- Right Content (Illustrations) -->
+                
                 <div class="relative h-[450px] lg:h-[500px] flex items-center justify-center">
-                    <!-- Floating Elements (Absolute Positioning) -->
                     
-                    <!-- Calendar (Left Mid Floating) -->
+                    
+                    
                     <div class="absolute top-20 left-0 lg:left-5 float-animation z-20 w-20 lg:w-24">
                          <img src="assets/images/landing/uploaded_image_1_1766308187391.png" alt="Calendar" class="w-full drop-shadow-xl">
                     </div>
 
-                    <!-- Coins (Top Center Floating) -->
+                    
                      <div class="absolute top-5 left-1/4 lg:left-1/3 float-animation z-20 w-28 lg:w-32" style="animation-delay: 0.3s;">
                          <img src="assets/images/landing/uploaded_image_2_1766308187391.png" alt="Coins" class="w-full drop-shadow-xl">
                     </div>
                     
-                    <!-- Documents/Analytics (Right Top Floating) -->
+                    <
                     <div class="absolute top-8 right-5 lg:right-10 float-animation z-20 w-24 lg:w-28" style="animation-delay: 0.6s;">
                          <img src="assets/images/landing/uploaded_image_3_1766308187391.png" alt="Docs" class="w-full drop-shadow-xl">
                     </div>
 
-                    <!-- Main Dashboard Image -->
+                    
                     <div class="relative z-10 w-full max-w-lg mx-auto">
                         <img src="assets/images/landing/uploaded_image_0_1766308187391.png" alt="Financial Dashboard" class="w-full drop-shadow-2xl">
                     </div>
@@ -121,7 +121,7 @@
             </div>
         </div>
 
-        <!-- Vector Wave Bottom (Right Aligned, max width limited to illustration area) -->
+        
         <div class="absolute bottom-0 right-0 w-full lg:w-[70%] z-0 pointer-events-none">
             <svg class="w-full h-auto max-h-[120px] lg:max-h-[280px]" viewBox="0 0 1440 320" fill="none" preserveAspectRatio="none">
                 <path fill="#1D8072" fill-opacity="0.8" d="M0,320 C100,280 200,160 400,180 C600,200 700,270 900,230 C1100,190 1200,60 1440,100 V320 H0 Z"></path>
@@ -129,32 +129,32 @@
             </svg>
         </div>
 
-        <!-- Bottom Feature Strip -->
+        
         <div class="w-full bg-[#0E2A3F] py-6 border-t border-white/5 relative z-20">
             <div class="container mx-auto px-8 lg:px-20">
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                    <!-- Item 1 -->
+                    
                     <div class="flex items-center justify-center gap-2">
                         <div class="w-10 h-10 flex items-center justify-center rounded bg-white/5 flex-shrink-0">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                         </div>
                         <span class="text-white/80 text-xs lg:text-sm font-normal">Catat Setiap Transaksi</span>
                     </div>
-                    <!-- Item 2 -->
+                    
                     <div class="flex items-center justify-center gap-2">
                         <div class="w-10 h-10 flex items-center justify-center rounded bg-white/5 flex-shrink-0">
                              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         </div>
                         <span class="text-white/80 text-xs lg:text-sm font-normal">Kelola Pemasukan dan Pengeluaran</span>
                     </div>
-                    <!-- Item 3 -->
+                    
                     <div class="flex items-center justify-center gap-2">
                         <div class="w-10 h-10 flex items-center justify-center rounded bg-white/5 flex-shrink-0">
                              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
                         </div>
                         <span class="text-white/80 text-xs lg:text-sm font-normal">Pantau Grafik Keuangan mu</span>
                     </div>
-                    <!-- Item 4 -->
+                    
                     <div class="flex items-center justify-center gap-2">
                         <div class="w-10 h-10 flex items-center justify-center rounded bg-white/5 flex-shrink-0">
                              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
@@ -166,23 +166,22 @@
         </div>
     </section>
 
-    <!-- ==================== SECTION 2: CHILD FINANCE ==================== -->
-    <!-- ==================== SECTION 2: CHILD FINANCE ==================== -->
+
     <section class="pt-[200px] bg-[#0B1C2E] relative overflow-hidden">
         
 
 
         <div class="container mx-auto px-8 lg:px-20 relative z-10 pb-16">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Left Image -->
+              
                 <div class="relative">
-                     <!-- Illustration -->
+                    
                     <img src="assets/images/landing/uploaded_image_0_1766308295458.png" alt="Manage Finances" class="w-full max-w-lg mx-auto drop-shadow-2xl relative z-10">
                     
 
                 </div>
 
-                <!-- Right Content -->
+                
                 <div class="space-y-6 relative">
 
 
@@ -203,30 +202,30 @@
             </div>
         </div>
 
-        <!-- Bottom Feature Strip -->
+        
         <div class="w-full bg-[#0E2A3F] py-8 border-t border-white/5 relative z-20">
             <div class="container mx-auto px-8 lg:px-20">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Item 1 -->
+                    
                     <div class="flex items-center justify-center gap-3">
                         <div class="w-10 h-10 flex items-center justify-center rounded bg-white/5 flex-shrink-0">
-                            <!-- Money Icon -->
+                            
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                         </div>
                         <span class="text-white/80 text-sm font-medium">Transfer dengan Aman</span>
                     </div>
-                    <!-- Item 2 -->
+                   
                     <div class="flex items-center justify-center gap-3">
                         <div class="w-10 h-10 flex items-center justify-center rounded bg-white/5 flex-shrink-0">
-                            <!-- Wallet/Link Icon -->
+                          
                              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
                         </div>
                         <span class="text-white/80 text-sm font-medium">Hubungkan Akun Anda dengan Anak</span>
                     </div>
-                    <!-- Item 3 -->
+                
                     <div class="flex items-center justify-center gap-3">
                         <div class="w-10 h-10 flex items-center justify-center rounded bg-white/5 flex-shrink-0">
-                            <!-- Chart Icon -->
+                          
                              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
                         </div>
                         <span class="text-white/80 text-sm font-medium">Pantau Keuangan Anak Anda</span>
@@ -236,33 +235,32 @@
         </div>
     </section>
 
-    <!-- ==================== SECTION 3: WHAT WE CAN DO ==================== -->
-    <!-- ==================== SECTION 3: WHAT WE CAN DO ==================== -->
+    
     <section class="py-20 bg-[#0B1C2E] relative overflow-hidden">
         
-        <!-- Corner Decoration (Bottom Left - Quarter Circle) -->
+       
         <div class="absolute -bottom-20 -left-20 w-64 h-64 border border-[#00C6FB]/20 rounded-full pointer-events-none"></div>
         <div class="absolute -bottom-28 -left-28 w-80 h-80 border border-[#00C6FB]/10 rounded-full pointer-events-none"></div>
 
-        <!-- Corner Decoration (Top Right - Quarter Circle) -->
+      
         <div class="absolute -top-20 -right-20 w-64 h-64 border border-[#00C6FB]/20 rounded-full pointer-events-none"></div>
         <div class="absolute -top-28 -right-28 w-80 h-80 border border-[#00C6FB]/10 rounded-full pointer-events-none"></div>
 
         <div class="container mx-auto px-8 lg:px-16 relative z-10">
-            <!-- Title -->
+         
             <h2 class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent mb-12">
                 WHAT WE CAN DO?
             </h2>
 
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Left Image -->
+            
                 <div class="relative float-animation">
                     <img src="assets/images/landing/uploaded_image_1766308348436.png" alt="Analytics Dashboard" class="w-full max-w-lg drop-shadow-2xl">
                 </div>
 
-                <!-- Right Feature List (Cards) -->
+            
                 <div class="space-y-4">
-                    <!-- Card 1 -->
+                
                     <div class="bg-[#0E2A3F]/40 border border-[#00C6FB]/30 rounded-lg p-5 hover:bg-[#0E2A3F]/60 transition-colors">
                         <h3 class="text-white font-bold text-lg mb-1">Bantu Pantau Keuangan</h3>
                         <p class="text-[#8FB6C8] text-sm leading-relaxed">
@@ -270,7 +268,7 @@
                         </p>
                     </div>
 
-                    <!-- Card 2 -->
+                
                     <div class="bg-[#0E2A3F]/40 border border-[#00C6FB]/30 rounded-lg p-5 hover:bg-[#0E2A3F]/60 transition-colors">
                         <h3 class="text-white font-bold text-lg mb-1">Tracking Finansial</h3>
                         <p class="text-[#8FB6C8] text-sm leading-relaxed">
@@ -278,7 +276,7 @@
                         </p>
                     </div>
 
-                    <!-- Card 3 -->
+                
                     <div class="bg-[#0E2A3F]/40 border border-[#00C6FB]/30 rounded-lg p-5 hover:bg-[#0E2A3F]/60 transition-colors">
                         <h3 class="text-white font-bold text-lg mb-1">Mengelola Transaksi</h3>
                         <p class="text-[#8FB6C8] text-sm leading-relaxed">
@@ -286,7 +284,7 @@
                         </p>
                     </div>
 
-                    <!-- Card 4 -->
+                    
                     <div class="bg-[#0E2A3F]/40 border border-[#00C6FB]/30 rounded-lg p-5 hover:bg-[#0E2A3F]/60 transition-colors">
                         <h3 class="text-white font-bold text-lg mb-1">Transfer Orang Tua Aman</h3>
                         <p class="text-[#8FB6C8] text-sm leading-relaxed">
@@ -298,8 +296,7 @@
         </div>
     </section>
 
-    <!-- ==================== SECTION 4: CTA ==================== -->
-    <!-- ==================== SECTION 4: CTA ==================== -->
+ 
     <section class="py-36 bg-[#0B1C2E]">
         <div class="container mx-auto px-8 lg:px-16">
             <div class="flex flex-col items-center text-center space-y-8">
@@ -310,7 +307,7 @@
                     Pantau Finansial Anda Sekarang Juga
                 </p>
                 
-                <!-- Custom Button -->
+          
                 <a href="index.php?page=register" class="group inline-flex items-center gap-4 pl-6 pr-2 py-2 bg-gradient-to-r from-[#00C6FB] to-[#00F29C] rounded-full hover:shadow-lg hover:shadow-[#00C6FB]/40 transition-all">
                     <span class="text-[#051933] font-bold text-sm">Mulai Sekarang</span>
                     <div class="w-8 h-8 bg-[#0B1C2E] rounded-full flex items-center justify-center group-hover:bg-[#0E2A3F] transition-colors">
@@ -321,22 +318,22 @@
         </div>
     </section>
 
-    <!-- ==================== SECTION 5: FOOTER ==================== -->
+  
     <footer class="bg-hero pt-[200px] pb-0 relative ">
         <div class="container mx-auto px-8 lg:px-16 pb-[200px] text-center mb-8">
-            <!-- Logo -->
+       
             <div class="flex items-center justify-center gap-3 mb-4">
                 <div class="w-14 h-14 bg-gradient-to-br from-[#00C6FB] to-[#00F29C] rounded-2xl flex items-center justify-center shadow-lg">
                     <span class="text-[#051933] font-black text-2xl">K</span>
                 </div>
                 <span class="text-3xl font-black gradient-text">KeuanganKu</span>
             </div>
-            <!-- Contact -->
+      
             <p class="text-[#B3C9D8] text-sm mb-2">Send Your Feedback : adminoliy@gmail.com</p>
             <p class="text-[#8FB6C8] text-xs">©2025 - Sistem Keuangan Mahasiswa - Kelompok 15</p>
         </div>
        
-        <!-- Wave -->
+  
         <img src="assets/images/landing/uploaded_image_1_1766308605668.png" alt="Wave" class="w-full">
     </footer>
 
