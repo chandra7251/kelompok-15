@@ -191,7 +191,7 @@ class TransaksiController
             $kategori = new Kategori();
             $kat = $kategori->find($data->getKategoriId());
 
-            // Revert saldo change
+           
             $mahasiswa = new Mahasiswa();
             $mhs = $mahasiswa->findMahasiswa($mahasiswaId);
             if ($mhs && $kat) {
