@@ -97,26 +97,28 @@ ob_start();
     </div>
 
     <div class="grid lg:grid-cols-2 gap-6">
-        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-6">
-            <h3 class="font-bold text-white mb-6 flex items-center gap-2">
-                <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
-                User Terbaru
-            </h3>
+        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg overflow-hidden">
+            <div class="p-6 pb-0">
+                <h3 class="font-bold text-white mb-6 flex items-center gap-2">
+                    <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
+                    User Terbaru
+                </h3>
+            </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead>
                         <tr class="border-b border-white/5 text-[#B3C9D8]">
-                            <th class="text-left py-3 px-4 font-medium">Nama</th>
-                            <th class="text-left py-3 px-4 font-medium">Email</th>
-                            <th class="text-left py-3 px-4 font-medium">Role</th>
-                            <th class="text-right py-3 px-4 font-medium">Saldo</th>
+                            <th class="text-left py-3 px-4 font-medium whitespace-nowrap">Nama</th>
+                            <th class="text-left py-3 px-4 font-medium whitespace-nowrap">Email</th>
+                            <th class="text-left py-3 px-4 font-medium whitespace-nowrap">Role</th>
+                            <th class="text-right py-3 px-4 font-medium whitespace-nowrap">Saldo</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($recentUsers ?? [] as $u): ?>
                             <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-                                <td class="py-3 px-4 text-white font-medium"><?= e($u['nama']) ?></td>
-                                <td class="py-3 px-4 text-[#B3C9D8] text-sm"><?= e($u['email']) ?></td>
+                                <td class="py-3 px-4 text-white font-medium whitespace-nowrap"><?= e($u['nama']) ?></td>
+                                <td class="py-3 px-4 text-[#B3C9D8] text-sm whitespace-nowrap"><?= e($u['email']) ?></td>
                                 <td class="py-2 px-2">
                                     <span
                                         class="px-2 py-1 rounded-full text-xs 
@@ -135,11 +137,13 @@ ob_start();
             </div>
         </div>
 
-        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-6">
-            <h3 class="font-bold text-white mb-6 flex items-center gap-2">
-                <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
-                Transaksi Terbaru
-            </h3>
+        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg overflow-hidden">
+            <div class="p-6 pb-0">
+                <h3 class="font-bold text-white mb-6 flex items-center gap-2">
+                    <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
+                    Transaksi Terbaru
+                </h3>
+            </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead>

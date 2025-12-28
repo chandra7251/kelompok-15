@@ -5,12 +5,12 @@ ob_start();
 
 <div class="py-8 px-6">
     <div class="mb-6">
-        <div class="flex items-center justify-center relative">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
                 <p class="text-[#B3C9D8]">Konfigurasi parameter sistem</p>
             </div>
             <a href="index.php?page=dashboard"
-                class="absolute right-0 text-[#00C6FB] hover:text-[#00F29C] text-sm font-medium transition-colors">←
+                class="text-[#00C6FB] hover:text-[#00F29C] text-sm font-medium transition-colors">←
                 Kembali
                 ke Dashboard</a>
         </div>
