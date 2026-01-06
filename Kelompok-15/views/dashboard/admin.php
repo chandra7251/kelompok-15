@@ -3,14 +3,14 @@ $title = 'Dashboard Admin';
 ob_start();
 ?>
 
-<div class="py-8 px-6">
+<div class="py-6 sm:py-8 px-3 sm:px-6 max-w-full overflow-x-hidden">
     <div class="mb-6">
-        <p class="text-[#B3C9D8] ml-2">Monitoring seluruh pengguna sistem</p>
+        <p class="text-[#B3C9D8] ml-2 text-sm sm:text-base">Monitoring seluruh pengguna sistem</p>
     </div>
 
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <a href="index.php?page=admin&action=users"
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-6">
+        <a href="/admin/users"
             class="group bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white hover:shadow-xl transition-all hover:-translate-y-1">
             <div class="flex items-center gap-4">
                 <div
@@ -28,7 +28,7 @@ ob_start();
             </div>
         </a>
 
-        <a href="index.php?page=admin&action=monitoring"
+        <a href="/admin/monitoring"
             class="group bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-5 text-white hover:shadow-xl transition-all hover:-translate-y-1">
             <div class="flex items-center gap-4">
                 <div
@@ -46,7 +46,7 @@ ob_start();
             </div>
         </a>
 
-        <a href="index.php?page=admin&action=settings"
+        <a href="/admin/settings"
             class="group bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 text-white hover:shadow-xl transition-all hover:-translate-y-1">
             <div class="flex items-center gap-4">
                 <div
@@ -70,29 +70,29 @@ ob_start();
 
     <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
         <div
-            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
-            <p class="text-[#B3C9D8] text-sm font-medium">Total Users</p>
-            <p class="text-3xl font-bold text-white mt-2"><?= $stats['total_users'] ?? 0 ?></p>
+            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-4 sm:p-5 hover:scale-[1.02] transition-transform duration-300">
+            <p class="text-[#B3C9D8] text-xs sm:text-sm font-medium">Total Users</p>
+            <p class="text-xl sm:text-3xl font-bold text-white mt-2"><?= $stats['total_users'] ?? 0 ?></p>
         </div>
         <div
-            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
-            <p class="text-[#B3C9D8] text-sm font-medium">Mahasiswa</p>
-            <p class="text-3xl font-bold text-[#00C6FB] mt-2"><?= $stats['total_mahasiswa'] ?? 0 ?></p>
+            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-4 sm:p-5 hover:scale-[1.02] transition-transform duration-300">
+            <p class="text-[#B3C9D8] text-xs sm:text-sm font-medium">Mahasiswa</p>
+            <p class="text-xl sm:text-3xl font-bold text-[#00C6FB] mt-2"><?= $stats['total_mahasiswa'] ?? 0 ?></p>
         </div>
         <div
-            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
-            <p class="text-[#B3C9D8] text-sm font-medium">Orang Tua</p>
-            <p class="text-3xl font-bold text-[#00F29C] mt-2"><?= $stats['total_orangtua'] ?? 0 ?></p>
+            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-4 sm:p-5 hover:scale-[1.02] transition-transform duration-300">
+            <p class="text-[#B3C9D8] text-xs sm:text-sm font-medium">Orang Tua</p>
+            <p class="text-xl sm:text-3xl font-bold text-[#00F29C] mt-2"><?= $stats['total_orangtua'] ?? 0 ?></p>
         </div>
         <div
-            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
-            <p class="text-[#B3C9D8] text-sm font-medium">Transaksi</p>
-            <p class="text-3xl font-bold text-[#f472b6] mt-2"><?= $stats['total_transaksi'] ?? 0 ?></p>
+            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-4 sm:p-5 hover:scale-[1.02] transition-transform duration-300">
+            <p class="text-[#B3C9D8] text-xs sm:text-sm font-medium">Transaksi</p>
+            <p class="text-xl sm:text-3xl font-bold text-[#f472b6] mt-2"><?= $stats['total_transaksi'] ?? 0 ?></p>
         </div>
         <div
-            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-5 hover:scale-[1.02] transition-transform duration-300">
-            <p class="text-[#B3C9D8] text-sm font-medium">Transfer</p>
-            <p class="text-3xl font-bold text-[#fbbf24] mt-2"><?= $stats['total_transfer'] ?? 0 ?></p>
+            class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-4 sm:p-5 hover:scale-[1.02] transition-transform duration-300">
+            <p class="text-[#B3C9D8] text-xs sm:text-sm font-medium">Transfer</p>
+            <p class="text-xl sm:text-3xl font-bold text-[#fbbf24] mt-2"><?= $stats['total_transfer'] ?? 0 ?></p>
         </div>
     </div>
 
@@ -127,7 +127,8 @@ ob_start();
                                     </span>
                                 </td>
                                 <td class="py-3 px-4 text-right text-white font-medium whitespace-nowrap">
-                                    <?= $u['saldo'] ? format_rupiah($u['saldo']) : '-' ?></td>
+                                    <?= $u['saldo'] ? format_rupiah($u['saldo']) : '-' ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

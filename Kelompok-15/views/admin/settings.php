@@ -3,21 +3,20 @@ $title = 'Pengaturan Sistem';
 ob_start();
 ?>
 
-<div class="py-8 px-6">
+<div class="py-6 sm:py-8 px-3 sm:px-6">
     <div class="mb-6">
-        <div class="flex items-center justify-center relative">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-center sm:text-left">
             <div>
-                <p class="text-[#B3C9D8]">Konfigurasi parameter sistem</p>
+                <p class="text-[#B3C9D8] text-sm sm:text-base">Konfigurasi parameter sistem</p>
             </div>
-            <a href="index.php?page=dashboard"
-                class="absolute right-0 text-[#00C6FB] hover:text-[#00F29C] text-sm font-medium transition-colors">←
+            <a href="/dashboard" class="text-[#00C6FB] hover:text-[#00F29C] text-sm font-medium transition-colors">←
                 Kembali
                 ke Dashboard</a>
         </div>
     </div>
 
     <div class="max-w-2xl mx-auto">
-        <form action="index.php?page=admin&action=update_settings" method="POST">
+        <form action="/admin/update_settings" method="POST">
             <?= csrf_field() ?>
 
 

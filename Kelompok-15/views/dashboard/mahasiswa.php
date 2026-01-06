@@ -5,74 +5,78 @@ ob_start();
 
 <div class="w-full mx-auto px-3 md:px-6 py-4 pb-20 space-y-6 animate-[fadeIn_0.5s_ease-out]">
 
-    <div data-welcome class="mb-8 transition-all duration-500">
-        <h1 class="text-2xl font-bold text-[#00C6FB]"><span data-greeting>Selamat Datang</span>, <span
+    <div data-welcome class="mb-6 sm:mb-8 transition-all duration-500">
+        <h1 class="text-lg sm:text-2xl font-bold text-[#00C6FB]"><span data-greeting>Selamat Datang</span>, <span
                 class="text-[#00F29C]"><?= e($user['nama']) ?></span>!
         </h1>
-        <p class="text-gray-400">Kelola keuangan Anda dengan bijak</p>
+        <p class="text-gray-400 text-sm">Kelola keuangan Anda dengan bijak</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
         <div
-            class="card bg-gradient-to-r from-[#00C6FB] to-[#00F29C] rounded-2xl p-6 text-[#051933] shadow-lg shadow-[#00C6FB]/20">
+            class="card bg-gradient-to-r from-[#00C6FB] to-[#00F29C] rounded-2xl p-4 sm:p-6 text-[#051933] shadow-lg shadow-[#00C6FB]/20 col-span-2 sm:col-span-1">
             <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-[#051933]/80 text-sm font-bold">Saldo Saat Ini</p>
-                    <p class="text-3xl font-bold mt-2 counter text-[#051933]" data-prefix="Rp ">
+                <div class="min-w-0 w-full">
+                    <p class="text-[#051933]/80 text-xs sm:text-sm font-bold">Saldo Saat Ini</p>
+                    <p class="text-xl sm:text-3xl font-bold mt-2 counter text-[#051933] truncate" data-prefix="Rp ">
                         <?= number_format($stats['saldo'], 0, ',', '.') ?>
                     </p>
                 </div>
             </div>
         </div>
 
-        <div class="card bg-[#0F2942] rounded-2xl p-6 shadow-xl border border-white/5">
+        <div class="card bg-[#0F2942] rounded-2xl p-4 sm:p-6 shadow-xl border border-white/5">
             <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-[#00F29C] text-sm font-medium">Pemasukan Saat Ini</p>
-                    <p class="text-2xl font-bold text-white mt-2"><?= format_rupiah($stats['pemasukan_bulan_ini']) ?>
+                <div class="min-w-0 w-full">
+                    <p class="text-[#00F29C] text-xs sm:text-sm font-medium">Pemasukan Saat Ini</p>
+                    <p class="text-lg sm:text-2xl font-bold text-white mt-2 truncate">
+                        <?= format_rupiah($stats['pemasukan_bulan_ini']) ?>
                     </p>
                 </div>
             </div>
         </div>
 
-        <div class="card bg-[#0F2942] rounded-2xl p-6 shadow-xl border border-white/5">
+        <div class="card bg-[#0F2942] rounded-2xl p-4 sm:p-6 shadow-xl border border-white/5">
             <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-[#FF6B6B] text-sm font-medium">Pengeluaran Bulan Ini</p>
-                    <p class="text-2xl font-bold text-white mt-2"><?= format_rupiah($stats['pengeluaran_bulan_ini']) ?>
+                <div class="min-w-0 w-full">
+                    <p class="text-[#FF6B6B] text-xs sm:text-sm font-medium">Pengeluaran Bulan Ini</p>
+                    <p class="text-lg sm:text-2xl font-bold text-white mt-2 truncate">
+                        <?= format_rupiah($stats['pengeluaran_bulan_ini']) ?>
                     </p>
                 </div>
             </div>
         </div>
 
-        <div class="card bg-[#0F2942] rounded-2xl p-6 shadow-xl border border-white/5">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-gray-400 text-sm font-medium">Status Keuangan</p>
-                    <p class="text-2xl font-bold mt-2 capitalize
+        <div class="card bg-[#0F2942] rounded-2xl p-4 sm:p-6 shadow-xl border border-white/5">
+            <div class="flex items-center justify-between gap-2">
+                <div class="min-w-0">
+                    <p class="text-gray-400 text-xs sm:text-sm font-medium">Status Keuangan</p>
+                    <p class="text-xl sm:text-2xl font-bold mt-2 capitalize
                         <?php if ($spendingStatus['status'] === 'hemat'): ?> text-[#00F29C]
                         <?php elseif ($spendingStatus['status'] === 'normal'): ?> text-yellow-400
                         <?php else: ?> text-[#FF6B6B] <?php endif; ?>">
                         <?= e($spendingStatus['status']) ?>
                     </p>
                 </div>
-                <div class="w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-lg">
+                <div
+                    class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-white shadow-lg flex-shrink-0">
                     <?php if ($spendingStatus['status'] === 'hemat'): ?>
-                        <span class="text-2xl">😊</span>
+                        <span class="text-xl sm:text-2xl">😊</span>
                     <?php elseif ($spendingStatus['status'] === 'normal'): ?>
-                        <span class="text-2xl">😐</span>
+                        <span class="text-xl sm:text-2xl">😐</span>
                     <?php else: ?>
-                        <span class="text-2xl">❗</span>
+                        <span class="text-xl sm:text-2xl">❗</span>
                     <?php endif; ?>
                 </div>
             </div>
         </div>
 
-        <div class="card bg-[#0F2942] rounded-2xl p-6 shadow-xl border border-white/5">
+        <div class="card bg-[#0F2942] rounded-2xl p-4 sm:p-6 shadow-xl border border-white/5 col-span-2 sm:col-span-1">
             <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-gray-400 text-sm font-medium">Total Tabungan</p>
-                    <p class="text-2xl font-bold text-[#00C6FB] mt-2"><?= format_rupiah($tabungan['total'] ?? 0) ?></p>
+                <div class="min-w-0 w-full">
+                    <p class="text-gray-400 text-xs sm:text-sm font-medium">Total Tabungan</p>
+                    <p class="text-lg sm:text-2xl font-bold text-[#00C6FB] mt-2 truncate">
+                        <?= format_rupiah($tabungan['total'] ?? 0) ?></p>
                     <p class="text-xs text-gray-500 mt-1">Bulan ini: <?= format_rupiah($tabungan['bulan_ini'] ?? 0) ?>
                     </p>
                 </div>
@@ -99,7 +103,7 @@ ob_start();
         <div class="card bg-[#0F2942] rounded-2xl p-6 shadow-xl border border-white/5">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="font-bold text-xl text-gray-200">Transaksi Terakhir</h3>
-                <a href="index.php?page=transaksi"
+                <a href="/transaksi"
                     class="text-[#00C6FB] text-sm font-medium hover:text-[#00F29C] transition-colors">Lihat
                     Semua →</a>
             </div>
@@ -112,8 +116,8 @@ ob_start();
                         </svg>
                     </div>
                     <p class="text-gray-500">Belum ada transaksi</p>
-                    <a href="index.php?page=transaksi&action=create"
-                        class="text-[#00C6FB] text-sm font-medium mt-2 inline-block">Tambah Transaksi</a>
+                    <a href="/transaksi/create" class="text-[#00C6FB] text-sm font-medium mt-2 inline-block">Tambah
+                        Transaksi</a>
                 </div>
             <?php else: ?>
                 <div class="space-y-3">

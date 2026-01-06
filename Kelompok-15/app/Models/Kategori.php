@@ -127,7 +127,7 @@ class Kategori
     {
         $count = $this->db->fetch("SELECT COUNT(*) as count FROM transaksi WHERE kategori_id = :id", ['id' => $this->id]);
         if ($count['count'] > 0) {
-            throw new \InvalidArgumentException("Kategori tidak dapat dihapus karena masih digunakan");
+            throw new \InvalidArgumentException("Kategori tidak dapat dihapus karena masih digunakan oleh " . $count['count'] . " transaksi");
         }
         return $this->db->delete("DELETE FROM kategori WHERE id = :id", ['id' => $this->id]) > 0;
     }

@@ -19,8 +19,8 @@ ob_start();
     }
 </style>
 
-<div class="w-full max-w-[1750px] mx-auto px-8 lg:px-24 min-h-screen flex items-stretch relative z-10">
-    <div class="absolute top-12 left-8 lg:left-24 flex items-center gap-3">
+<div class="w-full max-w-[1750px] mx-auto px-4 sm:px-8 lg:px-24 min-h-screen flex items-stretch relative z-10">
+    <div class="absolute top-6 sm:top-12 left-4 sm:left-8 lg:left-24 flex items-center gap-2 sm:gap-3">
         <div
             class="w-10 h-10 bg-[linear-gradient(135deg,#fb7185,#ec4899)] rounded-xl flex items-center justify-center shadow-lg shadow-[#fb7185]/20">
             <span class="text-[#203351] font-bold text-lg">K</span>
@@ -30,7 +30,7 @@ ob_start();
     </div>
 
     <div class="grid lg:grid-cols-12 w-full gap-16 lg:gap-24 items-stretch">
-        <div class="lg:col-span-7 space-y-6 flex flex-col justify-center pt-[10rem]">
+        <div class="hidden lg:flex lg:col-span-7 space-y-6 flex-col justify-center pt-[10rem]">
             <div class="space-y-2">
                 <h1 class="text-[5rem] lg:text-[6rem] leading-[1.0] font-[900] tracking-tight"
                     style="background: linear-gradient(to right, #fb7185, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 12px rgba(251, 113, 133, 0.3)) drop-shadow(0 0 24px rgba(236, 72, 153, 0.2));">
@@ -70,16 +70,16 @@ ob_start();
         </div>
 
 
-        <div class="lg:col-span-5 flex flex-col justify-end items-center pb-0">
-            <div class="w-full max-w-[640px] relative transform lg:-translate-x-12">
+        <div class="lg:col-span-5 flex flex-col justify-center lg:justify-end items-center pb-8 lg:pb-0 pt-24 lg:pt-0">
+            <div class="w-full max-w-[400px] lg:max-w-[640px] relative lg:transform lg:-translate-x-12">
 
-                <div class="absolute left-1/2 -translate-x-1/2 -top-20 z-20">
+                <div class="absolute left-1/2 -translate-x-1/2 -top-14 sm:-top-20 z-20">
                     <div
-                        class="w-44 h-44 rounded-[3rem] bg-gradient-to-b from-rose-400 to-pink-500 p-1 shadow-[0_10px_50px_rgba(244,63,94,0.4)] flex items-center justify-center">
+                        class="w-28 h-28 sm:w-44 sm:h-44 rounded-[2rem] sm:rounded-[3rem] bg-gradient-to-b from-rose-400 to-pink-500 p-1 shadow-[0_10px_50px_rgba(244,63,94,0.4)] flex items-center justify-center">
                         <div
-                            class="w-full h-full rounded-[2.8rem] bg-gradient-to-b from-rose-400 to-pink-500 flex items-center justify-center relative overflow-hidden">
-                            <svg class="w-24 h-24 text-white drop-shadow-md" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
+                            class="w-full h-full rounded-[1.8rem] sm:rounded-[2.8rem] bg-gradient-to-b from-rose-400 to-pink-500 flex items-center justify-center relative overflow-hidden">
+                            <svg class="w-16 h-16 sm:w-24 sm:h-24 text-white drop-shadow-md" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                             </svg>
@@ -90,14 +90,17 @@ ob_start();
 
 
                 <div
-                    class="bg-[#0E2A3F] rounded-t-[3rem] rounded-b-none px-12 pt-32 pb-12 pr-12 shadow-2xl relative border border-gray-800/20">
+                    class="bg-[#0E2A3F] rounded-t-[2rem] sm:rounded-t-[3rem] rounded-b-none px-6 sm:px-12 pt-20 sm:pt-32 pb-8 sm:pb-12 shadow-2xl relative border border-gray-800/20">
 
-                    <h2 class="text-white text-center text-2xl font-bold tracking-[0.2em] mb-4 uppercase">FORGOT
+                    <h2
+                        class="text-white text-center text-xl sm:text-2xl font-bold tracking-[0.15em] sm:tracking-[0.2em] mb-4 uppercase">
+                        FORGOT
                         PASSWORD</h2>
-                    <p class="text-gray-400 text-center text-sm mb-12">Masukkan email yang terdaftar untuk menerima link
+                    <p class="text-gray-400 text-center text-xs sm:text-sm mb-8 sm:mb-12">Masukkan email yang terdaftar
+                        untuk menerima link
                         reset.</p>
 
-                    <form action="index.php?page=forgot_password&action=submit" method="POST" class="space-y-8">
+                    <form action="/forgot_password/submit" method="POST" class="space-y-8">
                         <?= csrf_field() ?>
 
 
@@ -111,14 +114,14 @@ ob_start();
                                     </svg>
                                 </div>
                                 <input type="email" name="email" required
-                                    class="w-full h-16 bg-[#0A2E45]/80 text-white border border-[#1B4257] rounded-2xl pl-16 pr-6 focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-all placeholder-gray-500/50 font-medium tracking-wider text-base"
+                                    class="w-full h-14 sm:h-16 bg-[#0A2E45]/80 text-white text-sm sm:text-base border border-[#1B4257] rounded-xl sm:rounded-2xl pl-14 sm:pl-16 pr-4 sm:pr-6 focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-all placeholder-gray-500/50 font-medium"
                                     placeholder="email@example.com">
                             </div>
                         </div>
 
 
                         <button type="submit"
-                            class="w-full h-16 bg-gradient-to-r from-rose-400 to-pink-500 rounded-2xl text-white font-[900] text-xl tracking-[0.1em] hover:shadow-[0_0_30px_rgba(244,63,94,0.4)] transition-all transform hover:-translate-y-0.5 uppercase">
+                            class="w-full h-14 sm:h-16 bg-gradient-to-r from-rose-400 to-pink-500 rounded-xl sm:rounded-2xl text-white font-[900] text-lg sm:text-xl tracking-[0.08em] sm:tracking-[0.1em] hover:shadow-[0_0_30px_rgba(244,63,94,0.4)] transition-all transform hover:-translate-y-0.5 uppercase">
                             Kirim Link Reset
                         </button>
                     </form>
@@ -126,7 +129,7 @@ ob_start();
                     <div class="mt-8 mb-4">
                         <div class="flex items-center justify-between gap-4">
                             <div class="h-[2px] w-full bg-black rounded-full"></div>
-                            <a href="index.php?page=login"
+                            <a href="/login"
                                 class="text-gray-400 hover:text-white text-sm font-[800] uppercase tracking-widest whitespace-nowrap px-2 transition-colors flex items-center gap-2">
                                 <span>←</span> KEMBALI KE LOGIN
                             </a>

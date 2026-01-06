@@ -3,15 +3,15 @@ $title = 'Transfer Saldo';
 ob_start();
 ?>
 
-<div class="mb-2 mt-8 px-8">
-    <p class="text-[#CDE2EF]">Kirim saldo ke anak dan kelola hubungan</p>
+<div class="mb-2 mt-6 sm:mt-8 px-3 sm:px-8">
+    <p class="text-[#CDE2EF] text-sm sm:text-base">Kirim saldo ke anak dan kelola hubungan</p>
 </div>
 
-<div class="grid lg:grid-cols-3 gap-6 p-6">
+<div class="grid lg:grid-cols-3 gap-4 sm:gap-6 p-3 sm:p-6">
     <div class="lg:col-span-1 space-y-6">
         <div class="card bg-[#133D57] rounded-2xl p-6 shadow-sm">
             <h3 class="font-semibold text-[#EAF6FF] mb-4">Hubungkan Anak</h3>
-            <form action="index.php?page=transfer&action=link" method="POST" class="space-y-4">
+            <form action="/transfer/link" method="POST" class="space-y-4">
                 <?= csrf_field() ?>
                 <div>
                     <label class="block text-sm font-medium text-[#CDE2EF] mb-2">Kode Pairing</label>
@@ -34,15 +34,15 @@ ob_start();
                             class="flex items-center justify-between p-3 bg-[#0F2F46] rounded-xl hover:bg-[#0F2F46]/80 transition-all">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-[#133D57] rounded-xl flex items-center justify-center">
-                                    <span class="text-[#EAF6FF] font-semibold"><?= strtoupper(substr($mhs['nama'], 0, 1)) ?></span>
+                                    <span
+                                        class="text-[#EAF6FF] font-semibold"><?= strtoupper(substr($mhs['nama'], 0, 1)) ?></span>
                                 </div>
                                 <div>
                                     <p class="font-medium text-[#EAF6FF]"><?= e($mhs['nama']) ?></p>
                                     <p class="text-xs text-[#9FBFD1]"><?= e($mhs['nim']) ?></p>
                                 </div>
                             </div>
-                            <form action="index.php?page=transfer&action=unlink" method="POST"
-                                onsubmit="return confirm('Lepaskan hubungan?')">
+                            <form action="/transfer/unlink" method="POST" onsubmit="return confirm('Lepaskan hubungan?')">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="mahasiswa_id" value="<?= $mhs['id'] ?>">
                                 <button type="submit" class="text-[#FF6B6B] hover:text-red-400 p-1">
@@ -60,8 +60,7 @@ ob_start();
     </div>
 
     <div class="lg:col-span-2 space-y-6">
-        <div
-            class="bg-gradient-to-r from-[#0F2F46] to-[#133D57] rounded-2xl p-8 text-white shadow-lg">
+        <div class="bg-gradient-to-r from-[#0F2F46] to-[#133D57] rounded-2xl p-8 text-white shadow-lg">
             <h3 class="font-semibold text-xl mb-6 text-[#EAF6FF]">Kirim Saldo</h3>
 
             <?php if (empty($linkedMahasiswa)): ?>
@@ -74,7 +73,7 @@ ob_start();
                     <p class="text-[#CDE2EF]">Hubungkan dengan anak terlebih dahulu</p>
                 </div>
             <?php else: ?>
-                <form action="index.php?page=transfer&action=send" method="POST" class="space-y-5">
+                <form action="/transfer/send" method="POST" class="space-y-5">
                     <?= csrf_field() ?>
                     <div>
                         <label class="text-[#CDE2EF] text-sm font-medium">Pilih Anak</label>

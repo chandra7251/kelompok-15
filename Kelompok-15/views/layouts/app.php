@@ -181,10 +181,28 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* GLOBAL MOBILE OVERFLOW FIX */
+        html,
+        body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        img,
+        video,
+        iframe,
+        table {
+            max-width: 100%;
+        }
     </style>
 </head>
 
-<body class="bg-gradient-to-b from-[#051933] to-[#0A2547] h-screen flex font-sans overflow-hidden">
+<body class="bg-gradient-to-b from-[#051933] to-[#0A2547] h-screen flex font-sans overflow-x-hidden max-w-full">
 
     <?php if (is_logged_in()): ?>
 
@@ -200,7 +218,7 @@
 
             <nav class="flex-1 px-3 py-6 space-y-2 overflow-y-auto">
                 <?php if (is_role('admin')): ?>
-                    <a href="index.php?page=dashboard"
+                    <a href="/dashboard"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -208,7 +226,7 @@
                         </svg>
                         Dashboard
                     </a>
-                    <a href="index.php?page=admin&action=users"
+                    <a href="/admin/users"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -216,7 +234,7 @@
                         </svg>
                         Users
                     </a>
-                    <a href="index.php?page=admin&action=monitoring"
+                    <a href="/admin/monitoring"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -224,7 +242,7 @@
                         </svg>
                         Monitoring
                     </a>
-                    <a href="index.php?page=admin&action=settings"
+                    <a href="/admin/settings"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -235,7 +253,7 @@
                         Settings
                     </a>
                 <?php elseif (is_role('mahasiswa')): ?>
-                    <a href="index.php?page=dashboard"
+                    <a href="/dashboard"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -243,7 +261,7 @@
                         </svg>
                         Dashboard
                     </a>
-                    <a href="index.php?page=transaksi"
+                    <a href="/transaksi"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -251,7 +269,7 @@
                         </svg>
                         Transaksi
                     </a>
-                    <a href="index.php?page=kategori"
+                    <a href="/kategori"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -259,7 +277,7 @@
                         </svg>
                         Kategori
                     </a>
-                    <a href="index.php?page=grafik"
+                    <a href="/grafik"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -267,7 +285,7 @@
                         </svg>
                         Grafik
                     </a>
-                    <a href="index.php?page=analytics"
+                    <a href="/analytics"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -276,7 +294,7 @@
                         Analytics
                     </a>
                 <?php elseif (is_role('orangtua')): ?>
-                    <a href="index.php?page=dashboard"
+                    <a href="/dashboard"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -284,7 +302,7 @@
                         </svg>
                         Dashboard
                     </a>
-                    <a href="index.php?page=transfer"
+                    <a href="/transfer"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -314,7 +332,7 @@
 
             <nav class="flex-1 px-3 py-6 space-y-2 overflow-y-auto">
                 <?php if (is_role('admin')): ?>
-                    <a href="index.php?page=dashboard"
+                    <a href="/dashboard"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -322,7 +340,7 @@
                         </svg>
                         Dashboard
                     </a>
-                    <a href="index.php?page=admin&action=users"
+                    <a href="/admin/users"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -330,7 +348,7 @@
                         </svg>
                         Users
                     </a>
-                    <a href="index.php?page=admin&action=monitoring"
+                    <a href="/admin/monitoring"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -338,7 +356,7 @@
                         </svg>
                         Monitoring
                     </a>
-                    <a href="index.php?page=admin&action=settings"
+                    <a href="/admin/settings"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -349,7 +367,7 @@
                         Settings
                     </a>
                 <?php elseif (is_role('mahasiswa')): ?>
-                    <a href="index.php?page=dashboard"
+                    <a href="/dashboard"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -357,7 +375,7 @@
                         </svg>
                         Dashboard
                     </a>
-                    <a href="index.php?page=transaksi"
+                    <a href="/transaksi"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -365,7 +383,7 @@
                         </svg>
                         Transaksi
                     </a>
-                    <a href="index.php?page=kategori"
+                    <a href="/kategori"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -373,7 +391,7 @@
                         </svg>
                         Kategori
                     </a>
-                    <a href="index.php?page=grafik"
+                    <a href="/grafik"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -381,7 +399,7 @@
                         </svg>
                         Grafik
                     </a>
-                    <a href="index.php?page=analytics"
+                    <a href="/analytics"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -390,7 +408,7 @@
                         Analytics
                     </a>
                 <?php elseif (is_role('orangtua')): ?>
-                    <a href="index.php?page=dashboard"
+                    <a href="/dashboard"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -398,7 +416,7 @@
                         </svg>
                         Dashboard
                     </a>
-                    <a href="index.php?page=transfer"
+                    <a href="/transfer"
                         class="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all hover:text-[#00C6FB]">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -412,7 +430,7 @@
     <?php endif; ?>
 
 
-    <div class="flex-1 flex flex-col h-full overflow-y-auto w-full relative">
+    <div class="flex-1 flex flex-col h-full overflow-y-auto overflow-x-hidden w-full max-w-full relative">
         <nav
             class="bg-[#051933]/90 backdrop-blur-lg shadow-sm border-b border-[#22d3ee]/20 sticky top-0 z-40 bg-[linear-gradient(to_right,#051933,#0A2547)]">
             <div class="max-w-screen-2xl mx-auto px-4">
@@ -457,8 +475,7 @@
                                     class="hidden absolute right-0 mt-2 w-80 bg-[#0A2238] rounded-xl shadow-xl border border-white/10 py-2 z-50 opacity-0 scale-95 transition-all duration-200 origin-top-right">
                                     <div class="px-4 py-3 border-b border-white/10 flex justify-between items-center">
                                         <span class="font-semibold text-white">Reminder</span>
-                                        <a href="index.php?page=reminder"
-                                            class="text-[#00C6FB] text-sm hover:underline">Kelola</a>
+                                        <a href="/reminder" class="text-[#00C6FB] text-sm hover:underline">Kelola</a>
                                     </div>
                                     <div id="reminderList" class="max-h-60 overflow-y-auto">
 
@@ -478,17 +495,17 @@
 
 
                         <?php if (is_logged_in()): ?>
-                            <div class="flex items-center gap-4 border-l border-white/10 pl-6">
+                            <div class="flex items-center gap-2 sm:gap-4 border-l border-white/10 pl-2 sm:pl-6">
 
-                                <a href="index.php?page=profile" class="flex items-center gap-3 group">
+                                <a href="/profile" class="flex items-center gap-2 sm:gap-3 group">
                                     <div
-                                        class="w-11 h-11 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(78,212,255,0.3)] group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                                        class="w-9 h-9 sm:w-11 sm:h-11 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(78,212,255,0.3)] group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                                         <?php if (isset(auth()['photo']) && !empty(auth()['photo'])): ?>
-                                            <img src="uploads/photos/<?= e(auth()['photo']) ?>" alt="Profile"
+                                            <img src="/uploads/photos/<?= e(auth()['photo']) ?>?v=<?= time() ?>" alt="Profile"
                                                 class="w-full h-full object-cover">
                                         <?php else: ?>
                                             <span
-                                                class="text-white font-bold text-lg drop-shadow-md"><?= strtoupper(substr(auth()['nama'], 0, 1)) ?></span>
+                                                class="text-white font-bold text-sm sm:text-lg drop-shadow-md"><?= strtoupper(substr(auth()['nama'], 0, 1)) ?></span>
                                         <?php endif; ?>
                                     </div>
                                     <div class="text-right hidden xl:block">
@@ -502,8 +519,8 @@
                                 </a>
 
 
-                                <a href="index.php?page=logout" onclick="return confirm('Yakin ingin logout?')"
-                                    class="bg-[#fce7f3] text-[#ef4444] hover:bg-white hover:text-red-600 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 shadow-sm">
+                                <a href="/logout" onclick="return confirm('Yakin ingin logout?')"
+                                    class="bg-[#fce7f3] text-[#ef4444] hover:bg-white hover:text-red-600 px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 shadow-sm">
                                     Logout
                                 </a>
                             </div>
@@ -612,7 +629,7 @@
         });
 
         function loadReminders() {
-            fetch('index.php?page=reminder&action=json')
+            fetch('/reminder/json')
                 .then(r => r.json())
                 .then(data => {
                     const list = document.getElementById('reminderList');

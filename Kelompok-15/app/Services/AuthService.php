@@ -40,6 +40,7 @@ class AuthService
             if ($mahasiswa) {
                 $userData['mahasiswa_id'] = $mahasiswa->getMahasiswaId();
                 $userData['nim'] = $mahasiswa->getNim();
+                $userData['jurusan'] = $mahasiswa->getJurusan();
                 $userData['saldo'] = $mahasiswa->getSaldo();
                 $userData['pairing_code'] = $mahasiswa->getPairingCode();
             }
@@ -145,7 +146,10 @@ class AuthService
             $mahasiswa = $this->mahasiswaModel->findByUserId($user->getId());
             if ($mahasiswa) {
                 $userData['mahasiswa_id'] = $mahasiswa->getMahasiswaId();
+                $userData['nim'] = $mahasiswa->getNim();
+                $userData['jurusan'] = $mahasiswa->getJurusan();
                 $userData['saldo'] = $mahasiswa->getSaldo();
+                $userData['pairing_code'] = $mahasiswa->getPairingCode();
             }
         }
         $_SESSION['user'] = array_merge($_SESSION['user'], $userData);
