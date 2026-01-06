@@ -4,9 +4,9 @@ ob_start();
 $photoPath = (auth()['photo'] ?? null) ? 'uploads/photos/' . auth()['photo'] : null;
 ?>
 
-<div class="max-w-4xl mx-auto mt-8 px-4">
+<div class="max-w-4xl mx-auto mt-6 sm:mt-8 px-3 sm:px-4">
 
-    <h1 class="text-2xl font-bold text-[#00C6FB] mb-6 tracking-wide">Profile Saya</h1>
+    <h1 class="text-xl sm:text-2xl font-bold text-[#00C6FB] mb-4 sm:mb-6 tracking-wide">Profile Saya</h1>
 
 
     <div
@@ -26,7 +26,7 @@ $photoPath = (auth()['photo'] ?? null) ? 'uploads/photos/' . auth()['photo'] : n
                         <div
                             class="w-32 h-32 rounded-full border-4 border-[#0F2942] overflow-hidden bg-white shadow-lg flex items-center justify-center transition-transform group-hover:scale-105">
                             <?php if (isset(auth()['photo']) && !empty(auth()['photo'])): ?>
-                                <img src="uploads/photos/<?= e(auth()['photo']) ?>" alt="Profile"
+                                <img src="/uploads/photos/<?= e(auth()['photo']) ?>?v=<?= time() ?>" alt="Profile"
                                     class="w-full h-full object-cover">
                             <?php else: ?>
                                 <div class="w-full h-full bg-slate-200 flex items-center justify-center">
@@ -51,7 +51,7 @@ $photoPath = (auth()['photo'] ?? null) ? 'uploads/photos/' . auth()['photo'] : n
                                 </span>
                             </label>
 
-                            <form id="photoForm" action="index.php?page=profile&action=update_photo" method="POST"
+                            <form id="photoForm" action="/profile/update_photo" method="POST"
                                 enctype="multipart/form-data" class="hidden">
                                 <?= csrf_field() ?>
                                 <input type="file" name="photo" id="photoInput" accept="image/*" class="hidden"
@@ -62,8 +62,7 @@ $photoPath = (auth()['photo'] ?? null) ? 'uploads/photos/' . auth()['photo'] : n
 
 
                     <?php if (isset(auth()['photo']) && !empty(auth()['photo'])): ?>
-                        <form action="index.php?page=profile&action=delete_photo" method="POST"
-                            onsubmit="return confirm('Hapus foto profil?')">
+                        <form action="/profile/delete_photo" method="POST" onsubmit="return confirm('Hapus foto profil?')">
                             <?= csrf_field() ?>
                             <button type="submit"
                                 class="text-rose-400 hover:text-rose-300 text-xs font-bold uppercase tracking-wider flex items-center gap-1 transition-colors">
@@ -147,8 +146,7 @@ $photoPath = (auth()['photo'] ?? null) ? 'uploads/photos/' . auth()['photo'] : n
                             class="relative w-full max-w-md transform overflow-hidden rounded-2xl bg-[#0F2942] border border-white/10 p-8 text-left shadow-2xl transition-all">
                             <h3 class="text-2xl font-bold text-white mb-6">Ubah Password</h3>
 
-                            <form action="index.php?page=profile&action=update_password" method="POST"
-                                class="space-y-5">
+                            <form action="/profile/update_password" method="POST" class="space-y-5">
                                 <?= csrf_field() ?>
 
                                 <div>
@@ -188,7 +186,12 @@ $photoPath = (auth()['photo'] ?? null) ? 'uploads/photos/' . auth()['photo'] : n
 
                 </div>
 
-                <?php
-                $content = ob_get_clean();
-                include dirname(__DIR__) . '/layouts/app.php';
-                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+$content = ob_get_clean();
+include dirname(__DIR__) . '/layouts/app.php';
+?>

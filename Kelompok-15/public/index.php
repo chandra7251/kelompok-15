@@ -1,14 +1,31 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-session_start();
+$isProduction = false;
 
-define('BASE_PATH', dirname(__DIR__));
-require BASE_PATH . '/vendor/autoload.php';
+if ($isProduction) {
+    error_reporting(0);
+    ini_set('display_errors', 0);
+} else {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+}
 
-$dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
-$dotenv->safeLoad();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+define('BASE_PATH', __DIR__);
+
+$autoloadPath = BASE_PATH . '/vendor/autoload.php';
+if (!file_exists($autoloadPath)) {
+    die('Error: vendor/autoload.php tidak ditemukan. Jalankan "composer install".');
+}
+require $autoloadPath;
+
+if (file_exists(BASE_PATH . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
+    $dotenv->safeLoad();
+}
 
 $page = $_GET['page'] ?? 'landing';
 $action = $_GET['action'] ?? 'index';
@@ -19,6 +36,7 @@ $routes = [
     'register' => ['controller' => 'AuthController', 'actions' => ['index' => 'showRegister', 'submit' => 'register']],
     'logout' => ['controller' => 'AuthController', 'actions' => ['index' => 'logout']],
     'forgot_password' => ['controller' => 'ForgotPasswordController', 'actions' => ['index' => 'index', 'submit' => 'submit']],
+    'reset_password' => ['controller' => 'ResetPasswordController', 'actions' => ['index' => 'index', 'submit' => 'submit']],
     'dashboard' => ['controller' => 'DashboardController', 'actions' => ['index' => 'index']],
     'profile' => ['controller' => 'ProfileController', 'actions' => ['index' => 'index', 'update_password' => 'updatePassword', 'update_photo' => 'updatePhoto', 'delete_photo' => 'deletePhoto']],
     'transaksi' => ['controller' => 'TransaksiController', 'actions' => ['index' => 'index', 'create' => 'create', 'store' => 'store', 'edit' => 'edit', 'update' => 'update', 'delete' => 'delete']],
@@ -27,7 +45,7 @@ $routes = [
     'analytics' => ['controller' => 'AnalyticsController', 'actions' => ['index' => 'index']],
     'grafik' => ['controller' => 'GrafikController', 'actions' => ['index' => 'index', 'data' => 'getChartData']],
     'export' => ['controller' => 'ExportController', 'actions' => ['transaksi' => 'transaksi', 'laporan' => 'laporan', 'transfer_orangtua' => 'transferOrangtua', 'laporan_anak_pdf' => 'laporanAnakPdf']],
-    'reminder' => ['controller' => 'ReminderController', 'actions' => ['index' => 'index', 'store' => 'store', 'delete' => 'delete', 'send' => 'send', 'json' => 'json']],
+    'reminder' => ['controller' => 'ReminderController', 'actions' => ['index' => 'index', 'store' => 'store', 'delete' => 'delete', 'json' => 'json']],
     'admin' => ['controller' => 'AdminController', 'actions' => ['users' => 'users', 'monitoring' => 'monitoring', 'settings' => 'settings', 'update_settings' => 'updateSettings', 'toggle_status' => 'toggleStatus', 'reset_password' => 'resetPassword', 'delete_user' => 'deleteUser']]
 ];
 
@@ -56,10 +74,19 @@ try {
     $controller->$methodName();
 
 } catch (Exception $e) {
-    if ($_ENV['APP_DEBUG'] ?? false) {
-        echo "<h1>Error</h1><p>" . htmlspecialchars($e->getMessage()) . "</p>";
+    if ($page === 'login' || $page === 'landing') {
+        if (!$isProduction) {
+            echo "<h1>Error</h1><p>" . htmlspecialchars($e->getMessage()) . "</p>";
+        } else {
+            echo "<h1>Terjadi kesalahan</h1><p>Silakan coba lagi nanti.</p>";
+        }
     } else {
-        header("Location: index.php?page=login");
-        exit;
+        if (!$isProduction) {
+            echo "<h1>Error</h1><p>" . htmlspecialchars($e->getMessage()) . "</p>";
+            echo "<p><a href='/login'>Kembali ke Login</a></p>";
+        } else {
+            header("Location: /login");
+            exit;
+        }
     }
 }

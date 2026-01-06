@@ -3,14 +3,14 @@ $title = 'Monitoring Sistem';
 ob_start();
 ?>
 
-<div class="py-8 px-6">
+<div class="py-6 sm:py-8 px-3 sm:px-6 max-w-full overflow-x-hidden">
     <div class="mb-6">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-                <p class="text-[#B3C9D8]">Pantau semua aktivitas transaksi dan transfer</p>
+                <p class="text-[#B3C9D8] text-sm sm:text-base">Pantau semua aktivitas transaksi dan transfer</p>
             </div>
-            <a href="index.php?page=dashboard"
-                class="text-[#00C6FB] hover:text-[#00F29C] text-sm font-medium transition-colors">← Kembali
+            <a href="/dashboard" class="text-[#00C6FB] hover:text-[#00F29C] text-sm font-medium transition-colors">←
+                Kembali
                 ke Dashboard</a>
         </div>
     </div>

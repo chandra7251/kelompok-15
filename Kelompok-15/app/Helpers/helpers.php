@@ -31,14 +31,41 @@ function verify_csrf(): bool
 
 function redirect(string $url): void
 {
-    header("Location: $url");
+    $cleanUrl = to_clean_url($url);
+    header("Location: $cleanUrl");
     exit;
 }
 
 function back(): void
 {
-    $referer = $_SERVER['HTTP_REFERER'] ?? 'index.php?page=dashboard';
+    $referer = $_SERVER['HTTP_REFERER'] ?? '/dashboard';
     redirect($referer);
+}
+
+function to_clean_url(string $url): string
+{
+    if (preg_match('/^index\.php\?page=([a-zA-Z_]+)(.*)$/', $url, $matches)) {
+        $page = $matches[1];
+        $rest = $matches[2] ?? '';
+
+        if (preg_match('/&action=([a-zA-Z_]+)(.*)$/', $rest, $actionMatches)) {
+            $action = $actionMatches[1];
+            $params = $actionMatches[2] ?? '';
+            $cleanUrl = '/' . $page . '/' . $action;
+        } else {
+            $params = $rest;
+            $cleanUrl = '/' . $page;
+        }
+
+        if (!empty($params)) {
+            $params = ltrim($params, '&');
+            $cleanUrl .= '?' . $params;
+        }
+
+        return $cleanUrl;
+    }
+
+    return $url;
 }
 
 function old(string $key, string $default = ''): string
@@ -154,9 +181,15 @@ function asset(string $path): string
 
 function url(string $page, array $params = []): string
 {
-    $baseUrl = 'index.php?page=' . $page;
+    $action = $params['action'] ?? null;
+    unset($params['action']);
+
+    $baseUrl = '/' . $page;
+    if ($action) {
+        $baseUrl .= '/' . $action;
+    }
     if (!empty($params)) {
-        $baseUrl .= '&' . http_build_query($params);
+        $baseUrl .= '?' . http_build_query($params);
     }
     return $baseUrl;
 }

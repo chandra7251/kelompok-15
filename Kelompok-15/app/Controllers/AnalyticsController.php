@@ -21,7 +21,7 @@ class AnalyticsController
         $spendingStatus = $analytics->getSpendingStatus();
         $trendData = $analytics->getTrendData($period);
         $detailedCalc = $analytics->getDetailedCalculation();
-        $tabungan = $analytics->getTabunganSummary();
+        $tabungan = $analytics->getTabunganSummary();   
         $categoryChart = $analytics->getCategoryChartData('pengeluaran');
 
         view('dashboard.analytics', [

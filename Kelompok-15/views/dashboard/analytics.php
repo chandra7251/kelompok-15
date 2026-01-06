@@ -10,7 +10,7 @@ ob_start();
             <p class="text-[#B3C9D8] mt-2 text-sm md:text-base">Analisis pola keuangan Anda</p>
         </div>
         <div class="flex gap-3 w-full sm:w-auto">
-            <a href="index.php?page=export&action=transaksi"
+            <a href="/export/transaksi"
                 class="flex-1 sm:flex-none justify-center px-4 md:px-5 py-2.5 rounded-xl bg-[#0F2942] border border-[#00F29C]/30 text-[#00F29C] font-semibold hover:bg-[#00F29C]/10 transition-all flex items-center gap-2 text-sm md:text-base">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -18,7 +18,7 @@ ob_start();
                 </svg>
                 Download CSV
             </a>
-            <a href="index.php?page=export&action=laporan"
+            <a href="/export/laporan"
                 class="flex-1 sm:flex-none justify-center px-4 md:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00C6FB] to-[#00F29C] text-[#051933] font-bold hover:shadow-[0_0_20px_rgba(0,198,251,0.3)] transition-all flex items-center gap-2 text-sm md:text-base">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -220,15 +220,15 @@ ob_start();
                         Tren Keuangan
                     </h3>
                     <div class="flex bg-[#0A2238] p-1 rounded-xl border border-white/5 overflow-x-auto max-w-full">
-                        <a href="index.php?page=analytics&period=weekly"
+                        <a href="/analytics?period=weekly"
                             class="px-3 md:px-4 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap <?= $currentPeriod === 'weekly' ? 'bg-[#00C6FB] text-[#051933]' : 'text-[#B3C9D8] hover:text-white' ?>">
                             Mingguan
                         </a>
-                        <a href="index.php?page=analytics&period=monthly"
+                        <a href="/analytics?period=monthly"
                             class="px-3 md:px-4 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap <?= $currentPeriod === 'monthly' ? 'bg-[#00C6FB] text-[#051933]' : 'text-[#B3C9D8] hover:text-white' ?>">
                             Bulanan
                         </a>
-                        <a href="index.php?page=analytics&period=yearly"
+                        <a href="/analytics?period=yearly"
                             class="px-3 md:px-4 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap <?= $currentPeriod === 'yearly' ? 'bg-[#00C6FB] text-[#051933]' : 'text-[#B3C9D8] hover:text-white' ?>">
                             Tahunan
                         </a>

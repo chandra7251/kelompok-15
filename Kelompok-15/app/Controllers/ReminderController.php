@@ -111,39 +111,4 @@ class ReminderController
 
         redirect('index.php?page=reminder');
     }
-
-    public function send(): void
-    {
-        if (!is_logged_in() || !is_role('mahasiswa')) {
-            redirect('index.php?page=login');
-        }
-
-        $id = (int) ($_GET['id'] ?? 0);
-        $mahasiswaId = auth()['mahasiswa_id'];
-
-        try {
-            $db = Database::getInstance();
-            $reminder = $db->fetch(
-                "SELECT * FROM reminders WHERE id = ? AND mahasiswa_id = ?",
-                [$id, $mahasiswaId]
-            );
-
-            if ($reminder) {
-                $notif = new NotificationService();
-                $notif->sendReminderNotification(
-                    auth()['id'],
-                    auth()['email'],
-                    auth()['nama'],
-                    $reminder['nama'],
-                    $reminder['jumlah'],
-                    $reminder['tanggal_jatuh_tempo']
-                );
-                flash('success', 'Reminder telah dikirim ke email Anda');
-            }
-        } catch (\Exception $e) {
-            flash('error', 'Gagal mengirim reminder');
-        }
-
-        redirect('index.php?page=reminder');
-    }
 }

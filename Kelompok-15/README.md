@@ -1,122 +1,95 @@
-# Sistem Keuangan Mahasiswa dengan Kurs Otomatis
+# KeuanganKu
 
-Sistem web untuk mengelola keuangan mahasiswa dengan fitur konversi mata uang otomatis dan monitoring dari orang tua.
+Web keuangan mahasiswa + monitoring ortu.
 
-## Fitur Utama
+## Setup
 
-- Login/Register dengan role (Mahasiswa/Orang Tua/Admin)
-- Dashboard dengan statistik keuangan
-- CRUD Kategori (Pemasukan/Pengeluaran)
-- CRUD Transaksi dengan konversi mata uang otomatis
-- Transfer saldo dari orang tua ke mahasiswa
-- Pairing code untuk menghubungkan akun
-- Grafik pemasukan & pengeluaran (Chart.js)
-- Analytics keuangan (Hemat/Normal/Boros)
-- Reminder pembayaran (SPP/Kos)
-- Export laporan CSV
-- Notifikasi email (PHPMailer)
-
-## Teknologi
-
-- Backend: PHP 7.4+ (Native OOP)
-- Database: MySQL 5.7+
-- Frontend: TailwindCSS (CDN)
-- Grafik: Chart.js
-- Email: PHPMailer
-- API: Exchange Rate API
-
-## Instalasi
-
-### 1. Clone Project
-```bash
-cd c:\laragon\www\Kelompok-15
+Clone repo, install composer:
 ```
-
-### 2. Install Dependencies
-```bash
 composer install
 ```
 
-### 3. Konfigurasi Environment
-```bash
-copy .env.example .env
-```
+Import `database.sql` ke MySQL, buat database `web_keuangan_mahasiswa_dan_kurs_otomatis`.
 
-Edit `.env`:
-```env
-DB_HOST=localhost
-DB_DATABASE=keuangan_mahasiswa
-DB_USERNAME=root
-DB_PASSWORD=
+Copy `.env.example` jadi `.env`, isi sesuai config database kamu.
 
-EXCHANGE_RATE_API_KEY=your_api_key
+Akses di `http://localhost/Kelompok-15/public/`
 
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=your_email@gmail.com
-MAIL_PASSWORD=your_app_password
-```
+## Akun Test
 
-### 4. Import Database
-```bash
-mysql -u root -p < database.sql
-```
+Password semua: `password123`
 
-### 5. Akses Aplikasi
-```
-http://localhost/Kelompok-15/public/
-```
+**Admin:**
+- admin@keuangan.com
 
-## Demo Akun
+**Mahasiswa:**
+- chandraaditiyaputra80@gmail.com
+- chandraaditiya725@gmail.com
+- princecain011@gmail.com
+- kelvin.hartono@gmail.com
+- rizky.maulana@gmail.com
+- ahmad.fauzi@gmail.com
+- budi.santoso@gmail.com
+- citra.dewi@gmail.com
+- dika.pratama@gmail.com
+- eka.putri@gmail.com
 
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@keuangan.com | admin123 |
-| Mahasiswa | ahmad@student.ac.id | admin123 |
-| Mahasiswa | budi@student.ac.id | admin123 |
-| Orang Tua | hasan@gmail.com | admin123 |
+**Orang Tua:**
+- hasan.wijaya@gmail.com
+- siti.rahayu@gmail.com
+- rahman.hidayat@gmail.com
+- dewi.kusuma@gmail.com
+- andi.permana@gmail.com
 
-## Struktur Folder
+## Endpoint
 
-```
-project/
-├── public/index.php      # Router
-├── app/
-│   ├── Controllers/      # 10 Controllers
-│   ├── Models/           # 7 Models
-│   ├── Services/         # 5 Services
-│   ├── Core/             # Database
-│   └── Helpers/          # Helper functions
-├── views/                # View templates
-├── docs/                 # ERD & Architecture
-├── database.sql          # Schema + Seed Data
-└── .env                  # Configuration
-```
+### Public
+- `/` - landing page
+- `/login` - login
+- `/register` - daftar akun
+- `/logout` - keluar
+- `/forgot_password` - lupa password
+- `/reset_password` - reset password dari email
 
-## Database (10 Tabel)
+### Dashboard
+- `/dashboard` - halaman utama setelah login
+- `/profile` - edit profil & foto
 
-1. users - Data user
-2. mahasiswa - Data mahasiswa
-3. orangtua - Data orang tua
-4. relasi_orangtua_mahasiswa - Relasi N:N
-5. kategori - Kategori transaksi
-6. transaksi - Catatan transaksi
-7. transfer_saldo - Riwayat transfer
-8. exchange_rate_log - Cache kurs
-9. notifications - Log notifikasi
-10. reminders - Pengingat pembayaran
+### Transaksi (Mahasiswa)
+- `/transaksi` - list transaksi
+- `/transaksi/create` - tambah transaksi
+- `/transaksi/edit?id=x` - edit
+- `/transaksi/delete` - hapus
 
-## Dokumentasi
+### Kategori (Mahasiswa)
+- `/kategori` - list kategori
+- `/kategori/create` - tambah
+- `/kategori/edit?id=x` - edit
+- `/kategori/delete` - hapus
 
-- [ERD Diagram](docs/ERD.md)
-- [Architecture Diagram](docs/ARCHITECTURE.md)
+### Transfer (Ortu)
+- `/transfer` - kirim saldo ke anak
+- `/transfer/link` - pairing sama anak pakai kode
+- `/transfer/unlink` - lepas pairing
 
-## Keamanan
+### Fitur Lain
+- `/analytics` - statistik keuangan
+- `/grafik` - chart pemasukan/pengeluaran
+- `/reminder` - pengingat bayar SPP/kos
 
-- Password hashing (bcrypt)
-- PDO Prepared Statements
-- CSRF Token validation
-- XSS Protection
-- Input validation
+### Export
+- `/export/transaksi` - download CSV transaksi
+- `/export/laporan` - download laporan
+- `/export/transfer_orangtua` - riwayat transfer ortu
+- `/export/laporan_anak_pdf` - laporan anak PDF
 
-## Kelompok 15
+### Admin
+- `/admin/users` - kelola user
+- `/admin/monitoring` - monitoring semua transaksi
+- `/admin/settings` - pengaturan sistem
+
+## Stack
+PHP, MySQL, TailwindCSS, Chart.js, PHPMailer
+
+---
+Kelompok 15
