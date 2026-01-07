@@ -84,7 +84,10 @@ class ProfileController
 
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
         $filename = 'photo_' . auth()['id'] . '_' . time() . '.' . $extension;
-        $uploadDir = BASE_PATH . '/public/uploads/photos/';
+        // Auto-detect: hosting langsung di public_html, lokal pakai folder public
+        $uploadDir = is_dir(BASE_PATH . '/public/uploads')
+            ? BASE_PATH . '/public/uploads/photos/'
+            : BASE_PATH . '/uploads/photos/';
         $uploadPath = $uploadDir . $filename;
 
         if (!is_dir($uploadDir)) {
@@ -129,7 +132,9 @@ class ProfileController
 
         $oldPhoto = $db->fetch("SELECT photo FROM users WHERE id = ?", [$userId]);
         if ($oldPhoto && $oldPhoto['photo']) {
-            $uploadDir = BASE_PATH . '/public/uploads/photos/';
+            $uploadDir = is_dir(BASE_PATH . '/public/uploads')
+                ? BASE_PATH . '/public/uploads/photos/'
+                : BASE_PATH . '/uploads/photos/';
             $oldPath = $uploadDir . $oldPhoto['photo'];
             if (file_exists($oldPath)) {
                 unlink($oldPath);
