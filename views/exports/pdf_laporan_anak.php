@@ -1,4 +1,4 @@
-git merge delete-user-monitorgit merge delete-user-monitor<?php
+<?php
 $title = 'Laporan Keuangan Anak';
 ?>
 <!DOCTYPE html>
@@ -118,11 +118,11 @@ $title = 'Laporan Keuangan Anak';
 
         .summary-box {
             display: inline-block;
-            width: 30%;
+            width: 20%;
             padding: 15px;
             text-align: center;
             border-radius: 8px;
-            margin-right: 3%;
+            margin-right: 2%;
             vertical-align: top;
         }
 
@@ -152,10 +152,8 @@ $title = 'Laporan Keuangan Anak';
         }
 
         .footer {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
+            margin-top: 40px;
+            padding: 20px 0;
             text-align: center;
             font-size: 9px;
             color: #94a3b8;
@@ -215,8 +213,8 @@ $title = 'Laporan Keuangan Anak';
 
 <body>
     <div class="header">
-        <h1>📊 Laporan Keuangan Anak</h1>
-        <p>Sistem Keuangan Mahasiswa - Kelompok 15</p>
+        <h1>ðŸ“Š Laporan Keuangan Anak</h1>
+        <p>Sistem Keuangan Mahasiswa</p>
     </div>
 
     <div class="info-box">
@@ -230,7 +228,7 @@ $title = 'Laporan Keuangan Anak';
         </div>
         <div class="info-row">
             <span class="info-label">Tanggal Cetak:</span>
-            <span class="info-value"><?= date('d F Y, H:i') ?> WIB</span>
+            <span class="info-value"><?php date_default_timezone_set('Asia/Jakarta'); echo date('d F Y, H:i'); ?> WIB</span>
         </div>
         <div class="info-row">
             <span class="info-label">Jumlah Anak:</span>
@@ -328,9 +326,9 @@ $title = 'Laporan Keuangan Anak';
         </div>
     <?php endforeach; ?>
 
-    <div class="section-title">📈 Ringkasan Total</div>
+    <div class="section-title">ðŸ“ˆ Ringkasan Total</div>
 
-    <div style="margin: 15px 0;">
+   <div style="margin: 15px 0 30px 0; text-align: center;">
         <div class="summary-box summary-green">
             <h3 class="text-green">Rp <?= number_format($totalPemasukan, 0, ',', '.') ?></h3>
             <p>Total Pemasukan Semua Anak</p>
@@ -346,7 +344,7 @@ $title = 'Laporan Keuangan Anak';
     </div>
 
     <div class="footer">
-        Dokumen ini digenerate otomatis oleh Sistem Keuangan Mahasiswa | <?= date('Y') ?> Kelompok 15
+        Dokumen ini digenerate otomatis oleh Sistem Keuangan Mahasiswa | <?= date('Y') ?>
     </div>
 </body>
 

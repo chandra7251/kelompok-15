@@ -17,9 +17,9 @@ ob_start();
     }
 </style>
 
-<div class="w-full max-w-[1750px] mx-auto px-4 sm:px-8 lg:px-24 min-h-screen flex items-stretch relative z-10">
+<div class="w-full max-w-[1750px] mx-auto px-8 lg:px-24 min-h-screen flex items-stretch relative z-10">
 
-    <div class="absolute top-6 sm:top-12 left-4 sm:left-8 lg:left-24 flex items-center gap-2 sm:gap-3">
+    <div class="absolute top-12 left-8 lg:left-24 flex items-center gap-3">
         <div
             class="w-10 h-10 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-lg  shadow-[#4ED4FF]/20">
             <span class="text-[#203351] font-bold text-lg">K</span>
@@ -31,7 +31,7 @@ ob_start();
     <div class="grid lg:grid-cols-12 w-full gap-16 lg:gap-24 items-stretch">
 
 
-        <div class="hidden lg:flex lg:col-span-7 space-y-6 flex-col justify-center pt-20 relative z-20">
+        <div class="lg:col-span-7 space-y-6 flex flex-col justify-center pt-20 relative z-20">
             <div class="space-y-2">
                 <h1 class="text-[5rem] lg:text-[6rem] leading-tight pb-4 font-[900] tracking-tight"
                     style="background: linear-gradient(to right, #00C6FB, #00F29C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 12px rgba(0, 242, 156, 0.22)) drop-shadow(0 0 24px rgba(0, 198, 251, 0.10));">
@@ -81,17 +81,16 @@ ob_start();
         </div>
 
 
-        <div class="lg:col-span-5 flex flex-col justify-center lg:justify-end items-center pb-8 lg:pb-0 pt-24 lg:pt-0">
-            <div class="w-full max-w-[400px] lg:max-w-[640px] relative lg:transform lg:-translate-x-12">
+        <div class="lg:col-span-5 flex flex-col justify-end items-center pb-0">
+            <div class="w-full max-w-[640px] relative transform lg:-translate-x-12">
 
-                <div class="absolute left-1/2 -translate-x-1/2 -top-14 sm:-top-20 z-20">
+                <div class="absolute left-1/2 -translate-x-1/2 -top-20 z-20">
                     <div
-                        class="w-28 h-28 sm:w-44 sm:h-44 rounded-[2rem] sm:rounded-[3rem] bg-gradient-to-b from-cyan-400 to-teal-500 p-1 shadow-[0_10px_50px_rgba(6,182,212,0.4)] flex items-center justify-center">
+                        class="w-44 h-44 rounded-[3rem] bg-gradient-to-b from-cyan-400 to-teal-500 p-1 shadow-[0_10px_50px_rgba(6,182,212,0.4)] flex items-center justify-center">
                         <div
-                            class="w-full h-full rounded-[1.8rem] sm:rounded-[2.8rem] bg-gradient-to-b from-cyan-400 to-teal-500 flex items-center justify-center relative overflow-hidden">
+                            class="w-full h-full rounded-[2.8rem] bg-gradient-to-b from-cyan-400 to-teal-500 flex items-center justify-center relative overflow-hidden">
 
-                            <svg class="w-16 h-16 sm:w-24 sm:h-24 text-white drop-shadow-md" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg class="w-24 h-24 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                             </svg>
@@ -103,13 +102,11 @@ ob_start();
 
 
                 <div
-                    class="bg-[#0E2A3F] rounded-t-[2rem] sm:rounded-t-[3rem] rounded-b-none px-6 sm:px-12 pt-20 sm:pt-32 pb-8 sm:pb-12 shadow-2xl relative border border-gray-800/20">
+                    class="bg-[#0E2A3F] rounded-t-[3rem] rounded-b-none px-12 pt-32 pb-12 pr-12 shadow-2xl relative border border-gray-800/20">
 
-                    <h2
-                        class="text-white text-center text-xl sm:text-2xl font-bold tracking-[0.15em] sm:tracking-[0.2em] mb-8 sm:mb-12 uppercase">
-                        LOGIN</h2>
+                    <h2 class="text-white text-center text-2xl font-bold tracking-[0.2em] mb-12 uppercase">LOGIN</h2>
 
-                    <form action="/login/submit" method="POST" class="space-y-8">
+                    <form action="index.php?page=login&action=submit" method="POST" class="space-y-8">
                         <?= csrf_field() ?>
 
 
@@ -123,7 +120,7 @@ ob_start();
                                     </svg>
                                 </div>
                                 <input type="email" name="email" value="<?= old('email') ?>" required
-                                    class="w-full h-14 sm:h-16 bg-[#0A2E45]/80 text-white text-sm sm:text-base border border-[#1B4257] rounded-xl sm:rounded-2xl pl-14 sm:pl-16 pr-4 sm:pr-6 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-all placeholder-gray-500/50 font-medium"
+                                    class="w-full h-16 bg-[#0A2E45]/80 text-white border border-[#1B4257] rounded-2xl pl-16 pr-6 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-all placeholder-gray-500/50 font-medium tracking-wider text-base"
                                     placeholder="user@example.com">
                             </div>
                         </div>
@@ -138,13 +135,13 @@ ob_start();
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
                                 </div>
-                                <input type="password" name="password" required
-                                    class="w-full h-16 bg-[#0A2E45]/80 text-white border border-[#1B4257] rounded-2xl pl-16 pr-14 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-all placeholder-gray-500/50 font-medium tracking-wider text-base uppercase"
-                                    placeholder="PASSWORD ••••">
+                                <input type="password" name="password" id="passwordInput" required
+                                    class="w-full h-14 sm:h-16 bg-[#0A2E45]/80 text-white text-sm sm:text-base border border-[#1B4257] rounded-xl sm:rounded-2xl pl-14 sm:pl-16 pr-12 sm:pr-14 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition-all placeholder-gray-500/50 font-medium normal-case"
+                                    placeholder="Password" style="text-transform: none !important;">
 
-                                <button type="button"
+                                <button type="button" id="togglePassword"
                                     class="absolute inset-y-0 right-0 pr-6 flex items-center text-[#6e4635] hover:text-cyan-400 transition opacity-60 hover:opacity-100">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg id="eyeIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -156,7 +153,7 @@ ob_start();
 
 
                         <div class="flex justify-end -mt-4">
-                            <a href="/forgot_password"
+                            <a href="index.php?page=forgot_password"
                                 class="text-sm font-semibold tracking-wide bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent hover:brightness-125 transition-all">
                                 Lupa Password?
                             </a>
@@ -164,7 +161,7 @@ ob_start();
 
 
                         <button type="submit"
-                            class="w-full h-14 sm:h-16 bg-gradient-to-r from-cyan-400 to-teal-500 rounded-xl sm:rounded-2xl text-[#02040a] font-[900] text-lg sm:text-xl tracking-[0.08em] sm:tracking-[0.1em] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] transition-all transform hover:-translate-y-0.5 uppercase">
+                            class="w-full h-16 bg-gradient-to-r from-cyan-400 to-teal-500 rounded-2xl text-[#02040a] font-[900] text-xl tracking-[0.1em] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] transition-all transform hover:-translate-y-0.5 uppercase">
                             Login
                         </button>
                     </form>
@@ -172,16 +169,14 @@ ob_start();
 
                     <div class="mt-8 mb-4">
                         <div class="text-center mb-6">
-                            <span
-                                class="text-[#EAF6FF] text-base sm:text-lg font-bold tracking-wider sm:tracking-widest">Didn't
-                                have account?</span>
+                            <span class="text-[#EAF6FF] text-lg font-bold tracking-widest">Didn't have account?</span>
                         </div>
 
                         <div class="flex items-center justify-between gap-4">
 
                             <div class="h-[2px] w-full bg-black rounded-full"></div>
 
-                            <a href="/register"
+                            <a href="index.php?page=register"
                                 class="text-[#4facfe] hover:text-[#00f2fe] text-sm font-[800] uppercase tracking-widest whitespace-nowrap px-2 transition-colors">
                                 SIGN UP
                             </a>
@@ -196,6 +191,32 @@ ob_start();
 
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('passwordInput');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                `;
+            } else {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                `;
+            }
+        });
+    }
+});
+</script>
 
 <?php
 $content = ob_get_clean();

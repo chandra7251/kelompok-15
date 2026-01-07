@@ -26,13 +26,11 @@ ob_start();
 
     <div class="grid lg:grid-cols-2 gap-6">
 
-        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg overflow-hidden">
-            <div class="p-6 pb-0">
-                <h3 class="font-bold text-white mb-4 flex items-center gap-2">
-                    <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
-                    Transaksi Terbaru (50)
-                </h3>
-            </div>
+        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-6">
+            <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
+                Transaksi Terbaru (50)
+            </h3>
             <div class="overflow-x-auto max-h-96 overflow-y-auto">
                 <table class="w-full text-sm">
                     <thead class="bg-gray-50/0 sticky top-0 backdrop-blur-md">
@@ -70,13 +68,11 @@ ob_start();
         </div>
 
 
-        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg overflow-hidden">
-            <div class="p-6 pb-0">
-                <h3 class="font-bold text-white mb-4 flex items-center gap-2">
-                    <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
-                    Riwayat Transfer (50)
-                </h3>
-            </div>
+        <div class="bg-[#16304d] border border-white/5 rounded-2xl shadow-lg p-6">
+            <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-1 h-6 bg-gradient-to-b from-[#00C6FB] to-[#00F29C] rounded-full"></span>
+                Riwayat Transfer (50)
+            </h3>
             <div class="overflow-x-auto max-h-96 overflow-y-auto">
                 <table class="w-full text-sm">
                     <thead class="bg-gray-50/0 sticky top-0 backdrop-blur-md">

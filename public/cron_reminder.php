@@ -1,9 +1,10 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+$rootPath = dirname(__DIR__);
+require $rootPath . '/vendor/autoload.php';
 
-if (file_exists(__DIR__ . '/.env')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+if (file_exists($rootPath . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable($rootPath);
     $dotenv->safeLoad();
 }
 

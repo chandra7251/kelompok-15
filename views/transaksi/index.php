@@ -21,11 +21,11 @@ ob_start();
             <div class="text-center py-16">
                 <div
                     class="w-20 h-20 bg-[#0A2238] rounded-full flex items-center justify-center mx-auto mb-4 border border-white/5">
-                    <span class="text-4xl">📋</span>
+                    <span class="text-4xl">ðŸ“‹</span>
                 </div>
                 <p class="text-gray-400 mb-4">Belum ada transaksi</p>
                 <a href="/transaksi/create" class="text-[#00C6FB] font-medium hover:text-[#00F29C]">Tambah transaksi pertama
-                    →</a>
+                    â†’</a>
             </div>
         <?php else: ?>
             <!-- Mobile Card Layout -->
@@ -38,7 +38,7 @@ ob_start();
                                     <span
                                         class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border
                                         <?= $trx['tipe'] === 'pemasukan' ? 'border-[#00F29C] text-[#00F29C]' : 'border-[#FF6B6B] text-[#FF6B6B]' ?>">
-                                        <?= $trx['tipe'] === 'pemasukan' ? '↑' : '↓' ?>         <?= e($trx['kategori_nama']) ?>
+                                        <?= $trx['tipe'] === 'pemasukan' ? 'â†‘' : 'â†“' ?>         <?= e($trx['kategori_nama']) ?>
                                     </span>
                                 </div>
                                 <p class="text-xs text-gray-400"><?= format_tanggal($trx['tanggal']) ?></p>
@@ -88,7 +88,7 @@ ob_start();
                                     <span
                                         class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border
                                         <?= $trx['tipe'] === 'pemasukan' ? 'border-[#00F29C] text-[#00F29C]' : 'border-[#FF6B6B] text-[#FF6B6B]' ?>">
-                                        <?= $trx['tipe'] === 'pemasukan' ? '↑' : '↓' ?>         <?= e($trx['kategori_nama']) ?>
+                                        <?= $trx['tipe'] === 'pemasukan' ? 'â†‘' : 'â†“' ?>         <?= e($trx['kategori_nama']) ?>
                                     </span>
                                 </td>
                                 <td class="py-4 px-6">
