@@ -6,8 +6,8 @@ ob_start();
 <div
     class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4 animate-fadeInDown px-3 sm:px-0">
     <div>
-        <h1 class="text-lg sm:text-2xl font-bold text-gray-800">Reminder Pembayaran</h1>
-        <p class="text-gray-500 text-sm">Kelola pengingat SPP, kos, dan tagihan lainnya</p>
+        <h1 class="text-2xl font-bold text-[#00C6FB]"> Reminder Pembayaran</h1>
+        <p class="text-gray-400 text-sm mt-1">Kelola pengingat SPP, kos, dan tagihan lainnya</p>
     </div>
 </div>
 

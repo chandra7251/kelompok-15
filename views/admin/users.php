@@ -15,7 +15,7 @@ ob_start();
         </div>
     </div>
 
-    <!-- Mobile Card Layout -->
+    
     <div class="md:hidden space-y-4">
         <?php foreach ($users as $u): ?>
             <div class="bg-[#16304d] border border-white/5 rounded-xl p-4 shadow-lg">
