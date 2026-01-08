@@ -430,10 +430,10 @@
     <?php endif; ?>
 
 
-    <div class="flex-1 flex flex-col h-full overflow-y-auto overflow-x-hidden w-full max-w-full relative">
+    <div class="flex-1 flex flex-col h-full overflow-y-auto w-full relative">
         <nav
             class="bg-[#051933]/90 backdrop-blur-lg shadow-sm border-b border-[#22d3ee]/20 sticky top-0 z-40 bg-[linear-gradient(to_right,#051933,#0A2547)]">
-            <div class="max-w-screen-2xl mx-auto px-4">
+            <div class="w-full mx-auto px-4">
                 <div class="flex justify-between h-20 items-center">
 
 
@@ -565,7 +565,7 @@
         </main>
 
         <footer class="bg-[#0A1F2E] border-t border-white/5 mt-auto">
-            <div class="max-w-screen-2xl mx-auto px-4 py-8">
+            <div class="w-full mx-auto px-4 py-8">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center space-x-3">
                         <div
@@ -575,7 +575,7 @@
                         <span
                             class="text-lg font-bold bg-gradient-to-r from-[#00C6FB] to-[#00F29C] bg-clip-text text-transparent">KeuanganKu</span>
                     </div>
-                    <p class="text-sm font-medium text-[#B3C9D8]">©2026 - Sistem Keuangan Mahasiswa</p>
+                    <p class="text-sm font-medium text-[#B3C9D8]">©2025 - Sistem Keuangan Mahasiswa - Kelompok 15</p>
                 </div>
             </div>
         </footer>

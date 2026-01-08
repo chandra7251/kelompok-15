@@ -166,8 +166,11 @@ class OrangTua extends User
         return $this;
     }
 
-    public function toArrayOrangtua(): array
+    public function toArray(): array
     {
-        return array_merge($this->toArray(), ['orangtua_id' => $this->orangtuaId, 'no_telepon' => $this->noTelepon]);
+        return array_merge(parent::toArray(), [
+            'orangtua_id' => $this->orangtuaId,
+            'no_telepon' => $this->noTelepon
+        ]);
     }
 }

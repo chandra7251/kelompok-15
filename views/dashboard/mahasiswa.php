@@ -147,7 +147,7 @@ ob_start();
                                 </div>
                             </div>
                             <p class="font-bold <?= $trx['tipe'] === 'pemasukan' ? 'text-[#00F29C]' : 'text-[#FF6B6B]' ?>">
-                                <?= $trx['tipe'] === 'pemasukan' ? '+' : '-' ?>         <?= format_rupiah($trx['jumlah_idr']) ?>
+                                <?= $trx['tipe'] === 'pemasukan' ? '+' : '-' ?> <?= format_rupiah($trx['jumlah_idr']) ?>
                             </p>
                         </div>
                     <?php endforeach; ?>

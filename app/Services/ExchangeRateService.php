@@ -18,7 +18,13 @@ class ExchangeRateService
         $this->apiClient = new ApiClient();
         $this->apiKey = $_ENV['EXCHANGE_RATE_API_KEY'] ?? '';
         $this->apiUrl = $_ENV['EXCHANGE_RATE_API_URL'] ?? 'https://v6.exchangerate-api.com/v6';
-        $this->cacheTtl = (int) ($_ENV['EXCHANGE_RATE_CACHE_TTL'] ?? 3600);
+        
+        $dbTtl = $this->db->fetch(
+            "SELECT setting_value FROM system_settings WHERE setting_key = 'kurs_ttl'"
+        );
+        $this->cacheTtl = $dbTtl 
+            ? (int) $dbTtl['setting_value'] 
+            : (int) ($_ENV['EXCHANGE_RATE_CACHE_TTL'] ?? 3600);
     }
 
     public function getRate(string $from, string $to = 'IDR'): float

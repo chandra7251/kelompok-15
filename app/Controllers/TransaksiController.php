@@ -149,21 +149,41 @@ class TransaksiController
             redirect('index.php?page=transaksi');
         }
 
+        $oldJumlahIdr = $data->getJumlahIdr();
+        $kategoriId = $data->getKategoriId();
+
         $jumlah = (float) ($_POST['jumlah'] ?? 0);
         $mataUang = strtoupper(trim($_POST['mata_uang'] ?? 'IDR'));
 
         $exchangeService = new ExchangeRateService();
         $conversion = $exchangeService->convertToIdr($jumlah, $mataUang);
 
+        $kategori = new Kategori();
+        $kat = $kategori->find($kategoriId);
+
         try {
-            $data->setKategoriId((int) $_POST['kategori_id'])
-                ->setJumlah($jumlah)
+            $data->setJumlah($jumlah)
                 ->setMataUang($mataUang)
                 ->setJumlahIdr($conversion['converted_amount'])
                 ->setKursRate($conversion['rate'])
                 ->setTanggal($_POST['tanggal'])
                 ->setKeterangan(trim($_POST['keterangan'] ?? ''));
             $data->update();
+
+            $mahasiswa = new Mahasiswa();
+            $mhs = $mahasiswa->findMahasiswa($mahasiswaId);
+
+            if ($mhs && $kat) {
+                $selisih = $conversion['converted_amount'] - $oldJumlahIdr;
+
+                if ($selisih != 0) {
+                    if ($kat->getTipe() === 'pemasukan') {
+                        $mhs->updateSaldo(abs($selisih), $selisih > 0 ? 'add' : 'subtract');
+                    } else {
+                        $mhs->updateSaldo(abs($selisih), $selisih > 0 ? 'subtract' : 'add');
+                    }
+                }
+            }
 
             flash('success', 'Transaksi berhasil diperbarui');
         } catch (\Exception $e) {
@@ -191,7 +211,7 @@ class TransaksiController
             $kategori = new Kategori();
             $kat = $kategori->find($data->getKategoriId());
 
-           
+
             $mahasiswa = new Mahasiswa();
             $mhs = $mahasiswa->findMahasiswa($mahasiswaId);
             if ($mhs && $kat) {

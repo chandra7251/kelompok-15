@@ -14,17 +14,16 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-define('BASE_PATH', __DIR__);
-define('ROOT_PATH', dirname(__DIR__));
+define('BASE_PATH', dirname(__DIR__));
 
-$autoloadPath = ROOT_PATH . '/vendor/autoload.php';
-if (!file_exists($autoloadPath)) {
+$autoloadPath = BASE_PATH . '/vendor/autoload.php';
+if (!file_exists($autoloadPath)) { 
     die('Error: vendor/autoload.php tidak ditemukan. Jalankan "composer install".');
 }
 require $autoloadPath;
 
-if (file_exists(ROOT_PATH . '/.env')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);
+if (file_exists(BASE_PATH . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
     $dotenv->safeLoad();
 }
 

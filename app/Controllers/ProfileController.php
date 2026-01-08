@@ -84,14 +84,16 @@ class ProfileController
 
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
         $filename = 'photo_' . auth()['id'] . '_' . time() . '.' . $extension;
-        // Prioritas: cek uploads langsung (hosting), baru public/uploads (lokal)
         $uploadDir = is_dir(BASE_PATH . '/uploads')
             ? BASE_PATH . '/uploads/photos/'
             : BASE_PATH . '/public/uploads/photos/';
         $uploadPath = $uploadDir . $filename;
 
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
+            if (!mkdir($uploadDir, 0755, true)) {
+                flash('error', 'Gagal membuat folder upload');
+                redirect('index.php?page=profile');
+            }
         }
 
         $userId = auth()['id'];
@@ -104,14 +106,20 @@ class ProfileController
             }
         }
 
-        if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
+        $uploaded = false;
+        if (@move_uploaded_file($file['tmp_name'], $uploadPath)) {
+            $uploaded = true;
+        } elseif (@copy($file['tmp_name'], $uploadPath)) {
+            @unlink($file['tmp_name']);
+            $uploaded = true;
+        }
+
+        if ($uploaded) {
             $db->update("UPDATE users SET photo = ? WHERE id = ?", [$filename, $userId]);
-
             $_SESSION['user']['photo'] = $filename;
-
             flash('success', 'Foto profil berhasil diubah');
         } else {
-            flash('error', 'Gagal menyimpan foto');
+            flash('error', 'Gagal menyimpan foto. Error: ' . error_get_last()['message'] ?? 'Unknown');
         }
 
         redirect('index.php?page=profile');

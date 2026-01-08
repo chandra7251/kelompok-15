@@ -240,9 +240,9 @@ class Mahasiswa extends User
         return $this;
     }
 
-    public function toArrayMahasiswa(): array
+    public function toArray(): array
     {
-        return array_merge($this->toArray(), [
+        return array_merge(parent::toArray(), [
             'mahasiswa_id' => $this->mahasiswaId,
             'nim' => $this->nim,
             'jurusan' => $this->jurusan,

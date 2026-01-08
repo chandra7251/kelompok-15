@@ -185,7 +185,7 @@ ob_start();
                                 </tr>
                             <?php endforeach; ?>
                             <tr class="bg-indigo-500/5">
-                                <td class="py-3 md:py-4 px-4 md:px-6 font-medium text-indigo-300">ðŸ’° Tabungan (Bonus)
+                                <td class="py-3 md:py-4 px-4 md:px-6 font-medium text-indigo-300">💰 Tabungan (Bonus)
                                 </td>
                                 <td class="py-3 md:py-4 px-4 md:px-6 text-right text-green-400 font-bold">
                                     <?= format_rupiah($detailedCalc['tabungan']) ?>
@@ -206,8 +206,8 @@ ob_start();
                 </div>
                 <div class="px-4 md:px-6 py-3 md:py-4 bg-[#0A2238] border-t border-white/5">
                     <p class="text-[10px] md:text-xs text-[#B3C9D8]/60">
-                        <strong>Cara Hitung:</strong> Skor Komposit = Î£(Skor Ã— Bobot) - (Skor Tabungan Ã— 10%)<br>
-                        <strong>Status:</strong> â‰¤0.9 = Hemat, 0.9-1.8 = Normal, >1.8 = Boros
+                        <strong>Cara Hitung:</strong> Skor Komposit = Σ(Skor × Bobot) - (Skor Tabungan × 10%)<br>
+                        <strong>Status:</strong> ≤0.9 = Hemat, 0.9-1.8 = Normal, >1.8 = Boros
                     </p>
                 </div>
             </div>

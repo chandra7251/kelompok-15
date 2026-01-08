@@ -17,30 +17,31 @@ ob_start();
             <input type="hidden" name="id" value="<?= $transaksi->getId() ?>">
 
             <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Kategori</label>
-                <select name="kategori_id" required
-                    class="w-full px-4 py-3 bg-[#0A2238] border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-[#00C6FB] focus:border-transparent outline-none">
-                    <optgroup label="📥 Pemasukan" class="text-[#00F29C] bg-[#0A2238]">
-                        <?php foreach ($kategoris as $kat): ?>
-                            <?php if ($kat['tipe'] === 'pemasukan'): ?>
-                                <option value="<?= $kat['id'] ?>" class="text-white bg-[#0A2238]"
-                                    <?= $kat['id'] == $transaksi->getKategoriId() ? 'selected' : '' ?>>
-                                    <?= e($kat['nama']) ?>
-                                </option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </optgroup>
-                    <optgroup label="📤 Pengeluaran" class="text-[#FF6B6B] bg-[#0A2238]">
-                        <?php foreach ($kategoris as $kat): ?>
-                            <?php if ($kat['tipe'] === 'pengeluaran'): ?>
-                                <option value="<?= $kat['id'] ?>" class="text-white bg-[#0A2238]"
-                                    <?= $kat['id'] == $transaksi->getKategoriId() ? 'selected' : '' ?>>
-                                    <?= e($kat['nama']) ?>
-                                </option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </optgroup>
-                </select>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Kategori <span
+                        class="text-xs text-gray-500">(tidak dapat diubah)</span></label>
+                <input type="hidden" name="kategori_id" value="<?= $transaksi->getKategoriId() ?>">
+                <?php
+                $currentKategori = null;
+                foreach ($kategoris as $kat) {
+                    if ($kat['id'] == $transaksi->getKategoriId()) {
+                        $currentKategori = $kat;
+                        break;
+                    }
+                }
+                ?>
+                <div
+                    class="w-full px-4 py-3 bg-[#0A2238]/50 border border-white/5 rounded-xl text-gray-400 cursor-not-allowed flex items-center">
+                    <?php if ($currentKategori): ?>
+                        <span class="mr-2"><?= $currentKategori['tipe'] === 'pemasukan' ? '📥' : '📤' ?></span>
+                        <?= e($currentKategori['nama']) ?>
+                        <span
+                            class="ml-2 text-xs px-2 py-0.5 rounded-full <?= $currentKategori['tipe'] === 'pemasukan' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400' ?>">
+                            <?= ucfirst($currentKategori['tipe']) ?>
+                        </span>
+                    <?php else: ?>
+                        Kategori tidak ditemukan
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -402,8 +402,8 @@
                 <span class="text-3xl font-black gradient-text">KeuanganKu</span>
             </div>
 
-            <p class="text-[#B3C9D8] text-sm mb-2">Send Your Feedback : adminonly@gmail.com</p>
-            <p class="text-[#8FB6C8] text-xs">©2026 - Sistem Keuangan Mahasiswa</p>
+            <p class="text-[#B3C9D8] text-sm mb-2">Send Your Feedback : adminoliy@gmail.com</p>
+            <p class="text-[#8FB6C8] text-xs">©2025 - Sistem Keuangan Mahasiswa - Kelompok 15</p>
         </div>
 
 

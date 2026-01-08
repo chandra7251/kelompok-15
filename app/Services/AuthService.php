@@ -33,23 +33,22 @@ class AuthService
             return ['success' => false, 'message' => 'Akun Anda telah dinonaktifkan. Hubungi administrator.'];
         }
 
-        $userData = $user->toArray();
-
         if ($user->getRole() === 'mahasiswa') {
             $mahasiswa = $this->mahasiswaModel->findByUserId($user->getId());
             if ($mahasiswa) {
-                $userData['mahasiswa_id'] = $mahasiswa->getMahasiswaId();
-                $userData['nim'] = $mahasiswa->getNim();
-                $userData['jurusan'] = $mahasiswa->getJurusan();
-                $userData['saldo'] = $mahasiswa->getSaldo();
-                $userData['pairing_code'] = $mahasiswa->getPairingCode();
+                $userData = $mahasiswa->toArray();
+            } else {
+                $userData = $user->toArray();
             }
         } elseif ($user->getRole() === 'orangtua') {
             $orangtua = $this->orangtuaModel->findByUserId($user->getId());
             if ($orangtua) {
-                $userData['orangtua_id'] = $orangtua->getOrangtuaId();
-                $userData['no_telepon'] = $orangtua->getNoTelepon();
+                $userData = $orangtua->toArray();
+            } else {
+                $userData = $user->toArray();
             }
+        } else {
+            $userData = $user->toArray();
         }
 
         $this->setSession($userData);
@@ -141,17 +140,16 @@ class AuthService
         if (!$user)
             return;
 
-        $userData = $user->toArray();
         if ($user->getRole() === 'mahasiswa') {
             $mahasiswa = $this->mahasiswaModel->findByUserId($user->getId());
-            if ($mahasiswa) {
-                $userData['mahasiswa_id'] = $mahasiswa->getMahasiswaId();
-                $userData['nim'] = $mahasiswa->getNim();
-                $userData['jurusan'] = $mahasiswa->getJurusan();
-                $userData['saldo'] = $mahasiswa->getSaldo();
-                $userData['pairing_code'] = $mahasiswa->getPairingCode();
-            }
+            $userData = $mahasiswa ? $mahasiswa->toArray() : $user->toArray();
+        } elseif ($user->getRole() === 'orangtua') {
+            $orangtua = $this->orangtuaModel->findByUserId($user->getId());
+            $userData = $orangtua ? $orangtua->toArray() : $user->toArray();
+        } else {
+            $userData = $user->toArray();
         }
+
         $_SESSION['user'] = array_merge($_SESSION['user'], $userData);
     }
 }

@@ -38,7 +38,7 @@ $currentRole = old('role', 'mahasiswa');
     </div>
 
 
-    <div class="absolute top-8 left-8 lg:left-12 z-20 flex items-center gap-3">
+    <div class="absolute top-6 sm:top-8 left-4 sm:left-8 lg:left-12 z-20 flex items-center gap-2 sm:gap-3">
         <div
             class="w-10 h-10 bg-[linear-gradient(135deg,#4ED4FF,#6AF5C9)] rounded-xl flex items-center justify-center shadow-lg  shadow-[#4ED4FF]/20">
             <span class="text-[#203351] font-bold text-lg">K</span>
@@ -49,15 +49,15 @@ $currentRole = old('role', 'mahasiswa');
 
 
     <div
-        class="w-full lg:w-[45%] xl:w-[40%] flex flex-col justify-center px-8 lg:px-20 z-10 py-14 relative overflow-y-auto no-scrollbar">
-        <div class="w-full max-w-md mx-auto mt-10 lg:mt-0">
+        class="w-full lg:w-[45%] xl:w-[40%] flex flex-col justify-center px-4 sm:px-8 lg:px-20 z-10 py-10 sm:py-14 relative overflow-y-auto no-scrollbar">
+        <div class="w-full max-w-md mx-auto mt-6 sm:mt-10 lg:mt-0">
 
-            <h1 class="text-4xl lg:text-5xl font-black mb-8 text-center pt-12 pb-2 tracking-wide leading-normal"
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black mb-6 sm:mb-8 text-center pt-8 sm:pt-12 pb-2 tracking-wide leading-normal"
                 style="background: linear-gradient(to right, #00C6FB, #00F29C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 12px rgba(0, 242, 156, 0.22)) drop-shadow(0 0 24px rgba(0, 198, 251, 0.10));">
                 Sign-up to website</h1>
 
 
-            <div class="flex bg-[#123C52] rounded-full p-1 mb-2 w-64 ml-auto relative cursor-pointer">
+            <div class="flex bg-[#123C52] rounded-full p-1 mb-2 w-full sm:w-64 sm:ml-auto relative cursor-pointer">
                 <button type="button" onclick="switchRole('mahasiswa')" id="tab-mahasiswa"
                     class="flex-1 py-2 text-sm font-bold rounded-full transition-all duration-300 relative z-10 text-[#0B2A4A] bg-[#21E6D3]">
                     Student
@@ -69,7 +69,7 @@ $currentRole = old('role', 'mahasiswa');
             </div>
 
 
-            <form action="index.php?page=register&action=submit" method="POST" class="space-y-5">
+            <form action="/register/submit" method="POST" class="space-y-5">
                 <?= csrf_field() ?>
                 <input type="hidden" name="role" id="role-input" value="<?= $currentRole ?>">
 
@@ -123,50 +123,50 @@ $currentRole = old('role', 'mahasiswa');
                 </div>
 
 
-                <div class="h-[76px] pt-4">
-                    <button type="submit"
-                        class="w-full h-14 bg-gradient-to-r from-[#00C6FB] to-[#00F29C] rounded-xl text-[#0B2A4A] font-extrabold text-xl tracking-wide uppercase hover:shadow-[0_0_20px_rgba(33,230,211,0.4)] transition-all transform hover:-translate-y-0.5">
-                        Sign-up
-                    </button>
-                </div>
+                <button type="submit"
+                    class="w-full h-12 sm:h-14 bg-gradient-to-r from-[#00C6FB] to-[#00F29C] rounded-lg sm:rounded-xl text-[#0B2A4A] font-extrabold text-lg sm:text-xl tracking-wide uppercase hover:shadow-[0_0_20px_rgba(33,230,211,0.4)] transition-all transform hover:-translate-y-0.5">
+                    Sign-up
+                </button>
+        </div>
 
-                <div class="mt-6 text-center text-sm h-6">
-                    <span class="text-[#8FB6C8] opacity-80">Already have account?</span>
-                    <a href="index.php?page=login"
-                        class="text-[#00C6FB] font-bold hover:text-[#21E6D3] transition ml-1 uppercase">LOGIN</a>
-                </div>
+        <div class="mt-6 text-center text-sm h-6">
+            <span class="text-[#8FB6C8] opacity-80">Already have account?</span>
+            <a href="/login" class="text-[#00C6FB] font-bold hover:text-[#21E6D3] transition ml-1 uppercase">LOGIN</a>
+        </div>
 
-            </form>
+        </form>
+    </div>
+</div>
+
+
+<div class="hidden lg:flex flex-1 flex-col justify-center items-center relative z-10 pr-12">
+
+    <div class="w-full max-w-2xl mb-12 absolute top-24 left-36">
+        <div class="inline-block text-left">
+            <div class="flex items-start gap-4 ">
+                <span class="text-[#21E6D3] text-5xl font-serif leading-none mt-[-10px]">“</span>
+                <p class="text-white text-[19px] font-normal leading-relaxed tracking-wide max-w-2xl">
+                    Solusi digital untuk <span
+                        class="bg-gradient-to-r from-[#00C6FB] to-[#00F29C] text-[#0B2A4A] font-extrabold px-2 py-0.5 rounded-md mx-1">mencatat,
+                        menganalisis, dan memantau</span> pengeluaran mahasiswa secara cerdas.
+                </p>
+                <span class="text-[#21E6D3] text-5xl font-serif leading-none self-end mt-4 ml-[-5px]">”</span>
+            </div>
         </div>
     </div>
 
 
-    <div class="hidden lg:flex flex-1 flex-col justify-center items-center relative z-10 pr-12">
+    <div class="relative w-full max-w-2xl mt-20">
 
-        <div class="w-full max-w-2xl mb-12 absolute top-24 left-36">
-            <div class="inline-block text-left">
-                <div class="flex items-start gap-4 ">
-                    <span class="text-[#21E6D3] text-5xl font-serif leading-none mt-[-10px]">“</span>
-                    <p class="text-white text-[19px] font-normal leading-relaxed tracking-wide max-w-2xl">
-                        Solusi digital untuk <span class="bg-gradient-to-r from-[#00C6FB] to-[#00F29C] text-[#0B2A4A] font-extrabold px-2 py-0.5 rounded-md mx-1">mencatat, menganalisis, dan memantau</span> pengeluaran mahasiswa secara cerdas.
-                    </p>
-                    <span class="text-[#21E6D3] text-5xl font-serif leading-none self-end mt-4 ml-[-5px]">”</span>
-                </div>
-            </div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00F29C]/10 blur-[100px] rounded-full">
         </div>
 
-
-        <div class="relative w-full max-w-2xl mt-20">
-
-            <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00F29C]/10 blur-[100px] rounded-full">
-            </div>
-
-            <img src="assets/images/register-hero.png" alt="Registration Illustration"
-                class="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(0,242,156,0.1)] relative z-10">
-        </div>
-
+        <img src="assets/images/register-hero.png" alt="Registration Illustration"
+            class="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(0,242,156,0.1)] relative z-10">
     </div>
+
+</div>
 
 </div>
 
